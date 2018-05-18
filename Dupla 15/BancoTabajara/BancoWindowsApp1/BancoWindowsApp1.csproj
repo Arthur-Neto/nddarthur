@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45D1172B-1493-4668-9B53-5968A9C1667F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BancoWindowsApp1</RootNamespace>
+    <AssemblyName>BancoWindowsApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Features\ClienteModule\ClienteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\ClienteModule\ClienteControl.Designer.cs">
+      <DependentUpon>ClienteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ClienteModule\ClienteGerenciadorForm.cs" />
+    <Compile Include="Features\Compartilhado\EstadoBotoes.cs" />
+    <Compile Include="Features\ContaCorrenteModule\CadastrarContaCorrente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\CadastrarContaCorrente.Designer.cs">
+      <DependentUpon>CadastrarContaCorrente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\ContaCorrenteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\ContaCorrenteControl.Designer.cs">
+      <DependentUpon>ContaCorrenteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\ContaCorrenteGerenciadorForm.cs" />
+    <Compile Include="Features\ContaCorrenteModule\DepositoSaqueContaCorrente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\DepositoSaqueContaCorrente.Designer.cs">
+      <DependentUpon>DepositoSaqueContaCorrente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\ExtratoContaCorrente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\ExtratoContaCorrente.Designer.cs">
+      <DependentUpon>ExtratoContaCorrente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\TransferirContaCorrente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ContaCorrenteModule\TransferirContaCorrente.Designer.cs">
+      <DependentUpon>TransferirContaCorrente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ClienteModule\CadastroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ClienteModule\CadastroCliente.Designer.cs">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GerenciadorFormulario.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Features\ClienteModule\CadastroCliente.resx">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ClienteModule\ClienteControl.resx">
+      <DependentUpon>ClienteControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ContaCorrenteModule\CadastrarContaCorrente.resx">
+      <DependentUpon>CadastrarContaCorrente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ContaCorrenteModule\ContaCorrenteControl.resx">
+      <DependentUpon>ContaCorrenteControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ContaCorrenteModule\DepositoSaqueContaCorrente.resx">
+      <DependentUpon>DepositoSaqueContaCorrente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ContaCorrenteModule\ExtratoContaCorrente.resx">
+      <DependentUpon>ExtratoContaCorrente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ContaCorrenteModule\TransferirContaCorrente.resx">
+      <DependentUpon>TransferirContaCorrente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BancoApp.dominio\BancoApp.dominio.csproj">
+      <Project>{C03D3E71-12A6-46BC-BC60-9E3520EEC4B3}</Project>
+      <Name>BancoApp.dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BancoApp.Infra.Data\BancoApp.Infra.Data.csproj">
+      <Project>{7a29135b-384f-47a5-bc58-7341ba75e8ec}</Project>
+      <Name>BancoApp.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
