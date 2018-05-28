@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Loterica.Dominio.Base
 {
@@ -10,7 +6,7 @@ namespace Loterica.Dominio.Base
     {
         T Adicionar(T entidade);
         T Atualizar(T entidade);
-        T ObterPorId(int id);
+        T ObterPorId(long id);
         IEnumerable<T> PegarTodos();
         void Deletar(T entidade);
     }

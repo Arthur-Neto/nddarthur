@@ -1,21 +1,19 @@
 ﻿using Loterica.Dominio.Base;
 using Loterica.Dominio.Features.Apostas;
+using Loterica.Dominio.Features.Concursos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Loterica.Dominio.Features.Boloes
 {
     public class Bolao : Entidade
     {
+        public virtual List<Aposta> Apostas { get; set; }
+
         public Bolao()
         {
             Apostas = new List<Aposta>();
         }
-
-        public virtual List<Aposta> Apostas { get; set; }
 
         public override void Validar()
         {
@@ -23,23 +21,29 @@ namespace Loterica.Dominio.Features.Boloes
                 throw new BolaoApostasInsuficienteException();
         }
 
-        //public Bolao GerarBolao(int quantidadeApostas)
-        //{
-        //    Random random = new Random();
-        //    Bolao bolao = new Bolao();
+        public Bolao GerarBolao(int quantidadeApostas, Concurso concurso)
+        {
+            Random random = new Random();
+            Aposta aposta;
+            for (int i = 0; i < quantidadeApostas; i++)
+            {
+                aposta = new Aposta();
+                aposta.Concurso = concurso;
+                aposta.Data = DateTime.Now;
+                aposta.Validade = DateTime.Now.AddDays(+90);
+                aposta.Valor = 3.5m;
+                for (int j = 0; j < 6; j++)
+                {
+                    var num = 0;
+                    while(aposta.Numeros.Contains(num))
+                        num = random.Next(1, 60);
 
-        //    for (int i = 0; i < quantidadeApostas; i++)
-        //    {
-        //        Aposta aposta = new Aposta();
-
-        //        for (int j = 0; j < 6; j++)
-        //        {
-        //            aposta.Numeros[j] = random.Next(01, 60);
-        //        }
-                                
-        //        bolao.Apostas.Add(aposta);
-        //    }
-        //    return bolao;
-        //}
+                    aposta.Numeros.Add(num);
+                }
+                aposta.Numeros.Sort();
+                this.Apostas.Add(aposta);
+            }
+            return this;
+        }
     }
 }

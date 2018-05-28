@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Loterica.Dominio.Base
+﻿namespace Loterica.Dominio.Base
 {
     public abstract class Entidade
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public abstract void Validar();
     }

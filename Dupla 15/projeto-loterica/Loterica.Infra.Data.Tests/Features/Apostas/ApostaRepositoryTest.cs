@@ -1,9 +1,12 @@
 ﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Common.Tests.Base;
+using Loterica.Dominio.Exceptions;
 using Loterica.Dominio.Features.Apostas;
 using Loterica.Dominio.Features.Concursos;
 using Loterica.Infra.Data.Features.Apostas;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -87,6 +90,37 @@ namespace Loterica.Infra.Data.Tests.Features.Apostas
             _aposta = _repository.ObterPorId(_apostaInserida.Id);
 
             _aposta.Should().BeNull();
+        }
+
+
+        [Test]
+        public void Test_ApostaRepository_ShouldThrowOnUpdate()
+        {
+            _aposta = ObjectMother.GetInValidAposta();
+            _aposta.Id = 0;
+            Action action = () => _repository.Atualizar(_aposta);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_ApostaRepository_ShouldThrowOnDelete()
+        {
+            _aposta = ObjectMother.GetInValidAposta();
+            _aposta.Id = 0;
+            Action action = () => _repository.Deletar(_aposta);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_ApostaRepository_ShouldThrowOnGetById()
+        {
+            _aposta = ObjectMother.GetInValidAposta();
+            _aposta.Id = 0;
+            Action action = () => _repository.ObterPorId(_aposta.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
         }
 
     }

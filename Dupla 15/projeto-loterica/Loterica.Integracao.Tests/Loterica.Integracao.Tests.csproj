@@ -71,11 +71,35 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Apostas\ApostaIntegracaoBDTests.cs" />
+    <Compile Include="Features\Boloes\BolaoIntegracaoBDTests.cs" />
+    <Compile Include="Features\Concursos\ConcursoIntegracaoBDTests.cs" />
+    <Compile Include="Features\Resultados\ResultadoIntegracaoBDTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Loterica.Aplicacao\Loterica.Aplicacao.csproj">
+      <Project>{E1F640CC-15D5-4C8B-AB52-C6F7D199700A}</Project>
+      <Name>Loterica.Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Common.Tests\Loterica.Common.Tests.csproj">
+      <Project>{AB9C8C3E-1DE0-49BC-8523-E7DB709570C9}</Project>
+      <Name>Loterica.Common.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Dominio\Loterica.Dominio.csproj">
+      <Project>{4E2247A1-805A-4631-B7D5-CE7D2436F3CA}</Project>
+      <Name>Loterica.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Infra.Data\Loterica.Infra.Data.csproj">
+      <Project>{EBFDA6D5-CDE8-4AEB-AFAE-3AAD7E9BAAA0}</Project>
+      <Name>Loterica.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,11 +1,14 @@
-﻿using System;
-using FluentAssertions;
-using Loterica.Common.Tests.Base;
+﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Dominio.Features.Apostas;
+using Loterica.Dominio.Features.Boloes;
 using Loterica.Dominio.Features.Concursos;
-using NUnit.Framework;
-using Moq;
 using Loterica.Dominio.Features.Resultados;
+using Moq;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Loterica.Dominio.Tests.Features.Resultados
 {
@@ -13,12 +16,16 @@ namespace Loterica.Dominio.Tests.Features.Resultados
     public class ResultadoTests
     {
         Resultado resultado;
-        Mock<Concurso> concurso;
+        Mock<Concurso> _concurso;
+        Mock<Aposta> _aposta;
+        Mock<Bolao> _bolao;
 
         [SetUp]
         public void SetUp()
         {
-            concurso = new Mock<Concurso>();
+            _concurso = new Mock<Concurso>();
+            _bolao = new Mock<Bolao>();
+            _aposta = new Mock<Aposta>();
         }
 
         [Test]
@@ -34,11 +41,33 @@ namespace Loterica.Dominio.Tests.Features.Resultados
         [Test]
         public void Test_Resultado_ShouldThrowInsufficientNumbers()
         {
-            resultado = ObjectMother.GetResultadoNumeroSorteadosInsufficient(concurso.Object);
+            resultado = ObjectMother.GetResultadoNumeroSorteadosInsufficient(_concurso.Object);
 
             Action action = () => resultado.Validar();
 
             action.Should().Throw<ResultadoNumerosSorteadosInsufficientException>();
+        }
+
+        [Test]
+        public void Test_Resultado_ShouldGerarNovosNumerosOk()
+        {
+            resultado = ObjectMother.GetValidResultado();
+
+            Action action = () => resultado.GerarNovosNumeros();
+
+            action.Should().NotThrow();
+        }
+
+        [Test]
+        public void Test_Resultado_ShouldReturnDifferentNumbersOnGerarNovosNumeros()
+        {
+            resultado = ObjectMother.GetValidResultado();
+
+            List<int> numerosAntigos = resultado.NumerosSorteados.Select(num => num).ToList();
+            resultado.GerarNovosNumeros();
+            List<int> numerosNovos = resultado.NumerosSorteados;
+
+            numerosNovos.Should().NotBeSameAs(numerosAntigos);
         }
     }
 }

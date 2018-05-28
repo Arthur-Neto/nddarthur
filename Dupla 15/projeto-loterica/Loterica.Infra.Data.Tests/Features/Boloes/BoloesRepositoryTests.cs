@@ -1,8 +1,12 @@
 ﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Common.Tests.Base;
+using Loterica.Dominio.Exceptions;
+using Loterica.Dominio.Features.Apostas;
 using Loterica.Dominio.Features.Boloes;
+using Loterica.Infra.Data.Exceptions;
+using Loterica.Infra.Data.Features.Apostas;
 using Loterica.Infra.Data.Features.Boloes;
-using Loterica.Infra.Data.Features.Concursos;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,6 +18,7 @@ namespace Loterica.Infra.Data.Tests.Features.Boloes
     public class BoloesRepositoryTests
     {
         BolaoRepository _repository;
+        IApostaRepository _apostaRepository;
         Bolao _bolao;
         Bolao _bolaoInserido;
         Bolao _bolaoGet;
@@ -23,6 +28,7 @@ namespace Loterica.Infra.Data.Tests.Features.Boloes
         {
             BaseSqlTest.SeedDatabase();
             _repository = new BolaoRepository();
+            _apostaRepository = new ApostaRepository();
         }
 
         [Test]
@@ -58,6 +64,18 @@ namespace Loterica.Infra.Data.Tests.Features.Boloes
         }
 
         [Test]
+        [Order(1)]
+        public void Test_BolaoRepository_ShouldGetByIdNoBolao()
+        {
+            _bolao = ObjectMother.GetBolaoValido();
+            _bolaoInserido = _repository.Adicionar(_bolao);
+            _bolaoInserido.Id = 5;
+            _bolaoGet = _repository.ObterPorId(_bolaoInserido.Id);
+
+            _bolaoGet.Should().BeNull();
+        }
+
+        [Test]
         [Order(2)]
         public void Test_BolaoRepository_ShouldGetAll()
         {
@@ -72,12 +90,52 @@ namespace Loterica.Infra.Data.Tests.Features.Boloes
         [Order(3)]
         public void Test_BolaoRepository_ShouldDeleteLastBolao()
         {
-            _bolao = ObjectMother.GetBolaoVazio();
+            _bolao = ObjectMother.GetBolaoValido();
             _bolaoInserido = _repository.Adicionar(_bolao);
+            foreach (var item in _bolaoInserido.Apostas)
+            {
+                _apostaRepository.Deletar(item);
+            }
             _repository.Deletar(_bolaoInserido);
 
             IEnumerable<Bolao> boloes = _repository.PegarTodos();
             boloes.Last().Id.Should().NotBe(_bolaoInserido.Id);
+        }
+
+        [Test]
+        public void Test_BolaoRepository_ShouldThrowOnDelete()
+        {
+            _bolao = ObjectMother.GetBolaoValido();
+            _bolao.Id = 0;
+            Action action = () => _repository.Deletar(_bolao);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+
+        [Test]
+        public void Test_BolaoRepository_ShouldThrowOnGetById()
+        {
+            _bolao = ObjectMother.GetBolaoValido();
+            _bolao.Id = 0;
+            Action action = () => _repository.ObterPorId(_bolao.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+
+
+
+        [Test]
+        public void Test_BolaoRepository_ShouldThrowOnDeleteBolaoWithApostas()
+        {
+            _bolao = ObjectMother.GetBolaoValido();
+
+            Bolao _bolaoInserido = _repository.Adicionar(_bolao);
+
+            Action action = () => _repository.Deletar(_bolaoInserido);
+
+            action.Should().Throw<DependenciaException>();
         }
     }
 }

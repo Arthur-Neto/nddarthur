@@ -1,11 +1,11 @@
-﻿using System;
-using FluentAssertions;
-using Loterica.Common.Tests.Base;
+﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Dominio.Features.Apostas;
 using Loterica.Dominio.Features.Concursos;
-using NUnit.Framework;
-using Moq;
 using Loterica.Dominio.Features.Resultados;
+using Moq;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Loterica.Dominio.Tests.Features.Apostas
@@ -74,22 +74,34 @@ namespace Loterica.Dominio.Tests.Features.Apostas
         }
 
         [Test]
-        public void Test_Aposta_ShouldReturnTrueForWinner()
-        {
-            _concurso.Setup(x => x.Resultado.NumerosSorteados).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
-            _aposta = ObjectMother.GetValidAposta(_concurso.Object);
-            bool resultado = _aposta.IsGanhadora();
-            resultado.Should().Be(true);
-        }
-
-        [Test]
         public void Test_Aposta_ShouldReturnFalseForWinner()
         {
             _concurso.Setup(x => x.Resultado.NumerosSorteados).Returns(new List<int>() { 11, 22, 33, 44, 55, 07 });
             _aposta = ObjectMother.GetValidAposta(_concurso.Object);
-            bool resultado = _aposta.IsGanhadora();
-            resultado.Should().Be(false);
+            EstadoAposta resultado = _aposta.IsGanhadora();
+            resultado.Should().Be(EstadoAposta.PERDEDORA);
         }
 
+        [Test]
+        public void Test_Aposta_ShouldNumerosGetNumerosAcertados()
+        {
+            _concurso.Setup(x => x.Resultado.NumerosSorteados).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
+            _aposta = ObjectMother.GetValidAposta(_concurso.Object);
+
+            int numeroAcertos = _aposta.NumerosAcertos();
+
+            numeroAcertos.Should().Be(6);
+        }
+
+        [Test]
+        public void Test_Aposta_ShouldNumerosSetNumerosAcertados()
+        {
+            _concurso.Setup(x => x.Resultado.NumerosSorteados).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
+            _aposta = ObjectMother.GetValidAposta(_concurso.Object);
+
+            _aposta.NumerosAcertados = 6;
+
+            _aposta.NumerosAcertados.Should().Be(6);
+        }
     }
 }

@@ -1,13 +1,12 @@
-﻿using System;
-using FluentAssertions;
-using Loterica.Common.Tests.Base;
+﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Dominio.Features.Apostas;
-using Loterica.Dominio.Features.Concursos;
-using NUnit.Framework;
-using Moq;
-using System.Collections.Generic;
-using Loterica.Dominio.Features.Resultados;
 using Loterica.Dominio.Features.Boloes;
+using Loterica.Dominio.Features.Concursos;
+using Moq;
+using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Loterica.Dominio.Tests.Features.Boloes
 {
@@ -15,6 +14,7 @@ namespace Loterica.Dominio.Tests.Features.Boloes
     public class BoloesTest
     {
         Bolao _bolao;
+        Concurso _concurso;
         Mock<Aposta> _apostas;
 
         [SetUp]
@@ -45,6 +45,17 @@ namespace Loterica.Dominio.Tests.Features.Boloes
 
             action.Should().NotThrow();
             _bolao.Apostas.Should().HaveCount(2);
+        }
+
+        [Test]
+        public void Test_Boloes_ShouldGerarBolao()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            int _quantidadeApostas = 2;
+            _bolao = new Bolao();
+            _bolao = _bolao.GerarBolao(_quantidadeApostas, _concurso);
+
+            _bolao.Apostas.Count().Should().BeGreaterThan(0);
         }
     }
 }

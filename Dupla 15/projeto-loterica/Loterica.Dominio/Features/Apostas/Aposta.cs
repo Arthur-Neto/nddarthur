@@ -1,50 +1,42 @@
 ﻿using Loterica.Dominio.Base;
-using Loterica.Dominio.Features.Boloes;
 using Loterica.Dominio.Features.Concursos;
-using Loterica.Dominio.Features.Resultados;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Loterica.Dominio.Features.Apostas
 {
+    public enum EstadoAposta
+    {
+        PERDEDORA = 0, GANHADORA_QUADRA, GANHADORA_QUINA, GANHADORA_SENA
+    }
+
     public class Aposta : Entidade
     {
         public virtual List<int> Numeros { get; set; }
         public virtual DateTime Data { get; set; }
         public virtual Concurso Concurso { get; set; }
         public virtual DateTime Validade { get; set; }
-        public virtual decimal Valor { get; set; }
-
-        private int _numerosAcertados { get; set; }
-        public virtual int NumerosAcertados
-        {
-            get
-            {
-                return NumerosAcertos();
-            }
-            set
-            {
-                _numerosAcertados = value;
-            }
-        }
+        public virtual decimal Valor { get; set; }        
+        public virtual int NumerosAcertados { get; set; }
 
         public Aposta()
         {
             Numeros = new List<int>();
         }
 
-        public virtual bool IsGanhadora()
+        public virtual EstadoAposta IsGanhadora()
         {
-            if (NumerosAcertos() >= 4)
-                return true;
+            if (NumerosAcertados == 6)
+                return EstadoAposta.GANHADORA_SENA;
+            else if (NumerosAcertados == 5)
+                return EstadoAposta.GANHADORA_QUINA;
+            else if (NumerosAcertados == 4)
+                return EstadoAposta.GANHADORA_QUADRA;
             else
-                return false;
+                return EstadoAposta.PERDEDORA;
         }
 
-        private int NumerosAcertos()
+        public virtual int NumerosAcertos()
         {
             int numerosAcertados = 0;
             foreach (int numero in Concurso.Resultado.NumerosSorteados)

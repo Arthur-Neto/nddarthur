@@ -1,11 +1,5 @@
 ﻿using Loterica.Infra;
-using Loterica.Infra.Data;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Loterica.Common.Tests.Base
 {
@@ -25,9 +19,9 @@ namespace Loterica.Common.Tests.Base
 
         private const string INSERT_APOSTA = "INSERT INTO Aposta(Numeros, Data, IdConcurso, Validade, Valor, IdBolao) VALUES ('01,02,03,04,05,06', GETDATE(), 1, GETDATE(), 3, 1)";
         private const string INSERT_BOLAO = "INSERT INTO Bolao DEFAULT VALUES";
-        private const string INSERT_CONCURSO = "INSERT INTO Concurso (Data, IsFechado, Premio, IdResultado) VALUES (GETDATE(), 0, 1000, 1)";
+        private const string INSERT_CONCURSO = "INSERT INTO Concurso (Data, IsFechado, Premio, IdResultado, GanhadoresQuadra, GanhadoresQuina, GanhadoresSena, PremioQuadra, PremioQuina, PremioSena) VALUES (GETDATE(), 0, 1000, 1, 0, 2, 1, 0, 100, 1000)";
         private const string INSERT_FATURAMENTO = "INSERT INTO Faturamento (IdConcurso, ValorGanho) VALUES (1, 1000)";
-        private const string INSERT_RESULTADO = "INSERT INTO Resultado (NumerosSorteados) VALUES ('01,02,03,04,05,06')";
+        private const string INSERT_RESULTADO = "INSERT INTO Resultado (NumerosSorteados, MediaQuadra, MediaQuina, MediaSena) VALUES ('01,02,03,04,05,06', 0, 0, 0)";
 
         public static void SeedDatabase()
         {
@@ -40,12 +34,12 @@ namespace Loterica.Common.Tests.Base
             Db.Update(RECREATE_RESULTADO_TABLE);
             Db.Update(RECREATE_CONSTRAINTS_APOSTA);
             Db.Update(RECREATE_CONSTRAINTS_FATURAMENTO);
-
+            
+            Db.Update(INSERT_RESULTADO);
             Db.Update(INSERT_CONCURSO);
             Db.Update(INSERT_BOLAO);
             Db.Update(INSERT_APOSTA);
             Db.Update(INSERT_FATURAMENTO);
-            Db.Update(INSERT_RESULTADO);
         }
 
     }

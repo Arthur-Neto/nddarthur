@@ -77,7 +77,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
+    <ProjectReference Include="..\Loterica.Common.Tests\Loterica.Common.Tests.csproj">
+      <Project>{AB9C8C3E-1DE0-49BC-8523-E7DB709570C9}</Project>
+      <Name>Loterica.Common.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Dominio\Loterica.Dominio.csproj">
+      <Project>{4E2247A1-805A-4631-B7D5-CE7D2436F3CA}</Project>
+      <Name>Loterica.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Infra\Loterica.Infra.csproj">
+      <Project>{f294225c-a5b9-4eb1-be1b-f284a9f6e360}</Project>
+      <Name>Loterica.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -72,4 +72,7 @@
     <None Include="DBO\Script\Loterica.sql" />
     <None Include="Loterica.Database.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Loterica.Database.refactorlog" />
+  </ItemGroup>
 </Project>

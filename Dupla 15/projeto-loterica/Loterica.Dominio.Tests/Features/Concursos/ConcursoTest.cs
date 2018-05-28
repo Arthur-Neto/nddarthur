@@ -1,13 +1,12 @@
-﻿using System;
-using FluentAssertions;
-using Loterica.Common.Tests.Base;
+﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Dominio.Features.Apostas;
-using Loterica.Dominio.Features.Concursos;
-using NUnit.Framework;
-using Moq;
-using System.Collections.Generic;
-using Loterica.Dominio.Features.Resultados;
 using Loterica.Dominio.Features.Boloes;
+using Loterica.Dominio.Features.Concursos;
+using Loterica.Dominio.Features.Resultados;
+using Moq;
+using NUnit.Framework;
+using System;
 
 namespace Loterica.Dominio.Tests.Features.Concursos
 {
@@ -16,6 +15,8 @@ namespace Loterica.Dominio.Tests.Features.Concursos
     {
         Concurso _concurso;
         Mock<Aposta> _aposta;
+        Mock<Aposta> _apostaQuina;
+        Mock<Aposta> _apostaQuadra;
         Mock<Resultado> _resultado;
         Mock<Bolao> _bolao;
 
@@ -25,86 +26,26 @@ namespace Loterica.Dominio.Tests.Features.Concursos
             _resultado = new Mock<Resultado>();
             _aposta = new Mock<Aposta>();
             _bolao = new Mock<Bolao>();
+            _apostaQuina = new Mock<Aposta>();
+            _apostaQuadra = new Mock<Aposta>();
         }
 
         [Test]
-        public void Test_Concurso_ShouldValidateAllOk()
+        public void Test_Concurso_ShouldConcursoFechadoBeOk()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+
+            _concurso.IsFechado.Should().Be(false);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldThrowOnValidate()
         {
             _concurso = ObjectMother.GetValidConcursoFechado();
 
             Action action = () => _concurso.Validar();
 
-            action.Should().NotThrow();
-        }
-
-        [Test]
-        public void Test_Concurso_ShouldReturnWinnerList()
-        {
-            _resultado.Setup(x => x.NumerosSorteados).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
-            _aposta.Setup(x => x.IsGanhadora()).Returns(true);
-            _concurso = ObjectMother.GetValidConcursoAberto();
-            _concurso.Apostas.Add(_aposta.Object);
-
-            List<Aposta> ganhadores = _concurso.Ganhadores;
-
-            ganhadores.Should().Contain(_aposta.Object);
-        }
-
-        [Test]
-        public void Test_Concurso_ShouldReturnWinnerListNoWinner()
-        {
-            _resultado.Setup(x => x.NumerosSorteados).Returns(new List<int>() { 11, 22, 33, 44, 55, 60 });
-            _aposta.Setup(x => x.IsGanhadora()).Returns(false);
-            _concurso = ObjectMother.GetValidConcursoAberto();
-            _concurso.Apostas.Add(_aposta.Object);
-
-            List<Aposta> ganhadores = _concurso.Ganhadores;
-
-            ganhadores.Should().NotContain(_aposta.Object);
-        }
-
-        [Test]
-        public void Test_Concurso_ShouldReturnPremioNoBolaoWithAposta()
-        {
-            _aposta.Setup(x => x.Numeros).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
-            _aposta.Setup(x => x.Valor).Returns(4.0m);
-            _concurso = ObjectMother.GetValidConcursoFechado();
-            _concurso.Apostas.Add(_aposta.Object);
-
-            decimal result = _concurso.Premio;
-            decimal resultQuadra = _concurso.PremioQuadra;
-            decimal resultQuina = _concurso.PremioQuina;
-            decimal resultSena = _concurso.PremioSena;
-
-            decimal premioEsperado = 4.0m, taxaLoterica = 0.9m, premioComTaxa = premioEsperado * taxaLoterica, corteQuadra = 0.1m, corteQuina = 0.2m, corteSena = 0.7m;
-
-            result.Should().Be(premioEsperado * taxaLoterica);
-            resultQuadra.Should().Be(premioComTaxa * corteQuadra);
-            resultQuina.Should().Be(premioComTaxa * corteQuina);
-            resultSena.Should().Be(premioComTaxa * corteSena);
-        }
-
-        [Test]
-        public void Test_Concurso_ShouldReturnPremioWithBoloesAndAposta()
-        {
-            _aposta.Setup(x => x.Numeros).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
-            _aposta.Setup(x => x.Valor).Returns(4.0m);
-            _bolao.Setup(x => x.Apostas).Returns(new List<Aposta>());
-            _concurso = ObjectMother.GetValidConcursoFechado();
-            _concurso.Apostas.Add(_aposta.Object);
-            _concurso.Boloes.Add(_bolao.Object);
-
-            decimal result = _concurso.Premio;
-            decimal resultQuadra = _concurso.PremioQuadra;
-            decimal resultQuina = _concurso.PremioQuina;
-            decimal resultSena = _concurso.PremioSena;
-
-            decimal premioEsperado = 4.0m, taxaLoterica = 0.90m, premioComTaxa = premioEsperado * taxaLoterica, corteQuadra = 0.1m, corteQuina = 0.2m, corteSena = 0.7m;
-
-            result.Should().Be(premioEsperado * taxaLoterica);
-            resultQuadra.Should().Be(premioComTaxa * corteQuadra);
-            resultQuina.Should().Be(premioComTaxa * corteQuina);
-            resultSena.Should().Be(premioComTaxa * corteSena);
+            action.Should().Throw<InvalidOperationException>();
         }
 
         [Test]
@@ -112,10 +53,10 @@ namespace Loterica.Dominio.Tests.Features.Concursos
         {
             _concurso = ObjectMother.GetValidConcursoFechado();
 
-            decimal result = _concurso.Premio;
-            decimal resultQuadra = _concurso.PremioQuadra;
-            decimal resultQuina = _concurso.PremioQuina;
-            decimal resultSena = _concurso.PremioSena;
+            decimal result = _concurso.Premio.Total;
+            decimal resultQuadra = _concurso.Premio.Quadra;
+            decimal resultQuina = _concurso.Premio.Quina;
+            decimal resultSena = _concurso.Premio.Sena;
 
             result.Should().Be(0);
             resultQuadra.Should().Be(0);
@@ -124,35 +65,161 @@ namespace Loterica.Dominio.Tests.Features.Concursos
         }
 
         [Test]
-        public void Test_Concurso_ShouldReturnPremioWithBolaoNoAposta()
-        {
-            _aposta.Setup(x => x.Numeros).Returns(new List<int>() { 01, 02, 03, 04, 05, 06 });
-            _aposta.Setup(x => x.Valor).Returns(4.0m);
-            _bolao.Setup(x => x.Apostas).Returns(new List<Aposta>() { _aposta.Object });
-            _concurso = ObjectMother.GetValidConcursoFechado();
-            _concurso.Boloes.Add(_bolao.Object);
-
-            decimal result = _concurso.Premio;
-            decimal resultQuadra = _concurso.PremioQuadra;
-            decimal resultQuina = _concurso.PremioQuina;
-            decimal resultSena = _concurso.PremioSena;
-
-            decimal premioEsperado = 4.0m, taxaLoterica = 0.95m, premioComTaxa = premioEsperado * taxaLoterica, corteQuadra = 0.1m, corteQuina = 0.2m, corteSena = 0.7m;
-
-            result.Should().Be(premioEsperado * taxaLoterica);
-            resultQuadra.Should().Be(premioComTaxa * corteQuadra);
-            resultQuina.Should().Be(premioComTaxa * corteQuina);
-            resultSena.Should().Be(premioComTaxa * corteSena);
-        }
-
-        [Test]
         public void Test_Concurso_ShouldSetPremioValue()
         {
             _concurso = ObjectMother.GetValidConcursoAberto();
 
-            Action action = () => _concurso.Premio = 0;
+            Action action = () => _concurso.Premio.Total = 0;
 
             action.Should().NotThrow();
         }
+
+        [Test]
+        public void Test_Concurso_ShouldSetValueQuina()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+
+            _concurso.Premio.Quina = 50m;
+
+            _concurso.Premio.Quina.Should().Be(50m);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldSetValueSena()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+
+            _concurso.Premio.Sena = 50m;
+
+            _concurso.Premio.Sena.Should().Be(50m);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoComAposta()
+        {
+            _concurso = ObjectMother.GetValidConcursoComApostas();
+
+            _concurso.FecharConcurso();
+
+            var valorEsperado = 15.75m;
+            _concurso.Premio.Total.Should().Be(valorEsperado);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoComApostaeBolao()
+        {
+            _concurso = ObjectMother.GetValidConcursoComApostaseBolao();
+
+            _concurso.FecharConcurso();
+
+            var valorEsperado = 27.7200m;
+            _concurso.Premio.Total.Should().Be(valorEsperado);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoSenaVencedora()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            _concurso.Apostas.Clear();
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaSena(_concurso));
+
+            _concurso.FecharConcurso();
+
+            var premioSena = 3.5m * 0.9m;
+            _concurso.Premio.Sena.Should().Be(premioSena);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoQuinaVencedora()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            _concurso.Apostas.Clear();
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaQuina(_concurso));
+
+            _concurso.FecharConcurso();
+
+            var premioQuina = (3.5m * 0.9m) * 0.25m;
+            _concurso.Premio.Quina.Should().Be(premioQuina);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoQuadraVencedora()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            _concurso.Apostas.Clear();
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaQuadra(_concurso));
+
+            _concurso.FecharConcurso();
+
+            var premioQuadra = (3.5m * 0.9m) * 0.1m;
+            _concurso.Premio.Quadra.Should().Be(premioQuadra);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoSenaeQuinaVencedora()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            _concurso.Apostas.Clear();
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaSena(_concurso));
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaQuina(_concurso));
+
+            _concurso.FecharConcurso();
+
+            var premioSena = (7.0m * 0.9m) * 0.8m;
+            var premioQuina = (7.0m * 0.9m) * 0.2m;
+            _concurso.Premio.Sena.Should().Be(premioSena);
+            _concurso.Premio.Quina.Should().Be(premioQuina);
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoSenaeQuadraVencedora()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            _concurso.Apostas.Clear();
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaSena(_concurso));
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaQuadra(_concurso));
+
+            _concurso.FecharConcurso();
+
+            var premioSena = (7.0m * 0.9m) * 0.9m;
+            var premioQuadra = (7.0m * 0.9m) * 0.1m;
+            _concurso.Premio.Sena.Should().Be(premioSena);
+            _concurso.Premio.Quadra.Should().Be(premioQuadra);
+
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoQuinaeQuadraVencedora()
+        {
+            _concurso = ObjectMother.GetValidConcursoAberto();
+            _concurso.Apostas.Clear();
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaQuina(_concurso));
+            _concurso.Apostas.Add(ObjectMother.GetValidApostaQuadra(_concurso));
+
+            _concurso.FecharConcurso();
+
+            var premioQuina = (7.0m * 0.9m) * 0.2m;
+            var premioQuadra = (7.0m * 0.9m) * 0.1m;
+            _concurso.Premio.Quina.Should().Be(premioQuina);
+            _concurso.Premio.Quadra.Should().Be(premioQuadra);
+
+        }
+
+        [Test]
+        public void Test_Concurso_ShouldCalculateResultadoConcursoComBolaoSemAposta()
+        {
+            _concurso = ObjectMother.GetValidConcursoComApostaseBolaoQuadraQuinaeSena();
+            _concurso.Apostas.Clear();
+
+            _concurso.FecharConcurso();
+
+            var premioSena = (10.5m * 0.95m) * 0.7m;
+            var premioQuina = (10.5m * 0.95m) * 0.2m;
+            var premioQuadra = (10.5m * 0.95m) * 0.1m;
+            _concurso.Premio.Sena.Should().Be(premioSena);
+            _concurso.Premio.Quina.Should().Be(premioQuina);
+            _concurso.Premio.Quadra.Should().Be(premioQuadra);
+        }
+
     }
 }

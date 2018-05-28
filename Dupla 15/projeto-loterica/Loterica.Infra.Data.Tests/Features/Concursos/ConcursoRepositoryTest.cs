@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Common.Tests.Base;
+using Loterica.Dominio.Exceptions;
 using Loterica.Dominio.Features.Concursos;
 using Loterica.Infra.Data.Exceptions;
 using Loterica.Infra.Data.Features.Concursos;
@@ -39,12 +41,14 @@ namespace Loterica.Infra.Data.Tests.Features.Concursos
         [Order(1)]
         public void Test_ConcursoRepository_ShouldUpdateConcurso()
         {
-            _concursoInserido.Premio = 2000;
+            _concursoInserido.Premio.Total = 2000;
 
             Concurso _concursoEditado = _repository.Atualizar(_concursoInserido);
 
-            _concursoEditado.Premio.Should().Be(2000);
+            _concursoEditado.Premio.Total.Should().Be(2000);
         }
+
+     
 
         [Test]
         [Order(2)]
@@ -94,6 +98,54 @@ namespace Loterica.Infra.Data.Tests.Features.Concursos
             Action action = () =>_repository.Deletar(_concurso);
 
             action.Should().Throw<DependenciaException>();
+        }
+
+        [Test]
+        public void Test_ConcursoRepository_ShouldThrowUpdate()
+        {
+            _concurso = _repository.ObterPorId(1);
+            _concurso.Id = 0;
+            Action action = () => _repository.Atualizar(_concurso);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_ConcursoRepository_ShouldThrowUpdateConcursoFechado()
+        {
+            _concurso = _repository.ObterPorId(1);
+            _concurso.IsFechado = true;
+            Action action = () => _repository.Atualizar(_concurso);
+
+            action.Should().Throw<ConcursoFechadoException>();
+        }
+
+        [Test]
+        public void Test_ConcursoRepository_ShouldThrowDelete()
+        {
+            _concurso = _repository.ObterPorId(1);
+            _concurso.Id = 0;
+            Action action = () => _repository.Deletar(_concurso);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_ConcursoRepository_ShouldThrowGetById()
+        {
+            _concurso = _repository.ObterPorId(1);
+            _concurso.Id = 0;
+            Action action = () => _repository.ObterPorId(_concurso.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_ConcursoServico_ShouldGetFaturamento()
+        {
+            string result = _repository.RelatorioFaturamento();
+
+            result.Should().NotBeNull();
         }
     }
 }

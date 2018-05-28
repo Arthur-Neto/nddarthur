@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseSqlTest.cs" />
-    <Compile Include="Base\ObjectMother.cs" />
+    <Compile Include="Features\Apostas\ObjectMotherAposta.cs" />
+    <Compile Include="Features\Boloes\ObjectMotherBolao.cs" />
+    <Compile Include="Features\Concursos\ObjectMotherConcurso.cs" />
+    <Compile Include="Features\Resultados\ObjectMotherResultado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

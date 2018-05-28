@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Features\Apostas\ApostaRepository.cs" />
     <Compile Include="Features\Boloes\BolaoRepository.cs" />
+    <Compile Include="Features\Concursos\ConcursoFechadoException.cs" />
     <Compile Include="Features\Concursos\ConcursoRepository.cs" />
     <Compile Include="Exceptions\DependenciaException.cs" />
     <Compile Include="Features\Resultados\ResultadoRepository.cs" />

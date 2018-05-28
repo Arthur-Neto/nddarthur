@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Base\IRepository.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\IdentifierUndefinedException.cs" />
     <Compile Include="Features\Apostas\Aposta.cs" />
     <Compile Include="Base\Entidade.cs" />
     <Compile Include="Features\Apostas\ApostaConcursoNullException.cs" />
@@ -51,11 +52,17 @@
     <Compile Include="Features\Apostas\IApostaRepository.cs" />
     <Compile Include="Features\Boloes\Bolao.cs" />
     <Compile Include="Features\Boloes\BolaoApostasInsuficienteException.cs" />
+    <Compile Include="Features\Boloes\IBolaoRepository.cs" />
     <Compile Include="Features\Concursos\Concurso.cs" />
-    <Compile Include="Features\Concursos\ConcursoNumeroInsuficienteException.cs" />
+    <Compile Include="Features\Concursos\IConcursoRepository.cs" />
+    <Compile Include="Features\Ganhadores\Ganhador.cs" />
+    <Compile Include="Features\Cortes\Corte.cs" />
+    <Compile Include="Features\Premios\Premio.cs" />
+    <Compile Include="Features\Resultados\IResultadoRepository.cs" />
     <Compile Include="Features\Resultados\Resultado.cs" />
     <Compile Include="Features\Resultados\ResultadoConcursoNullException.cs" />
     <Compile Include="Features\Resultados\ResultadoNumerosSorteadosInsufficientException.cs" />
+    <Compile Include="Features\Resultados\ResultadoSemGanhadoresException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

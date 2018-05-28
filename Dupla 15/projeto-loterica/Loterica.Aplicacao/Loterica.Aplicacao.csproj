@@ -40,10 +40,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Servico.cs" />
+    <Compile Include="Features\Apostas\ApostaServico.cs" />
+    <Compile Include="Features\Boloes\BolaoServico.cs" />
+    <Compile Include="Features\Concurso\ConcursoServico.cs" />
+    <Compile Include="Features\Resultado\ResultadoServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Features\" />
+    <ProjectReference Include="..\Loterica.Dominio\Loterica.Dominio.csproj">
+      <Project>{4E2247A1-805A-4631-B7D5-CE7D2436F3CA}</Project>
+      <Name>Loterica.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Infra.CSV\Loterica.Infra.CSV.csproj">
+      <Project>{3F817E80-047D-4663-A893-D22DDF897595}</Project>
+      <Name>Loterica.Infra.CSV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loterica.Infra\Loterica.Infra.csproj">
+      <Project>{F294225C-A5B9-4EB1-BE1B-F284A9F6E360}</Project>
+      <Name>Loterica.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

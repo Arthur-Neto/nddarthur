@@ -1,12 +1,9 @@
 ﻿using Loterica.Dominio.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Loterica.Dominio.Features.Boloes
 {
+    [ExcludeFromCodeCoverage]
     public class BolaoApostasInsuficienteException : BusinessException
     {
         public BolaoApostasInsuficienteException() : base("O numero de apostas deve ser maior que 2")

@@ -94,6 +94,10 @@
       <Project>{EBFDA6D5-CDE8-4AEB-AFAE-3AAD7E9BAAA0}</Project>
       <Name>Loterica.Infra.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Loterica.Infra\Loterica.Infra.csproj">
+      <Project>{f294225c-a5b9-4eb1-be1b-f284a9f6e360}</Project>
+      <Name>Loterica.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

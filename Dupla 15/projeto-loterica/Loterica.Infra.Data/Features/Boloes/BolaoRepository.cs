@@ -1,20 +1,17 @@
-﻿using Loterica.Dominio.Base;
+﻿using Loterica.Dominio.Exceptions;
 using Loterica.Dominio.Features.Apostas;
 using Loterica.Dominio.Features.Boloes;
 using Loterica.Dominio.Features.Concursos;
 using Loterica.Infra.Data.Exceptions;
-using Loterica.Infra.Data.Features.Apostas;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Loterica.Infra.Data.Features.Boloes
 {
-    public class BolaoRepository : IRepository<Bolao>
+    public class BolaoRepository : IBolaoRepository
     {
         #region Querys
         private const string _insert = @"INSERT INTO Bolao DEFAULT VALUES";
@@ -27,6 +24,8 @@ namespace Loterica.Infra.Data.Features.Boloes
 
         public Bolao Adicionar(Bolao entidade)
         {
+            entidade.Validar();
+
             long _id = Db.Insert(_insert, Take(entidade));
 
             foreach (var aposta in entidade.Apostas)
@@ -46,8 +45,14 @@ namespace Loterica.Infra.Data.Features.Boloes
 
         public void Deletar(Bolao entidade)
         {
+            if (entidade.Id == 0)
+                throw new IdentifierUndefinedException();
+
+            entidade.Validar();
+
             try
             {
+
                 Db.Delete(_delete, Take(entidade));
             }
             catch (SqlException)
@@ -56,9 +61,14 @@ namespace Loterica.Infra.Data.Features.Boloes
             }
         }
 
-        public Bolao ObterPorId(int id)
+        public Bolao ObterPorId(long id)
         {
+            if (id == 0)
+                throw new IdentifierUndefinedException();
+
             Bolao bolao = Db.Get(_getById, Make, new object[] { "@Id", id });
+            if (bolao == null)
+                return null;
             bolao.Apostas = Db.GetAll(_getAllApostasByIdBolao, MakeAposta, new object[] { "@Id", id });
 
             return bolao;
@@ -93,7 +103,7 @@ namespace Loterica.Infra.Data.Features.Boloes
         private static Func<IDataReader, Aposta> MakeAposta = reader =>
            new Aposta
            {
-               Id = Convert.ToInt32(reader["Id"]),
+               Id = Convert.ToInt64(reader["Id"]),
                Concurso = new Concurso() { Id = Convert.ToInt32(reader["IdConcurso"]) },
                Data = Convert.ToDateTime(reader["Data"]),
                Numeros = (Convert.ToString(reader["Numeros"])).Split(',').Select(Int32.Parse).ToList(),

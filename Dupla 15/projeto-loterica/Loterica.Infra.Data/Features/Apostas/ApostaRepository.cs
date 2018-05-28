@@ -1,4 +1,5 @@
-﻿using Loterica.Dominio.Features.Apostas;
+﻿using Loterica.Dominio.Exceptions;
+using Loterica.Dominio.Features.Apostas;
 using Loterica.Dominio.Features.Concursos;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace Loterica.Infra.Data.Features.Apostas
 
         public Aposta Adicionar(Aposta entidade)
         {
+            entidade.Validar();
+
             long _id = Db.Insert(_insert, Take(entidade));
 
             entidade = ObterPorId(Convert.ToInt32(_id));
@@ -28,6 +31,11 @@ namespace Loterica.Infra.Data.Features.Apostas
 
         public Aposta Atualizar(Aposta entidade)
         {
+            if (entidade.Id == 0)
+                throw new IdentifierUndefinedException();
+
+            entidade.Validar();
+
             Db.Update(_update, Take(entidade));
 
             entidade = ObterPorId(entidade.Id);
@@ -37,11 +45,19 @@ namespace Loterica.Infra.Data.Features.Apostas
 
         public void Deletar(Aposta entidade)
         {
+            if (entidade.Id == 0)
+                throw new IdentifierUndefinedException();
+
+            entidade.Validar();
+
             Db.Delete(_delete, Take(entidade));
         }
 
-        public Aposta ObterPorId(int id)
+        public Aposta ObterPorId(long id)
         {
+            if (id == 0)
+                throw new IdentifierUndefinedException();
+
             return Db.Get(_getById, Make, new object[] { "@Id", id });
         }
 
@@ -53,7 +69,7 @@ namespace Loterica.Infra.Data.Features.Apostas
         private static Func<IDataReader, Aposta> Make = reader =>
            new Aposta
            {
-               Id = Convert.ToInt32(reader["Id"]),
+               Id = Convert.ToInt64(reader["Id"]),
                Concurso = new Concurso() { Id = Convert.ToInt32(reader["IdConcurso"]) },
                Data = Convert.ToDateTime(reader["Data"]),
                Numeros = (Convert.ToString(reader["Numeros"])).Split(',').Select(Int32.Parse).ToList(),

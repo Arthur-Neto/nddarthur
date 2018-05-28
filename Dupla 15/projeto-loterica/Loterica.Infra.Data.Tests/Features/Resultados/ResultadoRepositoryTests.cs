@@ -1,8 +1,11 @@
 ﻿using FluentAssertions;
+using Loterica.Common.Tests;
 using Loterica.Common.Tests.Base;
+using Loterica.Dominio.Exceptions;
 using Loterica.Dominio.Features.Resultados;
 using Loterica.Infra.Data.Features.Resultados;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -76,10 +79,40 @@ namespace Loterica.Infra.Data.Tests.Features.Resultados
         {
             _resultado = ObjectMother.GetValidResultado();
             _resultadoInserido = _repository.Adicionar(_resultado);
-            _repository.Deletar(_resultado);
+            _repository.Deletar(_resultadoInserido);
             IEnumerable<Resultado> resultadoObtido = _repository.PegarTodos();
 
             resultadoObtido.Should().NotContain(_resultadoInserido);
+        }
+
+        [Test]
+        public void Test_resultadoRepository_ShouldThrowOnUpdate()
+        {
+            _resultado = ObjectMother.GetValidResultado();
+            _resultado.Id = 0;
+            Action action = () => _repository.Atualizar(_resultado);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_resultadoRepository_ShouldThrowOnDelete()
+        {
+            _resultado = ObjectMother.GetValidResultado();
+            _resultado.Id = 0;
+            Action action = () => _repository.Deletar(_resultado);
+
+            action.Should().Throw<IdentifierUndefinedException>();
+        }
+
+        [Test]
+        public void Test_resultadoRepository_ShouldThrowOnGetById()
+        {
+            _resultado = ObjectMother.GetValidResultado();
+            _resultado.Id = 0;
+            Action action = () => _repository.ObterPorId(_resultado.Id);
+
+            action.Should().Throw<IdentifierUndefinedException>();
         }
     }
 }
