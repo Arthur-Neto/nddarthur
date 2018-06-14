@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d4567460-58f7-42f7-8ce8-7291d3c78825" ChangeDateTime="05/29/2018 17:38:16">
+    <Property Name="ElementName" Value="[dbo].[TBEndereco].[Cidade]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBEndereco]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Municipio" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="89911390-a4ed-483a-8e44-6e134aa23272" ChangeDateTime="05/29/2018 17:38:19">
+    <Property Name="ElementName" Value="[dbo].[TBEndereco].[Muni]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBEndereco]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Numero" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="52c7f825-daa5-41ec-988b-96a897847bfb" ChangeDateTime="05/30/2018 19:00:49">
+    <Property Name="ElementName" Value="[dbo].[TBTransportador].[NomeRazaoSocial]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBTransportador]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nome" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2d39523b-6a1d-4c13-9929-1db7dc049435" ChangeDateTime="05/30/2018 19:03:09">
+    <Property Name="ElementName" Value="[dbo].[TBTransportador].[F]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBTransportador]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponsabilidadeFrete" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="17ceb93f-defa-4acd-831b-76c7f34567b0" ChangeDateTime="06/04/2018 17:14:01">
+    <Property Name="ElementName" Value="[dbo].[TBEmitente].[Razao_Social]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBEmitente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RazaoSocial" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8f1596a9-5c98-4a62-91ad-b81b6033e999" ChangeDateTime="06/05/2018 16:36:43">
+    <Property Name="ElementName" Value="[dbo].[FK_TBNotaFiscal_Produtos_TBProduto]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TBNotaFiscal_Produtos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TBNotaFiscal_Produtos_TBNotaFiscal]" />
+  </Operation>
+</Operations>
