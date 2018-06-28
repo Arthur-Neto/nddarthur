@@ -12,7 +12,7 @@ namespace TutorialORM.Aplicacao.Features.Alunos
             Repositorio = repositorio;
         }
 
-        public IRepositorio<Aluno> Repositorio { get; set; }
+        public IRepositorio<Aluno> Repositorio { get; private set; }
 
         public Aluno Atualizar(Aluno aluno)
         {

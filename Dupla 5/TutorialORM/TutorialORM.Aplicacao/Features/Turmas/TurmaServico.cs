@@ -8,12 +8,12 @@ namespace TutorialORM.Aplicacao.Features.Turmas
 {
     public class TurmaServico : IServico<Turma>
     {
+        public ITurmaRepositorio _repositorio;
+
         public TurmaServico(ITurmaRepositorio repositorio)
         {
-            Repositorio = repositorio;
+            _repositorio = repositorio;
         }
-
-        public IRepositorio<Turma> Repositorio { get; set; }
 
         public Turma Atualizar(Turma turma)
         {
@@ -22,7 +22,7 @@ namespace TutorialORM.Aplicacao.Features.Turmas
 
             turma.Validar();
 
-            return Repositorio.Atualizar(turma);
+            return _repositorio.Atualizar(turma);
         }
 
         public void Deletar(Turma turma)
@@ -30,7 +30,8 @@ namespace TutorialORM.Aplicacao.Features.Turmas
             if (turma.Id < 1)
                 throw new IdentificadorInvalidoException();
 
-            Repositorio.Deletar(turma);
+            _repositorio.VerificaDependencia(turma);
+            _repositorio.Deletar(turma);
         }
 
         public Turma PegarPorId(long id)
@@ -38,19 +39,19 @@ namespace TutorialORM.Aplicacao.Features.Turmas
             if (id < 1)
                 throw new IdentificadorInvalidoException();
 
-            return Repositorio.PegarPorId(id);
+            return _repositorio.PegarPorId(id);
         }
 
         public IEnumerable<Turma> PegarTodos()
         {
-            return Repositorio.PegarTodos();
+            return _repositorio.PegarTodos();
         }
 
         public Turma Salvar(Turma turma)
         {
             turma.Validar();
 
-            return Repositorio.Salvar(turma);
+            return _repositorio.Salvar(turma);
         }
     }
 }

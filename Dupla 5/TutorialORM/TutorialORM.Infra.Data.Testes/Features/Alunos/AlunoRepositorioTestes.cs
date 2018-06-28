@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using TutorialORM.Common.Testes.Base;
 using TutorialORM.Common.Testes.Features;
@@ -13,21 +14,24 @@ namespace TutorialORM.Infra.Data.Testes.Features.Alunos
     [TestFixture]
     public class AlunoRepositorioTestes
     {
-        EscolaContext escolaContext = new EscolaContext();
+        EscolaContext escolaContext;
         IAlunoRepositorio repositorio;
         Aluno aluno;
 
         [SetUp]
         public void SetUp()
         {
-            repositorio = new AlunoRepositorio();
-            BaseSqlTestes.SeedDatabase(escolaContext);
+            escolaContext = new EscolaContext();
+            repositorio = new AlunoRepositorio(escolaContext);
+            Database.SetInitializer(new BaseSqlTestes());
+            escolaContext.Database.Initialize(true);
         }
 
         [Test]
         public void Aluno_InfraData_Salvar_DeveInserirOk()
         {
             aluno = ObjectMother.ObterAlunoValido();
+            aluno.Endereco.Id = 1;
 
             aluno = repositorio.Salvar(aluno);
 
@@ -38,6 +42,7 @@ namespace TutorialORM.Infra.Data.Testes.Features.Alunos
         public void Aluno_InfraData_Deletar_DeveRemoverOk()
         {
             aluno = ObjectMother.ObterAlunoValido();
+            aluno.Endereco.Id = 1;
             aluno = repositorio.Salvar(aluno);
 
             repositorio.Deletar(aluno);
@@ -50,11 +55,14 @@ namespace TutorialORM.Infra.Data.Testes.Features.Alunos
         public void Aluno_InfraData_PegarPorId_DevePegarAlunoOk()
         {
             aluno = ObjectMother.ObterAlunoValido();
+            aluno.Endereco = ObjectMother.ObterEnderecoValido();
             aluno = repositorio.Salvar(aluno);
 
-            var resultado = repositorio.PegarPorId(aluno.Id);
-
+            var resultado = repositorio.PegarPorId(1);
+            var endereco = resultado.Endereco;
+            
             resultado.Should().NotBeNull();
+            endereco.Should().NotBeNull();
             resultado.Id.Should().Equals(aluno.Id);
         }
 
@@ -63,6 +71,7 @@ namespace TutorialORM.Infra.Data.Testes.Features.Alunos
         {
             IEnumerable<Aluno> alunos;
             aluno = ObjectMother.ObterAlunoValido();
+            aluno.Endereco = ObjectMother.ObterEnderecoValido();
             aluno = repositorio.Salvar(aluno);
 
             alunos = repositorio.PegarTodos();
@@ -75,6 +84,7 @@ namespace TutorialORM.Infra.Data.Testes.Features.Alunos
         public void Aluno_InfraData_Atualizar_DeveAtualizarOk()
         {
             aluno = ObjectMother.ObterAlunoValido();
+            aluno.Endereco = ObjectMother.ObterEnderecoValido();
             aluno = repositorio.Salvar(aluno);
             aluno.Nome = "Atualizado";
 

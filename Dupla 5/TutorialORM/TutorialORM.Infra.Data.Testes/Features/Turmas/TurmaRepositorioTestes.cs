@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using TutorialORM.Common.Testes.Base;
 using TutorialORM.Common.Testes.Features;
@@ -13,15 +15,17 @@ namespace TutorialORM.Infra.Data.Testes.Features.Turmas
     [TestFixture]
     public class TurmaRepositorioTestes
     {
-        EscolaContext escolaContext = new EscolaContext();
+        EscolaContext escolaContext;
         ITurmaRepositorio repositorio;
         Turma turma;
 
         [SetUp]
         public void SetUp()
         {
-            repositorio = new TurmaRepositorio();
-            BaseSqlTestes.SeedDatabase(escolaContext);
+            escolaContext = new EscolaContext();
+            repositorio = new TurmaRepositorio(escolaContext);
+            Database.SetInitializer(new BaseSqlTestes());
+            escolaContext.Database.Initialize(true);
         }
 
         [Test]
@@ -37,7 +41,7 @@ namespace TutorialORM.Infra.Data.Testes.Features.Turmas
         [Test]
         public void Turma_InfraData_Deletar_DeveRemoverOk()
         {
-            turma = ObjectMother.ObterTurmaValida();
+            turma = ObjectMother.ObterTurmaValidaSemReferencia();
             turma = repositorio.Salvar(turma);
 
             repositorio.Deletar(turma);
@@ -79,8 +83,29 @@ namespace TutorialORM.Infra.Data.Testes.Features.Turmas
             turma.Descricao = "Atualizado";
 
             var turmaAtualizada = repositorio.Atualizar(turma);
-            
+
             turma.Descricao.Should().Be(turma.Descricao);
+        }
+
+        [Test]
+        public void Turma_InfraData_VerificaDependencia_NaoDeveJogarExcecao()
+        {
+            turma = ObjectMother.ObterTurmaValida();
+
+            Action acao = () => repositorio.VerificaDependencia(turma);
+
+            acao.Should().NotThrow<Exception>();
+        }
+
+        [Test]
+        public void Turma_InfraData_VerificaDependencia_DeveJogarExcecaoTurmaReferenciada()
+        {
+            turma = ObjectMother.ObterTurmaValida();
+            turma.Id = 1;
+
+            Action acao = () => repositorio.VerificaDependencia(turma);
+
+            acao.Should().Throw<TurmaReferenciadaException>();
         }
     }
 }

@@ -13,6 +13,14 @@ namespace TutorialORM.Common.Testes.Features
             };
         }
 
+        public static Turma ObterTurmaValidaSemReferencia()
+        {
+            return new Turma()
+            {
+                Descricao = "Academia do Programador"
+            };
+        }
+
         public static Turma ObterTurmaDescricaoVazia()
         {
             return new Turma()

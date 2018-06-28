@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,7 +60,7 @@
     <Compile Include="Features\Enderecos\IEnderecoRepositorio.cs" />
     <Compile Include="Features\Turmas\ITurmaRepositorio.cs" />
     <Compile Include="Features\Turmas\Turma.cs" />
-    <Compile Include="Features\Turmas\TurmaDescricaoVaziaException.cs" />
+    <Compile Include="Features\Turmas\Exceptions\TurmaDescricaoVaziaException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

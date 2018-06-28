@@ -50,12 +50,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\EscolaContext.cs" />
+    <Compile Include="Base\RepositorioGenerico.cs" />
     <Compile Include="Features\Alunos\AlunoRepositorio.cs" />
+    <Compile Include="Features\Enderecos\EnderecoReferenciadoException.cs" />
     <Compile Include="Features\Enderecos\EnderecoRepositorio.cs" />
+    <Compile Include="Features\Turmas\TurmaReferenciadaException.cs" />
     <Compile Include="Features\Turmas\TurmaRepositorio.cs" />
+    <Compile Include="Features\Alunos\AlunoMap.cs" />
+    <Compile Include="Features\Enderecos\EnderecoMap.cs" />
+    <Compile Include="Features\Turmas\TurmaMap.cs" />
+    <Compile Include="Migrations\201806262010145_InitialCreate.cs" />
+    <Compile Include="Migrations\201806262010145_InitialCreate.Designer.cs">
+      <DependentUpon>201806262010145_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806262014143_AddCpfAluno.cs" />
+    <Compile Include="Migrations\201806262014143_AddCpfAluno.Designer.cs">
+      <DependentUpon>201806262014143_AddCpfAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TutorialORM.Dominio\TutorialORM.Dominio.csproj">
       <Project>{2BF65D29-4A00-4770-B028-F14BBEC60EC1}</Project>
@@ -63,7 +77,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806262010145_InitialCreate.resx">
+      <DependentUpon>201806262010145_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806262014143_AddCpfAluno.resx">
+      <DependentUpon>201806262014143_AddCpfAluno.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

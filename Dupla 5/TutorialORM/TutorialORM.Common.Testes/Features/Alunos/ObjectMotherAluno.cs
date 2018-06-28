@@ -10,6 +10,7 @@ namespace TutorialORM.Common.Testes.Features
             return new Aluno()
             {
                 Nome = "Juca",
+                Cpf = "12312312",
                 DataNascimento = DateTime.Now,
                 Turma = ObterTurmaValida(),
                 Endereco = ObterEnderecoValido()

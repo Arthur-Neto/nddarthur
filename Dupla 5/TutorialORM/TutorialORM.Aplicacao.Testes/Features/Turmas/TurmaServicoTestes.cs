@@ -8,6 +8,7 @@ using TutorialORM.Aplicacao.Features.Turmas;
 using TutorialORM.Common.Testes.Features;
 using TutorialORM.Dominio.Exceptions;
 using TutorialORM.Dominio.Features.Turmas;
+using TutorialORM.Infra.Data.Features.Turmas;
 
 namespace TutorialORM.Aplicacao.Testes.Features.Turmas
 {
@@ -110,6 +111,7 @@ namespace TutorialORM.Aplicacao.Testes.Features.Turmas
             turma.Id = 1;
             repositorio.Setup(tr => tr.Deletar(turma));
             repositorio.Setup(tr => tr.PegarPorId(turma.Id));
+            repositorio.Setup(tr => tr.VerificaDependencia(turma));
 
             Action acao = () => servico.Deletar(turma);
 
@@ -117,8 +119,24 @@ namespace TutorialORM.Aplicacao.Testes.Features.Turmas
 
             acao.Should().NotThrow<Exception>();
             turmaDeletada.Should().BeNull();
+            repositorio.Verify(tr => tr.VerificaDependencia(turma));
             repositorio.Verify(tr => tr.Deletar(turma));
             repositorio.Verify(tr => tr.PegarPorId(turma.Id));
+            repositorio.VerifyNoOtherCalls();
+        }
+
+        [Test]
+        public void Turma_Aplicacao_Deletar_DeveJogarExcecaoTurmaReferenciada()
+        {
+            turma.Id = 1;
+            repositorio.Setup(tr => tr.Deletar(turma)).Throws<TurmaReferenciadaException>();
+            repositorio.Setup(tr => tr.VerificaDependencia(turma));
+
+            Action acao = () => servico.Deletar(turma);
+            
+            acao.Should().Throw<TurmaReferenciadaException>();
+            repositorio.Verify(tr => tr.Deletar(turma));
+            repositorio.Verify(tr => tr.VerificaDependencia(turma));
             repositorio.VerifyNoOtherCalls();
         }
 

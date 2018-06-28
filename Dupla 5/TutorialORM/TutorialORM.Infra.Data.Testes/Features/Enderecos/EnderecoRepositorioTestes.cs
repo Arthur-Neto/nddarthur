@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using TutorialORM.Common.Testes.Base;
 using TutorialORM.Common.Testes.Features;
@@ -13,15 +15,17 @@ namespace TutorialORM.Infra.Data.Testes.Features.Enderecos
     [TestFixture]
     public class EnderecoRepositorioTestes
     {
-        EscolaContext escolaContext = new EscolaContext();
+        EscolaContext escolaContext;
         IEnderecoRepositorio repositorio;
         Endereco endereco;
 
         [SetUp]
         public void SetUp()
         {
-            repositorio = new EnderecoRepositorio();
-            BaseSqlTestes.SeedDatabase(escolaContext);
+            escolaContext = new EscolaContext();
+            repositorio = new EnderecoRepositorio(escolaContext);
+            Database.SetInitializer(new BaseSqlTestes());
+            escolaContext.Database.Initialize(true);
         }
 
         [Test]
@@ -81,6 +85,28 @@ namespace TutorialORM.Infra.Data.Testes.Features.Enderecos
             var enderecoAtualizado = repositorio.Atualizar(endereco);
             
             enderecoAtualizado.Bairro.Should().Be(endereco.Bairro);
+        }
+
+        [Test]
+        public void Endereco_InfraData_VerificaDependencia_DeveJogarExcecaoEnderecoReferenciado()
+        {
+            endereco = ObjectMother.ObterEnderecoValido();
+            endereco.Id = 1;
+
+            Action acao = () => repositorio.VerificaDependencia(endereco);
+
+            acao.Should().Throw<EnderecoReferenciadoException>();
+        }
+
+        [Test]
+        public void Endereco_InfraData_VerificaDependencia_NaoDeveJogarExcecaoEnderecoReferenciado()
+        {
+            endereco = ObjectMother.ObterEnderecoValido();
+            endereco.Id = 99;
+
+            Action acao = () => repositorio.VerificaDependencia(endereco);
+
+            acao.Should().NotThrow();
         }
     }
 }

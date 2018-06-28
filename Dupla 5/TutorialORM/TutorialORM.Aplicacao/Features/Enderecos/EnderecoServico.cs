@@ -8,11 +8,11 @@ namespace TutorialORM.Aplicacao.Features.Enderecos
 {
     public class EnderecoServico : IServico<Endereco>
     {
-        public IRepositorio<Endereco> Repositorio { get; set; }
+        public IEnderecoRepositorio _repositorio;
 
         public EnderecoServico(IEnderecoRepositorio repositorio)
         {
-            Repositorio = repositorio;
+            _repositorio = repositorio;
         }
 
         public Endereco Atualizar(Endereco endereco)
@@ -22,15 +22,16 @@ namespace TutorialORM.Aplicacao.Features.Enderecos
 
             endereco.Validar();
 
-            return Repositorio.Atualizar(endereco);
+            return _repositorio.Atualizar(endereco);
         }
 
         public void Deletar(Endereco endereco)
         {
             if (endereco.Id < 1)
                 throw new IdentificadorInvalidoException();
-
-            Repositorio.Deletar(endereco);
+            
+            _repositorio.VerificaDependencia(endereco);
+            _repositorio.Deletar(endereco);
         }
 
         public Endereco PegarPorId(long id)
@@ -38,19 +39,19 @@ namespace TutorialORM.Aplicacao.Features.Enderecos
             if (id < 1)
                 throw new IdentificadorInvalidoException();
 
-            return Repositorio.PegarPorId(id);
+            return _repositorio.PegarPorId(id);
         }
 
         public IEnumerable<Endereco> PegarTodos()
         {
-            return Repositorio.PegarTodos();
+            return _repositorio.PegarTodos();
         }
 
         public Endereco Salvar(Endereco endereco)
         {
             endereco.Validar();
 
-            return Repositorio.Salvar(endereco);
+            return _repositorio.Salvar(endereco);
         }
     }
 }

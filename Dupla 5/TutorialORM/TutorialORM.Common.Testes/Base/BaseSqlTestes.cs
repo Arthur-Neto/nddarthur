@@ -1,19 +1,18 @@
-﻿using TutorialORM.Infra.Data.Base;
+﻿using System.Data.Entity;
+using TutorialORM.Common.Testes.Features;
+using TutorialORM.Infra.Data.Base;
 
 namespace TutorialORM.Common.Testes.Base
 {
-    public static class BaseSqlTestes
+    public class BaseSqlTestes : DropCreateDatabaseAlways<EscolaContext>
     {
-        public static void SeedDatabase(EscolaContext escolaContext)
+        protected override void Seed(EscolaContext context)
         {
-            escolaContext.Database.ExecuteSqlCommand("DBCC CHECKIDENT('TBAluno', RESEED, 0)");
-            escolaContext.Database.ExecuteSqlCommand("DELETE FROM TBAluno");
-
-            escolaContext.Database.ExecuteSqlCommand("DBCC CHECKIDENT('TBTurma', RESEED, 0)");
-            escolaContext.Database.ExecuteSqlCommand("DELETE FROM TBTurma");
-
-            escolaContext.Database.ExecuteSqlCommand("DBCC CHECKIDENT('TBEndereco', RESEED, 0)");
-            escolaContext.Database.ExecuteSqlCommand("DELETE FROM TBEndereco");
+            context.Alunos.Add(ObjectMother.ObterAlunoValido());
+            context.Enderecos.Add(ObjectMother.ObterEnderecoValido());
+            context.Turmas.Add(ObjectMother.ObterTurmaValida());
+            context.SaveChanges();
+            base.Seed(context);
         }
     }
 }

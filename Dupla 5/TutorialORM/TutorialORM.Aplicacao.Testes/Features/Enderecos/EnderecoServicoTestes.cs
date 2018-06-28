@@ -8,6 +8,7 @@ using TutorialORM.Aplicacao.Features.Enderecos;
 using TutorialORM.Common.Testes.Features;
 using TutorialORM.Dominio.Exceptions;
 using TutorialORM.Dominio.Features.Enderecos;
+using TutorialORM.Infra.Data.Features.Enderecos;
 
 namespace TutorialORM.Aplicacao.Testes.Features.Enderecos
 {
@@ -106,9 +107,11 @@ namespace TutorialORM.Aplicacao.Testes.Features.Enderecos
         [Test]
         public void Endereco_Aplicacao_Deletar_NaoDeveJogarExcecao()
         {
+            endereco = ObjectMother.ObterEnderecoValido();
             endereco.Id = 1;
             repositorio.Setup(er => er.Deletar(endereco));
             repositorio.Setup(er => er.PegarPorId(endereco.Id));
+            repositorio.Setup(er => er.VerificaDependencia(endereco));
 
             Action acao = () => servico.Deletar(endereco);
 
@@ -116,8 +119,26 @@ namespace TutorialORM.Aplicacao.Testes.Features.Enderecos
 
             acao.Should().NotThrow<Exception>();
             enderecoDeletada.Should().BeNull();
+            repositorio.Verify(er => er.VerificaDependencia(endereco));
             repositorio.Verify(er => er.Deletar(endereco));
             repositorio.Verify(er => er.PegarPorId(endereco.Id));
+            repositorio.VerifyNoOtherCalls();
+        }
+
+        [Test]
+        public void Endereco_Aplicacao_Deletar_DeveJogarExcecaoEnderecoReferenciado()
+        {
+            endereco = ObjectMother.ObterEnderecoValido();
+            endereco.Id = 1;
+
+            repositorio.Setup(er => er.Deletar(endereco)).Throws<EnderecoReferenciadoException>();
+            repositorio.Setup(er => er.VerificaDependencia(endereco));
+
+            Action acao = () => servico.Deletar(endereco);
+
+            acao.Should().Throw<EnderecoReferenciadoException>();
+            repositorio.Verify(er => er.Deletar(endereco));
+            repositorio.Verify(er => er.VerificaDependencia(endereco));
             repositorio.VerifyNoOtherCalls();
         }
 
