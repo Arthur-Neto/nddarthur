@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[NotaFiscalEmitida]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Chave] VARCHAR(60) NOT NULL, 
+    [NotaFiscalXML] VARCHAR(MAX) NOT NULL
+)

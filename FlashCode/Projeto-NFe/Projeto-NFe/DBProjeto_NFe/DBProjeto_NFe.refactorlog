@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1e04e75b-aa66-4f9d-8d45-41722e69b8bc" ChangeDateTime="05/29/2018 16:36:51">
+    <Property Name="ElementName" Value="[dbo].[Endereco].[CEP]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Endereco]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Cep" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c1ca5d16-f02f-41f0-bf34-8fe3df06f604" ChangeDateTime="05/30/2018 16:51:03">
+    <Property Name="ElementName" Value="[dbo].[FK_Endereco_Emitentw]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Emitente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Endereco_Emitente]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4338f70c-9e83-423d-93ad-0ef30d0d2d74" ChangeDateTime="05/30/2018 18:58:07">
+    <Property Name="ElementName" Value="[dbo].[Emitente].[IncricaoEstadual]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Emitente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InscricaoEstadual" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="784d5558-598f-4ba7-aacf-bd961dde46f4" ChangeDateTime="06/11/2018 19:37:55">
+    <Property Name="ElementName" Value="[dbo].[NotaFiscalEmitida].[NotaFiscal]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NotaFiscalEmitida]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NotaFiscalXML" />
+  </Operation>
+</Operations>

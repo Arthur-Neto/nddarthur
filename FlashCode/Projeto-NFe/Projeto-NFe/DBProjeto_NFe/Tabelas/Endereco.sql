@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Endereco]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
+    [Cep] VARCHAR(15) NOT NULL, 
+    [Rua] VARCHAR(50) NOT NULL, 
+    [Bairro] VARCHAR(50) NOT NULL, 
+    [Cidade] VARCHAR(50) NOT NULL, 
+    [UF] VARCHAR(2) NOT NULL, 
+    [Pais] VARCHAR(50) NOT NULL, 
+    [Numero] BIGINT NOT NULL
+)

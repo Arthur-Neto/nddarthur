@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0DB5D914-3A1D-4070-B36F-A2626A03A6C5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GeradorTestes</RootNamespace>
+    <AssemblyName>GeradorTestes</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cadastros\Disciplinas\CadastroDisciplinaDialogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Disciplinas\CadastroDisciplinaDialogs.Designer.cs">
+      <DependentUpon>CadastroDisciplinaDialogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Disciplinas\DisciplinaGerenciadorFormulario.cs" />
+    <Compile Include="Cadastros\Matérias\CadastroMateriasDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Matérias\CadastroMateriasDialog.Designer.cs">
+      <DependentUpon>CadastroMateriasDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Matérias\ListaMateriaUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Matérias\ListaMateriaUserControl.Designer.cs">
+      <DependentUpon>ListaMateriaUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Matérias\MateriaGerenciadorFormulario.cs" />
+    <Compile Include="Cadastros\Questões\CadastroQuestoesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Questões\CadastroQuestoesDialog.Designer.cs">
+      <DependentUpon>CadastroQuestoesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Questões\QuestoesGerenciadorFormulario.cs" />
+    <Compile Include="Cadastros\Questões\QuestoesUSerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Questões\QuestoesUSerControl.Designer.cs">
+      <DependentUpon>QuestoesUSerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Series\CadastroSerieDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Series\CadastroSerieDialog.Designer.cs">
+      <DependentUpon>CadastroSerieDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Series\ListaSerieUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Series\ListaSerieUserControl.Designer.cs">
+      <DependentUpon>ListaSerieUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Series\SerieGerenciadorFormulario.cs" />
+    <Compile Include="Cadastros\Testes\GerarTestesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Testes\GerarTestesDialog.Designer.cs">
+      <DependentUpon>GerarTestesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Testes\ListaTestesUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Testes\ListaTestesUserControl.Designer.cs">
+      <DependentUpon>ListaTestesUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\Testes\TesteGerenciadorFormulario.cs" />
+    <Compile Include="GerenciadorFormulario.cs" />
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cadastros\Disciplinas\ListaDisciplinaUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastros\Disciplinas\ListaDisciplinaUserControl.Designer.cs">
+      <DependentUpon>ListaDisciplinaUserControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Cadastros\Disciplinas\CadastroDisciplinaDialogs.resx">
+      <DependentUpon>CadastroDisciplinaDialogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Matérias\CadastroMateriasDialog.resx">
+      <DependentUpon>CadastroMateriasDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Matérias\ListaMateriaUserControl.resx">
+      <DependentUpon>ListaMateriaUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Questões\CadastroQuestoesDialog.resx">
+      <DependentUpon>CadastroQuestoesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Questões\QuestoesUSerControl.resx">
+      <DependentUpon>QuestoesUSerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Series\CadastroSerieDialog.resx">
+      <DependentUpon>CadastroSerieDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Series\ListaSerieUserControl.resx">
+      <DependentUpon>ListaSerieUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Testes\GerarTestesDialog.resx">
+      <DependentUpon>GerarTestesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\Testes\ListaTestesUserControl.resx">
+      <DependentUpon>ListaTestesUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Cadastros\Disciplinas\ListaDisciplinaUserControl.resx">
+      <DependentUpon>ListaDisciplinaUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorTestes.Domain\GeradorTestes.Domain.csproj">
+      <Project>{05cbd977-e000-4b1b-8a68-0eb518408425}</Project>
+      <Name>GeradorTestes.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeradorTestes.Servicos\GeradorTestes.Servicos.csproj">
+      <Project>{6a5695a0-1d46-4017-9d1c-2d3d3903c098}</Project>
+      <Name>GeradorTestes.Servicos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

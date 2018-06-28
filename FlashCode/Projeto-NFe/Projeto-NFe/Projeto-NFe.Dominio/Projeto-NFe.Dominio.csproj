@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{692247E6-86B5-43C5-995E-552C5933594F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Projeto_NFe.Dominio</RootNamespace>
+    <AssemblyName>Projeto-NFe.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Entidade.cs" />
+    <Compile Include="Base\EPessoa.cs" />
+    <Compile Include="Base\IRepositorio.cs" />
+    <Compile Include="Base\IServico.cs" />
+    <Compile Include="Excecoes\ExcecaoChaveEstrangeira.cs" />
+    <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
+    <Compile Include="Excecoes\ExcecaoIdentificadorInvalido.cs" />
+    <Compile Include="Excecoes\ExcexaoOperacaoNaoSuportada.cs" />
+    <Compile Include="Features\Destinatarios\Destinatario.cs" />
+    <Compile Include="Excecoes\ExcecaoEmpresaComCpf.cs" />
+    <Compile Include="Excecoes\ExcecaoCpfNaoDefinido.cs" />
+    <Compile Include="Excecoes\ExcecaoEnderecoEmBranco.cs" />
+    <Compile Include="Excecoes\ExcecaoNomeEmBranco.cs" />
+    <Compile Include="Excecoes\ExcecaoPessoaComCnpj.cs" />
+    <Compile Include="Excecoes\ExcecaoPessoaComrRazaoSocial.cs" />
+    <Compile Include="Excecoes\ExcecaoRazaoSocialInvalida.cs" />
+    <Compile Include="Features\Destinatarios\IDestinatarioRepositorio.cs" />
+    <Compile Include="Features\Emitentes\Emitente.cs" />
+    <Compile Include="Features\Emitentes\Excercoes\ExcecaoInscricaoEstadualInvalido.cs" />
+    <Compile Include="Features\Emitentes\Excercoes\ExcecaoInscricaoMunicipallInvalido.cs" />
+    <Compile Include="Features\Emitentes\IEmitenteRepositorio.cs" />
+    <Compile Include="Features\Enderecos\Endereco.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoBairroInvalido.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoCepInvalido.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoCidadeInvalida.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoNumeroInvalido.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoPaisInvalido.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoRuaInvalida.cs" />
+    <Compile Include="Features\Enderecos\Excecoes\ExcecaoUFInvalido.cs" />
+    <Compile Include="Features\Enderecos\IEnderecoRepositorio.cs" />
+    <Compile Include="Features\Impostos\Exceptions\ExcecaoProdutoNulo.cs" />
+    <Compile Include="Features\Impostos\Imposto.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoChaveInvalida.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoDataEmissaoInvalida.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoDataEntradaInvalida.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoDestinatarioNulo.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoEmitenteNulo.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoNaturezaOperacaoVazia.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoProdutosVazio.cs" />
+    <Compile Include="Features\NotasFiscais\Excecoes\ExcecaoValorTotalInvalido.cs" />
+    <Compile Include="Features\NotasFiscais\INotaFiscalExportacao.cs" />
+    <Compile Include="Features\NotasFiscais\INotaFiscalRepositorio.cs" />
+    <Compile Include="Features\NotasFiscais\NotaFiscal.cs" />
+    <Compile Include="Features\ProdutosNFe\Excecoes\ListaProdutosVazia.cs" />
+    <Compile Include="Features\ProdutosNFe\IProdutoNFeRepositorio.cs" />
+    <Compile Include="Features\Produtos\Excecoes\ExcecaoCodigoProdutoInvalido.cs" />
+    <Compile Include="Features\Produtos\Excecoes\ExcecaoDescricaoInvalida.cs" />
+    <Compile Include="Features\Produtos\Excecoes\ExcecaoQuantidadeInvalida.cs" />
+    <Compile Include="Features\Produtos\Excecoes\ExcecaoValorTotalNegativo.cs" />
+    <Compile Include="Features\Produtos\Excecoes\ExcecaoValorUnitarioInvalido.cs" />
+    <Compile Include="Features\Produtos\IProdutoRepositorio.cs" />
+    <Compile Include="Features\Produtos\Produto.cs" />
+    <Compile Include="Features\Produtos\ProdutoNfe.cs" />
+    <Compile Include="Features\Transportadores\ITransportadorRepositorio.cs" />
+    <Compile Include="Features\Transportadores\Transportador.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto-NFe.Infra.Documentos\Projeto-NFe.Infra.Documentos.csproj">
+      <Project>{87B10D18-023B-4097-A7DA-85190E786C0F}</Project>
+      <Name>Projeto-NFe.Infra.Documentos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

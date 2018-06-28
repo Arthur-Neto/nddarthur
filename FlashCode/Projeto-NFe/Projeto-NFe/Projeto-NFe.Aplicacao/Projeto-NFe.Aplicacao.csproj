@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E57D76D3-7DAF-446C-B14F-CF1D761A4107}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Projeto_NFe.Aplicacao</RootNamespace>
+    <AssemblyName>Projeto-NFe.Aplicacao</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Features\Destinatarios\DestinatarioServico.cs" />
+    <Compile Include="Features\Destinatarios\IDestinatarioServico.cs" />
+    <Compile Include="Features\Emitentes\EmitenteServico.cs" />
+    <Compile Include="Features\Emitentes\IEmitenteServico.cs" />
+    <Compile Include="Features\Enderecos\EnderecoServico.cs" />
+    <Compile Include="Features\Enderecos\IEnderecoServico.cs" />
+    <Compile Include="Features\NotasFiscais\INotaFiscalServico.cs" />
+    <Compile Include="Features\NotasFiscais\NotaFiscalServico.cs" />
+    <Compile Include="Features\Produtos\IProdutoServico.cs" />
+    <Compile Include="Features\Produtos\ProdutoServico.cs" />
+    <Compile Include="Features\Transportadores\ITransportadorServico.cs" />
+    <Compile Include="Features\Transportadores\TransportadorServico.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto-NFe.Dominio\Projeto-NFe.Dominio.csproj">
+      <Project>{692247E6-86B5-43C5-995E-552C5933594F}</Project>
+      <Name>Projeto-NFe.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto-NFe.Infra.Data\Projeto-NFe.Infra.Data.csproj">
+      <Project>{74b68884-8999-44f2-ba10-df39692159f2}</Project>
+      <Name>Projeto-NFe.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto-NFe.Infra.Pdf\Projeto-NFe.Infra.Pdf.csproj">
+      <Project>{D96C571B-9EB3-476E-8848-DE50441C88D9}</Project>
+      <Name>Projeto-NFe.Infra.Pdf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto-NFe.Infra.Xml\Projeto-NFe.Infra.Xml.csproj">
+      <Project>{731D8447-377F-426C-AC9C-A4735F0271A9}</Project>
+      <Name>Projeto-NFe.Infra.Xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
