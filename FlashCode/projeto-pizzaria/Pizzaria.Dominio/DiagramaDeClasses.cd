@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Pizzaria.Dominio.Entidade" Collapsed="true">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entidade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Endereco" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAEAAAAAACAAAAAAQAAAAAAAAABAAo=</HashCode>
+      <FileName>Endereco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Cliente">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgAAAAAAAAAAAAACAAAAIAQAAAAAAAAEAEAA=</HashCode>
+      <FileName>Cliente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Features.Produtos.Produto">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAEAAAA=</HashCode>
+      <FileName>Features\Produtos\Produto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Pedido">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEIAAAAAAAAAAAAAAARAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pedido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Pizza">
+    <Position X="3.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pizza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.ItemPedido">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ItemPedido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Calzone" Collapsed="true">
+    <Position X="15" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calzone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Bebida" Collapsed="true">
+    <Position X="16.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bebida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pizzaria.Dominio.Adicional" Collapsed="true">
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Adicional.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Pizzaria.Dominio.TamanhoPizza" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAQAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TamanhoPizza.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Pizzaria.Dominio.SaborPizza" Collapsed="true">
+    <Position X="3.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SaborPizza.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
