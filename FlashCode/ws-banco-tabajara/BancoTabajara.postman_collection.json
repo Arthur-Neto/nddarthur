@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "794df47f-73e2-4972-91d3-b6c2614fda58",
+		"name": "BancoTabajara",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Contas",
+			"description": "",
+			"item": [
+				{
+					"name": "GET Contas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Conta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client\": {\n        \"id\": 1\n    },\n    \"transactions\": [],\n    \"number\": 5001,\n    \"balance\": 1000,\n    \"isActive\": true,\n    \"limit\": 10000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Conta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client\": {\n        \"cpf\": \"123123123\",\n        \"name\": \"Fulano\",\n        \"rg\": \"321321321\",\n        \"birthday\": \"2018-05-05T00:00:00\",\n        \"id\": 1\n    },\n    \"transactions\": [],\n    \"number\": 555555555,\n    \"balance\": 999,\n    \"isActive\": true,\n    \"limit\": 999,\n    \"id\": 7\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Conta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Conta",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client\": {\n        \"cpf\": \"123123123\",\n        \"name\": \"Fulano\",\n        \"rg\": \"321321321\",\n        \"birthday\": \"2018-05-05T00:00:00\",\n        \"id\": 1\n    },\n    \"id\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH AtivarConta",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Buscar por quantidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts?quantity=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Sacar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountOriginId\": 1,\n    \"value\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts/withdraw",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Depositar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountOriginId\": 1,\n    \"value\": 999999\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts/deposit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Transferencia",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accountOriginId\": 1,\n\t\"accountDestinationId\": 2,\n\t\"value\": 999\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/checkingaccounts/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"checkingaccounts",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"description": null,
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"cpf\": \"11111111111\",\n        \"name\": \"aleff\",\n        \"rg\": \"1111111\",\n        \"birthday\": \"1994-10-04T00:00:00\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"cpf\": \"11111111111\",\n        \"name\": \"aleff hashahushaus\",\n        \"rg\": \"1111111\",\n        \"birthday\": \"1994-10-04T00:00:00\",\n        \"id\": 1\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n \t\"id\": 1\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
