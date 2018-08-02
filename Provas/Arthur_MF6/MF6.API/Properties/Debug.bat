@@ -1,0 +1,1 @@
+echo %computername%: %date% %time% >> Debug.txt
