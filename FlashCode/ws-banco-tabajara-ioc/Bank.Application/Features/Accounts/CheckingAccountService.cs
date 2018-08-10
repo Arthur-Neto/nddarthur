@@ -11,13 +11,11 @@ namespace Bank.Application.Features.Accounts
     {
         private ICheckingAccountRepository _checkingAccountRepository;
         private IClientRepository _clientRepository;
-        private ITransactionRepository _transactionRepository;
 
-        public CheckingAccountService(ICheckingAccountRepository checkingAccountRepository, IClientRepository clientRepository, ITransactionRepository transactionRepository)
+        public CheckingAccountService(ICheckingAccountRepository checkingAccountRepository, IClientRepository clientRepository)
         {
             _checkingAccountRepository = checkingAccountRepository;
             _clientRepository = clientRepository;
-            _transactionRepository = transactionRepository;
         }
 
         public long Add(CheckingAccount checkingAccount)
