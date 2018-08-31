@@ -48,15 +48,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\AbstractRepository.cs" />
     <Compile Include="Base\DbContextFactory.cs" />
     <Compile Include="Base\MF7Context.cs" />
+    <Compile Include="Features\Employees\EmployeeMap.cs" />
+    <Compile Include="Features\Employees\EmployeeRepository.cs" />
+    <Compile Include="Features\Spendings\SpendingMap.cs" />
+    <Compile Include="Features\Spendings\SpendingRepository.cs" />
     <Compile Include="Features\Users\UserMap.cs" />
     <Compile Include="Features\Users\UserRepository.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
     <Compile Include="Migrations\201808310335557_MF7_v1.cs" />
     <Compile Include="Migrations\201808310335557_MF7_v1.Designer.cs">
       <DependentUpon>201808310335557_MF7_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808311715355_MF7_v2.cs" />
+    <Compile Include="Migrations\201808311715355_MF7_v2.Designer.cs">
+      <DependentUpon>201808311715355_MF7_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808311727150_MF7_v3.cs" />
+    <Compile Include="Migrations\201808311727150_MF7_v3.Designer.cs">
+      <DependentUpon>201808311727150_MF7_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808311905550_MF7_v4.cs" />
+    <Compile Include="Migrations\201808311905550_MF7_v4.Designer.cs">
+      <DependentUpon>201808311905550_MF7_v4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +83,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808310335557_MF7_v1.resx">
       <DependentUpon>201808310335557_MF7_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808311715355_MF7_v2.resx">
+      <DependentUpon>201808311715355_MF7_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808311727150_MF7_v3.resx">
+      <DependentUpon>201808311727150_MF7_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808311905550_MF7_v4.resx">
+      <DependentUpon>201808311905550_MF7_v4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "5b40239a-1558-4d79-8770-04f492b11029",
+		"name": "Arthur.MF7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "POST Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Arthur\",\n\t\"lastName\": \"Neto\",\n\t\"userName\": \"asdfghjkl\",\n\t\"password\": \"12345678\",\n\t\"position\": \"xxxx\",\n\t\"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/employees/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"employees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"firstName\": \"Arthur\",\n\t\"lastName\": \"Santos\",\n\t\"position\": \"yyyyy\",\n\t\"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Spendings",
+			"item": [
+				{
+					"name": "POST Spending",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer _zBiwn_-Zcx1et-vr3grqgJE0JO-0V9R69vArwKIszKXRWut78IXonshfc8pbR3J_vDad9k7l3NpDZeO0bVX5Al-tzQdGjkeg8if5EVBo4Z4PXJ0ao0GZ_hTf3ldAAdtQdPEW4-jYVBczF8QIzpF1617GFRu3mnc99-Gu0tEGDnZQKSLIqDE6lN4RC6FcmxhUzcGbnp7RUXRWqMWEeo5SH12Z8MiOP9iGCaGXnuz7L4"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"hhhhhhh\",\n\t\"date\": \"2018-05-05\",\n\t\"employeeId\": 3,\n\t\"price\": 1.00,\n\t\"type\": \"asd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/spendings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"spendings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Spendings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/spendings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"spendings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Spending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:6001/api/spendings/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"spendings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Spending",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6001/api/spendings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6001",
+							"path": [
+								"api",
+								"spendings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "asdfghjkl",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:6001/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6001",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

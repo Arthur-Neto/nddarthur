@@ -9,10 +9,10 @@ namespace Arthur.MF7.Infra.ORM.Features.Users
     {
         public UserMap()
         {
-            HasKey(t => t.Id);
+            HasKey(u => u.Id);
 
-            Property(t => t.Username).HasMaxLength(50).IsRequired();
-            Property(t => t.Password).HasMaxLength(50).IsRequired();
+            Property(u => u.Username).HasMaxLength(50).IsRequired();
+            Property(u => u.Password).HasMaxLength(50).IsRequired();
         }
     }
 }

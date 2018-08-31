@@ -1,8 +1,11 @@
-﻿using Arthur.MF7.Domain.Features.Users;
+﻿using Arthur.MF7.Domain.Features.Employees;
+using Arthur.MF7.Domain.Features.Spendings;
+using Arthur.MF7.Domain.Features.Users;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Diagnostics.CodeAnalysis;
+
 namespace Arthur.MF7.Infra.ORM.Base
 {
     [ExcludeFromCodeCoverage]
@@ -16,6 +19,8 @@ namespace Arthur.MF7.Infra.ORM.Base
 
         protected MF7Context(DbConnection connection) : base(connection, true) { }
 
+        public DbSet<Spending> Spendings { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

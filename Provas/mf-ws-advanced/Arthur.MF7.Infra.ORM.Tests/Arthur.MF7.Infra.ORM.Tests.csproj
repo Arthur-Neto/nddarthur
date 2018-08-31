@@ -63,14 +63,16 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\FakeDbContext.cs" />
+    <Compile Include="Features\Employees\EmployeesRepositoryTests.cs" />
+    <Compile Include="Features\Spendings\SpendingsRepositoryTests.cs" />
     <Compile Include="Features\Users\UserRepositoryTests.cs" />
     <Compile Include="Initializer\EffortProviderFactory.cs" />
     <Compile Include="Initializer\EffortTestBase.cs" />
@@ -81,6 +83,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Arthur.MF7.Common.Tests\Arthur.MF7.Common.Tests.csproj">
+      <Project>{7A9B91F4-B9C6-45A8-8ED7-01D0BC12F657}</Project>
+      <Name>Arthur.MF7.Common.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arthur.MF7.Domain\Arthur.MF7.Domain.csproj">
       <Project>{07FFC924-5C70-4FDD-9FAA-37B690A69BF7}</Project>
       <Name>Arthur.MF7.Domain</Name>

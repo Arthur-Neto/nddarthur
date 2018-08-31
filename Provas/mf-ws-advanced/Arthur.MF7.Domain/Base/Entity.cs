@@ -6,10 +6,5 @@ namespace Arthur.MF7.Domain.Base
     public abstract class Entity
     {
         public virtual long Id { get; set; }
-
-        public virtual bool Validate()
-        {
-            return true;
-        }
     }
 }

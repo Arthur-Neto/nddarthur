@@ -41,7 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Employees\ObjectMotherEmployee.cs" />
+    <Compile Include="Features\Spendings\ObjectMotherSpending.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arthur.MF7.Domain\Arthur.MF7.Domain.csproj">
+      <Project>{07FFC924-5C70-4FDD-9FAA-37B690A69BF7}</Project>
+      <Name>Arthur.MF7.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

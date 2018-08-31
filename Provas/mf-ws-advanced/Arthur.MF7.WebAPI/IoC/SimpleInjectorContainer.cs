@@ -1,6 +1,13 @@
 ﻿using Arthur.MF7.Application.Features.Authentication;
+using Arthur.MF7.Application.Features.Employees;
+using Arthur.MF7.Application.Features.Spendings;
+using Arthur.MF7.Domain.Features.Employees;
+using Arthur.MF7.Domain.Features.Spendings;
 using Arthur.MF7.Domain.Features.Users;
 using Arthur.MF7.Infra.ORM.Base;
+using Arthur.MF7.Infra.ORM.Features.Employees;
+using Arthur.MF7.Infra.ORM.Features.Spendings;
+using Arthur.MF7.Infra.ORM.Features.Users;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using SimpleInjector.Lifestyles;
@@ -34,7 +41,13 @@ namespace Arthur.MF7.WebAPI.IoC
 
         private static void RegisterServices(Container container)
         {
-            container.Register<IUserRepository, IUserRepository>();
+            container.Register<IEmployeeRepository, EmployeeRepository>();
+            container.Register<ISpendingRepository, SpendingRepository>();
+
+            container.Register<ISpendingService, SpendingService>();
+            container.Register<IEmployeeService, EmployeeService>();
+
+            container.Register<IUserRepository, UserRepository>();
 
             container.Register<AuthenticationService>(() => new AuthenticationService(Container.GetInstance<IUserRepository>()));
             container.Register<MF7Context>(() => new MF7Context(), Lifestyle.Singleton);

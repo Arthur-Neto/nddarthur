@@ -3,8 +3,10 @@ namespace Arthur.MF7.Infra.ORM.Migrations
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
+    [ExcludeFromCodeCoverage]
     public class Configuration : DbMigrationsConfiguration<Arthur.MF7.Infra.ORM.Base.MF7Context>
     {
         public Configuration()

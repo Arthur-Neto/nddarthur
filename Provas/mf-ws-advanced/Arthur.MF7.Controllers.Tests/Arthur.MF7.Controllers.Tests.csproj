@@ -52,8 +52,8 @@
     <Reference Include="Moq, Version=4.9.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.9.0\lib\net45\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
@@ -88,6 +88,9 @@
     <Compile Include="Common\ApiControllerBaseFake.cs" />
     <Compile Include="Common\ApiControllerBaseTests.cs" />
     <Compile Include="Common\PublicControllerTests.cs" />
+    <Compile Include="Features\Employees\EmployeesControllerTests.cs" />
+    <Compile Include="Features\Spendings\SpendingsControllerTests.cs" />
+    <Compile Include="Initializer\TestControllerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +98,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Arthur.MF7.Application\Arthur.MF7.Application.csproj">
+      <Project>{48698C5B-16E2-4DDE-9E91-D0F51EAFDCD0}</Project>
+      <Name>Arthur.MF7.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Arthur.MF7.Common.Tests\Arthur.MF7.Common.Tests.csproj">
+      <Project>{7A9B91F4-B9C6-45A8-8ED7-01D0BC12F657}</Project>
+      <Name>Arthur.MF7.Common.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arthur.MF7.Domain\Arthur.MF7.Domain.csproj">
       <Project>{07FFC924-5C70-4FDD-9FAA-37B690A69BF7}</Project>
       <Name>Arthur.MF7.Domain</Name>

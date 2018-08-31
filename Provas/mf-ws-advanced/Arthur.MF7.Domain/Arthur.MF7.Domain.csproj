@@ -50,6 +50,10 @@
     <Compile Include="Exceptions\InvalidObjectException.cs" />
     <Compile Include="Exceptions\NotAllowedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Features\Employees\Employee.cs" />
+    <Compile Include="Features\Employees\IEmployeeRepository.cs" />
+    <Compile Include="Features\Spendings\ISpendingRepository.cs" />
+    <Compile Include="Features\Spendings\Spending.cs" />
     <Compile Include="Features\Users\IUserRepository.cs" />
     <Compile Include="Features\Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

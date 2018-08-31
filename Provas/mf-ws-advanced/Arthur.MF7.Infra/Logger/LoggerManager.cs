@@ -14,9 +14,9 @@ namespace Arthur.MF7.Infra.Logger
 
         public static void Initialize()
         {
-            string log4NetConfigDirectory = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
+            string log4NetConfigDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            string log4NetConfigFilePath = log4NetConfigDirectory + @"\Arthur.MF7.Infra\Logger\log4net.config";
+            string log4NetConfigFilePath = Path.GetFullPath(Path.Combine(log4NetConfigDirectory, @"..\Arthur.MF7.Infra\Logger\log4net.config"));
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(log4NetConfigFilePath));
         }
 

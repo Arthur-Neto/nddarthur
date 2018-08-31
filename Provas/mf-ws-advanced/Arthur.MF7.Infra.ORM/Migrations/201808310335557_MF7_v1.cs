@@ -2,7 +2,9 @@ namespace Arthur.MF7.Infra.ORM.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public partial class MF7_v1 : DbMigration
     {
         public override void Up()

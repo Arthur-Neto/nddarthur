@@ -59,10 +59,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\Authentication\AuthenticationService.cs" />
+    <Compile Include="Features\Employees\Commands\EmployeeRegisterCommand.cs" />
+    <Compile Include="Features\Employees\Commands\EmployeeRemoveCommand.cs" />
+    <Compile Include="Features\Employees\EmployeeService.cs" />
+    <Compile Include="Features\Employees\Commands\EmployeeUpdateCommand.cs" />
+    <Compile Include="Features\Employees\IEmployeeService.cs" />
+    <Compile Include="Features\Employees\MappingProfile.cs" />
+    <Compile Include="Features\Employees\ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="Features\Spendings\ISpendingService.cs" />
+    <Compile Include="Features\Spendings\MappingProfile.cs" />
+    <Compile Include="Features\Spendings\Commands\SpendingRegisterCommand.cs" />
+    <Compile Include="Features\Spendings\Commands\SpendingRemoveCommand.cs" />
+    <Compile Include="Features\Spendings\SpendingService.cs" />
+    <Compile Include="Features\Spendings\ViewModels\SpendingViewModel.cs" />
     <Compile Include="Mapping\AutoMapperInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -75,5 +89,6 @@
       <Name>Arthur.MF7.Infra</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
