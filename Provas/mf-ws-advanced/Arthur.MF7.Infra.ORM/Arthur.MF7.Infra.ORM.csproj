@@ -49,16 +49,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\AbstractRepository.cs" />
+    <Compile Include="Base\DbContextFactory.cs" />
     <Compile Include="Base\MF7Context.cs" />
     <Compile Include="Features\Users\UserMap.cs" />
     <Compile Include="Features\Users\UserRepository.cs" />
+    <Compile Include="Initializer\DbInitializer.cs" />
+    <Compile Include="Migrations\201808310335557_MF7_v1.cs" />
+    <Compile Include="Migrations\201808310335557_MF7_v1.Designer.cs">
+      <DependentUpon>201808310335557_MF7_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808310335557_MF7_v1.resx">
+      <DependentUpon>201808310335557_MF7_v1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arthur.MF7.Domain\Arthur.MF7.Domain.csproj">
       <Project>{07FFC924-5C70-4FDD-9FAA-37B690A69BF7}</Project>
