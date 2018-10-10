@@ -1,0 +1,90 @@
+<ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" 
+                titlebarTitle="Novo pedido">
+</ndd-ng-titlebar>
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formModel" class="form">
+    <div class="feature-view-tab__content">
+        <div class="row">
+            <!-- #region Coluna 1 -->
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">DADOS CADASTRAIS</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Nome do cliente</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span class="feature-view__label feature-view__label--error"
+                                          *ngIf="formModel.get('customer').hasError('required')
+                                                && formModel.get('customer').touched">
+                                                Field is required
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <input formControlName="customer" type="text" id="customer" class="feature-view__input">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Quantidade</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span class="feature-view__label feature-view__label--error"
+                                          *ngIf="formModel.get('quantity').hasError('required')
+                                                && formModel.get('quantity').touched">
+                                                Field is required
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <input formControlName="quantity" min="0" type="number" id="quantity" class="feature-view__input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region Coluna 2 -->
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">PRODUTO</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Nome do produto</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                </div>
+                                <div class="truncate">
+                                    <kendo-dropdownlist [defaultItem]="selectedProduct"
+                                                        [filterable]="true"
+                                                        [data]="data"
+                                                        [textField]="'name'"
+                                                        [valueField]="'name'"
+                                                        (selectionChange)="onSelect($event)"
+                                                        (filterChange)="onFilter($event)">
+                                    </kendo-dropdownlist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+        </div>
+    </div>
+</form>
+<div class="feature-view-tab__footer">
+    <button class="ndd-ng-button ndd-ng-button--primary" (click)="onSubmit($event)" [disabled]="formModel.invalid">Salvar</button>
+    <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect($event)">Voltar</button>
+</div>
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

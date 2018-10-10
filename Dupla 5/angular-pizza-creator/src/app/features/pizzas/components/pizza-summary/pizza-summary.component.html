@@ -1,0 +1,32 @@
+<div class="pizza-summary">
+  <h2>
+    Order Summary
+  </h2>
+  <div class="pizza-summary__border" *ngFor="let pizza of pizzas.controls;">
+
+    <div class="pizza-summary__border__header">
+      <div class="pizza-summary__border__header__size">
+        {{ pizza.get('size').value | titlecase }} Pizza
+      </div>
+      <div class="pizza-summary__border__header__price">
+        {{ prices[pizza.get('size').value].base | currency:'USD':'symbol' }}
+      </div>
+    </div>
+
+    <div class="pizza-summary__border__content" *ngFor="let topping of pizza.value.toppings;">
+      <div class="pizza-summary__border__content__name">
+        <i class="fa fa-plus"></i>
+        {{ topping | titlecase }}
+      </div>
+      <div class="pizza-summary__border__content__price">
+        {{ prices[pizza.get('size').value].toppings | currency:'USD':'symbol'}}
+      </div>
+    </div>
+  </div>
+
+  <div class="pizza-summary__footer">
+    <div class="pizza-summary__footer__total">
+      Total: ${{ total }}
+    </div>
+  </div>
+</div>

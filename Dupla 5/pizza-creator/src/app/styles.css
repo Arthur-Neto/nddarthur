@@ -1,0 +1,48 @@
+/*
+ * General Styles
+ *
+ *
+*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+.pizza-creator {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.pizza-creator__logo {
+    position: relative;
+    height: 100%;
+    width: 30%;
+    float: left;
+    background-color: #05b2f7;
+    padding-top: 30px;
+}
+
+.pizza-creator__content {
+    float: left;
+    width: calc(100% - 30%);
+    height: 100%;
+    overflow: auto;
+}
+
+.pizza-creator__logo__image {
+    position: absolute;
+    width: 110%;
+    left: -10%;
+    top: 15%;
+}

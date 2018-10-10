@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[TBENDERECO]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Logradouro] VARCHAR(80) NOT NULL, 
+    [Numero] INT NOT NULL, 
+    [Bairro] VARCHAR(80) NOT NULL, 
+    [Municipio] VARCHAR(80) NOT NULL, 
+    [Estado] VARCHAR(80) NOT NULL, 
+    [Pais] VARCHAR(80) NOT NULL
+)

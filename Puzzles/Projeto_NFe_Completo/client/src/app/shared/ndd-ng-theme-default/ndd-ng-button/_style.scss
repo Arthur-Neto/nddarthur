@@ -1,0 +1,53 @@
+@include exports('ndd-ng-button/style') {
+    .ndd-ng-button {
+        min-width: 100px;
+        height: 35px;
+        margin: 5px;
+        font-size: rem-calc(14px);
+        font-weight: 600;
+        cursor: pointer;
+        &:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+        &--primary {
+            color: $ndd-ng-button-primary-font-color;
+            background-color: $ndd-ng-button-primary-color;
+            border: 1px solid $ndd-ng-button-primary-color;
+            &:enabled {
+                &:hover {
+                    background-color: $ndd-ng-button-primary-hover-color;
+                }
+                &:active {
+                    background-color: $ndd-ng-button-primary-active-color;
+                }
+            }
+        }
+        &--secondary {
+            color: $ndd-ng-button-secondary-font-color;
+            background-color: $ndd-ng-button-secondary-color;
+            border: 1px solid $ndd-ng-element-border-color;
+            &:enabled {
+                &:hover {
+                    background-color: $ndd-ng-element-hover-bg-color;
+                }
+                &:active {
+                    background-color: $ndd-ng-element-active-bg-color;
+                }
+            }
+        }
+        &--cancel {
+            color: $ndd-ng-button-cancel-font-color;
+            background-color: $ndd-ng-button-secondary-color;
+            border: 1px solid $ndd-ng-element-border-color;
+            &:enabled {
+                &:hover {
+                    background-color: $ndd-ng-element-hover-bg-color;
+                }
+                &:active {
+                    background-color: $ndd-ng-element-active-bg-color;
+                }
+            }
+        }
+    }
+}

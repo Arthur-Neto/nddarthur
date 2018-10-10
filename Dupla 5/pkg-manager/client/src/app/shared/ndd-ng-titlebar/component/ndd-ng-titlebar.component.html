@@ -1,0 +1,32 @@
+<section class="ndd-ng-titlebar" [id]="titlebarId">        
+    <div class="ndd-ng-titlebar__icon ndd-ng-hide-when-mobile" aria-hidden="true" *ngIf="titlebarIcon">
+        <i [ngClass]="titlebarIcon"></i>
+    </div>
+
+    <div class="ndd-ng-titlebar__info">
+        <h1 class="ndd-ng-titlebar__main-title"
+            [title]="titlebarTitle">
+            {{ titlebarTitle }}
+        </h1>
+            <ndd-ng-titlebar-info class="ndd-ng-hide-when-mobile"
+                *ngFor="let info of titlebarInfoItems"
+                [infoItem]="info"
+                [infoI18n]="titlebarInfoI18n">
+            </ndd-ng-titlebar-info>
+
+            <ndd-ng-titlebar-info class="ndd-ng-hide-when-responsive ndd-ng-hide-when-desktop"
+               *ngFor="let info of getMobileInfoItems()"
+                [infoItem]="info"
+                [infoI18n]="titlebarInfoI18n">
+            </ndd-ng-titlebar-info>
+        </div>
+    
+    <div class="ndd-ng-titlebar__action">
+        <ng-content select="ndd-ng-actionbar"></ng-content>
+    </div>
+    <button class="ndd-ng-titlebar__close" aria-label="Fechar" *ngIf="titlebarShowCloseButton"
+        [id]="titlebarId + '-btn-close'"
+        (click)="close()">
+         <i [ngClass]="config.closeIcon"></i>
+    </button>
+</section>

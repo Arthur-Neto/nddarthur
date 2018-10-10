@@ -1,0 +1,350 @@
+{
+    "linterOptions": {
+        "exclude": [
+            "node_modules/**/*.ts"
+        ]
+    },
+    "rulesDirectory": [
+        "./node_modules/codelyzer"
+    ],
+    "rules": {
+        //
+        //
+        //
+        /* # ANGULAR # https://github.com/mgechev/codelyzer/tree/master/src */
+        //
+        //
+        //
+        // directive-selector: Seletores de diretivas devem...
+        //  - Ser definidas como atributo;
+        //  - Ter o prefixo 'ndd';
+        //  - Ter seu nome em camelCase. ==> '[nddHighlight]'
+        "directive-selector": [
+            true,
+            "attribute",
+            "ndd",
+            "camelCase"
+        ],
+        // component-selector: Seletores de componentes devem...
+        //  - Ser definidos como elementos;
+        //  - Ter o prefixo 'ndd';
+        //  - Ter seu nome em kebab-case. ==> 'ndd-app'
+        "component-selector": [
+            true,
+            "element",
+            "ndd",
+            "kebab-case"
+        ],
+        // pipe-naming: Nomes de pipes devem...
+        //  - Ser em camelCase;
+        //  - Ter prefixo 'ndd'.
+        "pipe-naming": [
+            true,
+            "camelCase",
+            "ndd"
+        ],
+        // angular-whitespace: Usar espaço em branco...
+        //  - Antes e depois de interpolações.
+        "angular-whitespace": [
+            true,
+            "check-interpolation"
+        ],
+        // contextual-life-cycle: Garante que classes usem apenas métodos lifecycle permitidos para seu tipo de decorator.
+        "contextual-life-cycle": true,
+        // component-class-suffix: Obrigatório uso do sufixo Component.
+        "component-class-suffix": true,
+        // directive-class-suffix: Obrigatório uso do sufixo Directive.
+        "directive-class-suffix": true,
+        // banana-in-box: Usar a sintaxe "banana-in-box" corretamente. ==> [()]
+        "banana-in-box": true,
+        // pipe-impure: Não permitir pipes impuros; ocorre perda de performance, pois, são executados em todo ciclo de detecção de mudanças.
+        "pipe-impure": true,
+        // use-input-property-decorator:  Usar decorador @Input invés da propriedade 'input' existente em componentes e diretivas.
+        "use-input-property-decorator": true,
+        // use-input-property-decorator:  Usar decorador @Output invés da propriedade 'output' existente em componentes e diretivas.
+        "use-output-property-decorator": true,
+        // use-host-property-decorator:  Usar decorador @HostProperty invés da propriedade 'host' existente em componentes e diretivas.
+        "use-host-property-decorator": true,
+        // use-life-cycle-interface: Implementar interfaces de ciclo de vida (OnInit, OnChanges...) caso o componente use seus métodos.
+        "use-life-cycle-interface": true,
+        // use-pipe-transform-interface: Pipes devem implementar interface PipeTransform.
+        "use-pipe-transform-interface": true,
+        // no-attribute-parameter-decorator: Não usar o decorador @Attribute, usar @Input.
+        "no-attribute-parameter-decorator": true,
+        // no-input-rename: Evitar renomear propriedades @Input. ==> @Input('labelAttribute') label: string;
+        "no-input-rename": true,
+        // no-input-rename: Evitar renomear propriedades @Output. ==> @Input('changeEvent') change: new EventEmitter<any>();
+        "no-output-rename": true,
+        // no-forward-ref: Não usar 'forwardRef', pois o fluxo de injeção de dependência é interrompido e pode deixar o código confuso.
+        "no-forward-ref": true,
+        //
+        //
+        //
+        /* # GERAL # https://palantir.github.io/tslint/rules/ */
+        //
+        //
+        //
+        // eofline: Arquivos devem terminar com nova linha em branco.
+        "eofline": true,
+        // indent: Usar indentação por espaços.
+        "indent": [
+            true,
+            "spaces"
+        ],
+        // quotemark: Tipo de aspas simples.
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
+        // one-variable-per-declaration: Usar apenas uma variável por declaração, não é permitido separar variáveis por vírgula. Exceto para for loop.
+        "one-variable-per-declaration": [
+            true,
+            "ignore-for-loop"
+        ],
+        // variable-name: Permitido apenas camelCase ou UPPER_CASE para nomes de variáveis. Exceções: 'let _variable', 'let variable_', 'let _variable_'.
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format"
+        ],
+        // max-line-length: Número máximo de caracteres por linha.
+        "max-line-length": [
+            true,
+            150
+        ],
+        // trailing-comma: Usar vírgula final. ==> [variable1, variable2,]
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "always",
+                "singleline": "never"
+            }
+        ],
+        // only-arrow-functions: Usar arrow functions invés de funções tradicionais.
+        "only-arrow-functions": [
+            true
+        ],
+        // curly: Usar chaves em declarações if/for/do/while. Com exceção de mesma linha. ==> if (true) return;
+        "curly": [
+            true,
+            "ignore-same-line"
+        ],
+        // import-blacklist: Não importar diretamente: rxjs. É necessário importar submódulos também.
+        "import-blacklist": [
+            true,
+            "rxjs"
+        ],
+        // array-type: Usar T[] para arrays.
+        "array-type": [
+            true,
+            "array"
+        ],
+        // prefer-template: Usar template string invés de concatenação; concantenação simples é permitida (x + y), mas não mais (x + y + z).
+        "prefer-template": [
+            true,
+            "allow-single-concat"
+        ],
+        // semicolon: Usar ponto e vírgula.
+        "semicolon": [
+            true,
+            "always",
+            "ignore-interfaces"
+        ],
+        // one-line: Usar os seguintes tokens na mesma linha da expressão que os precede:
+        //  - catch;
+        //  - finally;
+        //  - else.
+        "one-line": [
+            true,
+            "check-catch",
+            "check-finally",
+            "check-else"
+        ],
+        // whitespace: Usar espaços em branco:
+        //  - Instruções if/else/for/while são seguidos por espaço em branco;
+        //  - Após separadores (,/;);
+        //  - Antes da abertura de um bloco.
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-separator",
+            "check-preblock"
+        ],
+        // triple-equals: Usar === ou !== para comparações.
+        "triple-equals": true,
+        // object-literal-shorthand: Usar propriedades shorthand de objetos, sempre que possível.
+        "object-literal-shorthand": true,
+        // arrow-parens: Usar parênteses para parâmetros de arrow functions. ==> (variable) => {}
+        "arrow-parens": true,
+        // new-parens: Requer parênteses ao usar new. ==> let obj = NameComponent();
+        "new-parens": true,
+        // prefer-for-of: Usar for...of invés de for, quando forem iterações simples.
+        "prefer-for-of": true,
+        // class-name: Usar PascalCase para classes e interfaces.
+        "class-name": true,
+        // prefer-object-spread: Usar operadores spread invés de Object.assign().
+        "prefer-object-spread": true,
+        // use-isnan: Usar isNaN() invés de x === NaN.
+        "use-isnan": true,
+        // semicolon: Avisa se APIs descontinuadas são usadas.
+        "deprecation": true,
+        // prefer-const: Usar const quando a variável for atribuída apenas uma vez.
+        "prefer-const": true,
+        // arrow-return-shorthand: Usar "() => x" invés de "() => { return x; }".
+        "arrow-return-shorthand": true,
+        // binary-expression-operand-order: Usar, em expressões binárias, literais do lado direito, se possível. ==> x + 1 | y === 'value'
+        "binary-expression-operand-order": true,
+        // import-spacing: Usar espaçamento em imports.
+        "import-spacing": true,
+        // newline-before-return: Usar linha em branco antes de "return", quando esse não for a única linha no bloco.
+        "newline-before-return": true,
+        // prefer-method-signature: Usar "foo(): void" invés de "foo: () => void" em interfaces e types.
+        "prefer-method-signature": true,
+        // interface-name: Nomes de interface devem ter o prefixo 'I'. ==> IEnterprise
+        "interface-name": [
+            true,
+            "always-prefix"
+        ],
+        // comment-format: Comentários devem iniciar com letra maiúscula e com espaço. ==> // Comentário...
+        "comment-format": [
+            true,
+            "check-space",
+            "check-uppercase"
+        ],
+        // object-literal-key-quotes: Definir nomes de propriedades de objetos apenas quando preciso. ==> let obj = { variable: 1, 'new variable': 2 }
+        "object-literal-key-quotes": [
+            true,
+            "as-needed"
+        ],
+        // radix: Usar parâmetro radix em parseInt. ==> parseInt(string, radix); | parseInt("015", 10);
+        "radix": true,
+        // switch-default: Switch deve conter default case.
+        "switch-default": true,
+        // typedef-whitespace: Usar espaço para definições de tipos.
+        "typedef-whitespace": [
+            true,
+            { // Antes de :
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            },
+            { // Depois de :
+                "call-signature": "onespace",
+                "index-signature": "onespace",
+                "parameter": "onespace",
+                "property-declaration": "onespace",
+                "variable-declaration": "onespace"
+            }
+        ],
+        // typedef: Usar definição de tipo.
+        "typedef": [
+            true,
+            "call-signature",
+            "arrow-call-signature",
+            "parameter",
+            "arrow-parameter",
+            "property-declaration",
+            "variable-declaration",
+            "member-variable-declaration",
+            "object-destructuring",
+            "array-destructuring"
+        ],
+        // member-access: Usar visibilidade (private, public ou protected) explícita.
+        "member-access": true,
+        // member-ordering: Usar ordem específica para declarações de membros:
+        // [
+        //     "fields-first",
+        //     [
+        //         "public-static-field",
+        //         "protected-static-field",
+        //         "private-static-field",
+        //         "public-instance-field",
+        //         "protected-instance-field",
+        //         "private-instance-field",
+        //         "constructor",
+        //         "public-static-method",
+        //         "protected-static-method",
+        //         "private-static-method",
+        //         "public-instance-method",
+        //         "protected-instance-method",
+        //         "private-instance-method"
+        //     ]
+        // ]
+        "member-ordering": [
+            true,
+            {
+                "order": "fields-first"
+            }
+        ],
+        // no-switch-case-fall-through: Não permitir cases consecutivos. Para permitir, usar o comentário /* falls through */.
+        // ==>
+        //   switch(foo) {
+        //     case 1:
+        //       someFunc(foo);
+        //       /* falls through */
+        //     case 2:
+        //     case 3:
+        //       someOtherFunc(foo);
+        //   }
+        "no-switch-case-fall-through": true,
+        // no-console: Não usar funções de console.
+        "no-console": [
+            true
+        ],
+        // no-arg: Não acessar arguments.callee.
+        "no-arg": true,
+        // no-bitwise: Não usar operadores binários.
+        "no-bitwise": true,
+        // no-conditional-assignment: Não usar atribuições em condicionais. ==> if(a = 2)
+        "no-conditional-assignment": true,
+        // no-construct: Não usar construtores de String, Number ou Boolean. ==> new String()
+        "no-construct": true,
+        // no-debugger: Não usar debugger.
+        "no-debugger": true,
+        // no-empty: Não usar blocos vazios.
+        "no-empty": true,
+        // no-eval: Não usar função eval.
+        "no-eval": true,
+        // no-reference: Invés de usar '/// <reference path=>', deve-se usar imports do ES6.
+        "no-reference": true,
+        // no-string-literal: Acessar objetos via string apenas quando necessário. ==> obj['new variable']
+        "no-string-literal": true,
+        // no-trailing-whitespace: Não usar espaço final.
+        "no-trailing-whitespace": true,
+        // no-unsafe-finally: Não usar controles de fluxo em blocos finally.
+        "no-unsafe-finally": true,
+        // no-use-before-declare: Variáveis devem ser declaradas antes de usar.
+        "no-use-before-declare": true,
+        // no-var-keyword: Não usar 'var'.
+        "no-var-keyword": true,
+        // no-magic-numbers: Usar variáveis invés de "números mágicos".
+        "no-magic-numbers": true,
+        // no-duplicate-super: Não duplicar chamadas de super().
+        "no-duplicate-super": true,
+        // no-for-in-array: Não usar for...in para arrays; alternativamente, usar array.forEach((value, index) => { ... }).
+        "no-for-in-array": true,
+        // no-invalid-template-strings: Usar ${ apenas em template strings.
+        "no-invalid-template-strings": true,
+        // no-sparse-arrays: Não usar [value,,value].
+        "no-sparse-arrays": true,
+        // no-string-throw: Usar "throw new Error('erro')" invés de "throw 'erro'", para gerar stack traces corretamente.
+        "no-string-throw": true,
+        // no-unused-variable: Não permite variáveis não utilizadas.
+        "no-unused-variable": true,
+        // no-default-export: Não usar exportações default.
+        "no-default-export": true,
+        // no-require-imports: Não usar require(), usar importações ES6.
+        "no-require-imports": true,
+        // no-boolean-literal-compare: Não usar literais booleanos para comparações. ==> x === true
+        "no-boolean-literal-compare": true,
+        // no-consecutive-blank-lines: Não usar mais de 1 linha em branco consecutivamente.
+        "no-consecutive-blank-lines": true,
+        // no-irregular-whitespace: Não permite espaços em branco irregulares fora de strings e comentários.
+        "no-irregular-whitespace": true,
+        // no-unnecessary-callback-wrapper: Usar "f" invés de "(x) => f(x)".
+        "no-unnecessary-callback-wrapper": true
+    }
+}

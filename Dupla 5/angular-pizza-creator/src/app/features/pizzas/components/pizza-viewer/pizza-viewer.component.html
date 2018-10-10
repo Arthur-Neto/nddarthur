@@ -1,0 +1,18 @@
+<div class="pizza-viewer">
+  <div class="pizza-viewer__table-side"></div>
+  <div class="pizza-viewer__table"></div>
+  <br/>
+  <div class="pizza-viewer__pizza" [class.pizza-viewer__pizza--active]="activePizza === i" *ngFor="let pizza of pizzas?.controls; let i = index;">
+    <div class="pizza-viewer__pizza__board"></div>
+    <div class="pizza-viewer__pizza__base"></div>
+    <div class="pizza-viewer__pizza__toppings">
+      <div *ngFor="let topping of pizza.value.toppings; let i = index;" [style.zIndex]="i" @drop>
+        <div class="pizza-viewer__pizza__topping pizza-viewer__pizza__topping--{{ topping }}"></div>
+        <div class="pizza-viewer__pizza__topping pizza-viewer__pizza__topping--{{ topping }}"></div>
+        <div class="pizza-viewer__pizza__topping pizza-viewer__pizza__topping--{{ topping }}"></div>
+        <div class="pizza-viewer__pizza__topping pizza-viewer__pizza__topping--{{ topping }}"></div>
+        <div class="pizza-viewer__pizza__topping pizza-viewer__pizza__topping--{{ topping }}"></div>
+      </div>
+    </div>
+  </div>
+</div>

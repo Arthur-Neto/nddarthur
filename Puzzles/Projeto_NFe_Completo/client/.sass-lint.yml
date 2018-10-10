@@ -1,0 +1,4 @@
+options:
+  config-file: 'node_modules/ndd-ng-standardization/.sass-lint.yml'
+files:
+  include: 'src/**/*.scss'

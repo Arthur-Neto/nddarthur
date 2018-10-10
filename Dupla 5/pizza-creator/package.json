@@ -1,0 +1,27 @@
+{
+  "name": "pizza-creator",
+  "version": "1.0.0",
+  "description": "A simple pizza creator based in html/css/js",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "preinstall": "del package-lock.json",
+    "start": "lite-server --baseDir=src/app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://tfs.nddigital.com.br/tfs/AcademyCollection/_git/Academia-Programador-2018"
+  },
+  "keywords": [
+    "pizza",
+    "web",
+    "html",
+    "css",
+    "js"
+  ],
+  "author": "P&D NDD",
+  "license": "MIT",
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  }
+}

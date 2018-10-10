@@ -1,0 +1,16 @@
+<div class="pizza-view">
+  <pizza-viewer
+    [pizzas]="form.get('pizzas')"
+    [activePizza]="activePizza">
+  </pizza-viewer>
+
+  <pizza-form
+    [formModel]="form"
+    [total]="total"
+    [prices]="prices"
+    (add)="addPizza()"
+    (remove)="removePizza($event)"
+    (toggle)="togglePizza($event)"
+    (submit)="createOrder($event)">
+  </pizza-form>
+</div>

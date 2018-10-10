@@ -1,0 +1,147 @@
+.form {
+    position: relative;
+    padding: 20px;
+}
+
+.form--full {
+    width: 100%;
+    min-height: 100%;
+}
+
+.form__fieldset {
+    border: none;
+    color: #666;
+    margin-bottom: 5px;
+    padding: 15px 12px;
+}
+
+.form__fieldset__legend {
+    color: #6E7790;
+    font-size: 22px;
+    position: relative;
+}
+
+.form__input {
+    height: 33px;
+    border-radius: 2px;
+    border: 1px solid #d7d7e7;
+    font-size: 18px;
+    padding: 10px 15px;
+    outline: none;
+    color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+}
+
+.form__label {
+    display: block;
+}
+
+.form__label--clickable {
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.form__label--inline {
+    display: inline;
+}
+
+.form__label__error{
+    float: right;
+    display: none;
+    padding-right: 5px;
+    color: #E01D3B;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.form__label__error--visible{
+  display: inline;
+}
+
+.form__group {
+    width: calc(33% - 5px);
+    display: inline-block;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.form__group--block {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.form__group--full {
+    width: 100%;
+}
+
+.form__group--medium {
+    width: 50%;
+}
+
+.form__group--small {
+    width: 12%;
+}
+
+.form__group--fixed-bottom-container{
+    padding: inherit;
+}
+
+.form__group--fixed-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    padding: inherit;
+}
+
+.form__group--text-right {
+    text-align: right;
+}
+
+.form__group--hidden {
+   display: none;
+}
+
+.form__group--left-space{
+    padding-left: 10px;
+}
+
+.form__button {
+    width: 100%;
+    background: rgb(250, 58, 58);
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.form__button--disabled {
+    cursor: not-allowed;
+    background: rgb(221, 221, 221);
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.form__text {
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.form__text--big {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 22px;
+}
+.form__text--bold {
+    font-weight: bold;
+}

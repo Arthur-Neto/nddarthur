@@ -1,0 +1,65 @@
+@include exports('ndd-ng-sidebar/option') {
+    %sidebar-item {
+        color: $ndd-sidebar-item-color;
+        cursor: pointer;
+        border-right: 2px solid transparent;
+    }
+    .ndd-ng-sidebar__item {
+        @extend %sidebar-item-animation;
+        @extend %sidebar-item;
+        @extend %collapse-animation; // Modifiers
+        position: relative;
+        padding: 15px 5px;
+        padding-left: 13px;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-transform: uppercase;
+        width: $ndd-sidebar-width - 1px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid $ndd-sidebar-border-color;
+        font-size: rem-calc(12px);
+        transition-property: width, border-radius;
+        &--active {
+            font-weight: 600;
+            background-color: $ndd-sidebar-item-active-bg-color !important;
+            color: $ndd-sidebar-item-active-color;
+        }
+        &--focus {
+            background-color: $ndd-sidebar-item-focus-background-color;
+        }
+        &:hover {
+            background-color: $ndd-sidebar-item-color-hover;
+        }
+    } // Elements
+    .ndd-ng-sidebar__item-figure {
+        font-size: rem-calc(22px) !important;
+        // fix width with extra size for vertical align
+        width: 28px;
+        display: inline-block;
+    }
+    .ndd-ng-sidebar__item-content,
+    .ndd-ng-sidebar__item-title {
+        opacity: 1;
+    }
+    .ndd-ng-sidebar__item-content {
+        @extend %sidebar-item-animation;
+        display: inline-block;
+        width: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 1.6;
+        visibility: hidden;
+        vertical-align: text-bottom;
+        transition-property: width;
+    } // Status
+    .ndd-ng-sidebar__menu--expand:not(.ndd-ng-submenu-is-showing) {
+        .ndd-ng-sidebar__item {
+            width: $ndd-sidebar-width-expand;
+            text-align: left;
+        }
+        .ndd-ng-sidebar__item-content {
+            width: calc(100% - 35px);
+            visibility: visible;
+        }
+    }
+}

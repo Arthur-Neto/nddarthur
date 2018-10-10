@@ -1,0 +1,17 @@
+// Load variables and utils
+@import '~shared/styles/variables';
+@import './app/shared/ndd-ng-theme-default/utils';
+@import '~@progress/kendo-theme-default/scss/mixins/core/import-once';
+
+// Load frameworks and external components
+@import './app/shared/styles/frameworks/**/*.scss';
+@import './app/shared/styles/components/**/*.scss';
+
+// Load core styles
+@import './app/core/**/_variables.scss';
+@import './app/core/**/_style.scss';
+
+// Load features styles
+@import './app/features/**/_variables.scss';
+@import './app/features/**/_style.scss';
+

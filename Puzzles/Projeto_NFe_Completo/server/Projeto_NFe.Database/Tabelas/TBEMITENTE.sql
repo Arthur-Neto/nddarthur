@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[TBEMITENTE]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [NomeFantasia] VARCHAR(50) NOT NULL, 
+    [RazaoSocial] VARCHAR(50) NOT NULL, 
+    [CNPJ] VARCHAR(20) NOT NULL, 
+    [InscricaoEstadual] VARCHAR(50) NOT NULL, 
+    [InscricaoMunicipal] VARCHAR(50) NOT NULL, 
+    [EnderecoId] INT NOT NULL, 
+    CONSTRAINT [FK_TBEMITENTE_TBENDERECO] FOREIGN KEY ([EnderecoId]) REFERENCES [TBENDERECO]([Id])
+)

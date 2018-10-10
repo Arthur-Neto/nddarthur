@@ -1,0 +1,22 @@
+/*
+ * Customização do loading do ngx-loading-bar
+ *
+ * Codigo em sass para customizar o ngx-loading-bar conforme padrões do ndd-print.
+ * Feito com base nas possibilidades oferecidas pelo ngx-loading-bar.
+ * 
+ **/
+
+// sass-lint:disable no-ids
+ngx-loading-bar {
+    #loading-bar-spinner {
+        left: 50%;
+        .spinner-icon {
+            color: $secondary-color;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    #loading-bar .bar {
+        background: $secondary-color;
+    }
+}

@@ -1,0 +1,55 @@
+@include exports('ndd-ng-breadcrumb/popup') {
+    /* Breadcrumb popup and modifiers */
+    .ndd-ng-breadcrumb-popup-arrow {
+        position: absolute;
+        top: rem-calc(30px);
+        left: rem-calc(-10px);
+        z-index: 10;
+        visibility: hidden;
+        transition: visibility 0s .3s linear;
+        &::before {
+            @extend %ndd-ng-breadcrumb-arrow;
+            @extend %ndd-ng-breadcrumb-popup-arrow;
+            border-bottom: rem-calc(10px) solid rgba(0, 0, 0, .15);
+        }
+        &::after {
+            @extend %ndd-ng-breadcrumb-arrow;
+            @extend %ndd-ng-breadcrumb-popup-arrow;
+            border-bottom: rem-calc(10px) solid $ndd-ng-theme-primary-color;
+            top: 1px;
+        }
+        &--open {
+            visibility: visible;
+            transition: none;
+        }
+    }
+    .ndd-ng-breadcrumb-popup {
+        position: absolute;
+        top: rem-calc(40px);
+        left: rem-calc(-10px);
+        max-height: 0;
+        width: rem-calc(200px);
+        background-color: $ndd-ng-theme-primary-color;
+        z-index: 9;
+        transition: all .3s linear;
+        overflow-y: auto;
+        overflow-x: hidden;
+        visibility: hidden;
+        cursor: default;
+        &--open {
+            visibility: visible;
+            max-height: rem-calc(300px);
+        }
+    }
+    .ndd-ng-breadcrumb-popup__list {
+        list-style: none;
+        padding: rem-calc(10px) 0;
+    }
+    .ndd-ng-breadcrumb-popup__item {
+        padding: rem-calc(10px);
+        cursor: pointer;
+        &:hover {
+            background-color: $ndd-ng-theme-primary-color + 30;
+        }
+    }
+}

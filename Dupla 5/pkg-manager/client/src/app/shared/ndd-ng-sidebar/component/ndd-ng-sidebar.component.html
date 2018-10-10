@@ -1,0 +1,28 @@
+<aside class="ndd-ng-sidebar" [ngClass]="{
+        'ndd-ng-submenu-is-showing': isSubmenuShow,
+        'ndd-ng-sidebar-expand': isExpand,
+        'ndd-ng-sidebar-submenu-pinned': pinned }">
+
+    <div class="ndd-ng-sidebar__menu" [ngClass]="{ 'ndd-ng-sidebar__menu--expand': isMenuExpand }">
+        <header *ngIf="sidebarHeader" class="ndd-ng-sidebar__header">
+            <div class="ndd-ng-sidebar__title">
+                <div class="ndd-ng-sidebar__title-content">
+                    <ng-content select="[ndd-ng-sidebar-header]"></ng-content>
+                </div>                
+                <a [ngClass]="getCollapseIcon()" (click)="toggleCollapseSidebar(false)"></a>
+            </div>
+        </header>
+
+        <nav class="ndd-ng-sidebar__nav">
+            <div class="ndd-ng-sidebar__overflow">
+                <ng-content select="[ndd-ng-sidebar-menu]"></ng-content>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- submenu  -->
+    <nav class="ndd-ng-sidebar__nav-submenu">
+        <ng-content select="[ndd-ng-sidebar-submenu]"></ng-content>
+    </nav>
+    
+</aside>

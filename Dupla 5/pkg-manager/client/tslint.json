@@ -1,0 +1,10 @@
+{
+    "extends": [
+        "./node_modules/ndd-ng-standardization/tslint.json"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "node_modules/**/*.ts"
+        ]
+    }
+}

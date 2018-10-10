@@ -1,0 +1,13 @@
+.ndd-ng-spinner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    &__spinner{
+        @extend .k-loading-image;
+    }
+    &__color{
+        @extend .k-loading-color;
+        opacity: 0.6;
+    }
+}

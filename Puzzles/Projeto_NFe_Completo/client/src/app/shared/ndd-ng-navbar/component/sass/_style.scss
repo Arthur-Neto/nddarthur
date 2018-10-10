@@ -1,0 +1,74 @@
+@include exports('ndd-ng-navbar/style') {
+    .ndd-ng-navbar {
+        display: inline-block;
+        font-size: rem-calc(13px);
+        color: $navbar-color;
+        background-color: $navbar-bg-color;
+        position: fixed;
+        width: 100%;
+        height: $navbar-height;
+        transition: all .3s;
+        z-index: 1;
+    }
+    a.ndd-ng-navbar__link-retreat {
+        background-color: $navbar-bg-color-retreat;
+        height: 100%;
+        color: $navbar-color;
+        text-decoration: none;
+        padding-top: rem-calc(8px);
+        text-align: center;
+        font-size: rem-calc(18px);
+        float: left;
+        width: rem-calc(50px);
+        cursor: pointer;
+        &:hover {
+            background-color: $navbar-bg-color + 10;
+        }
+    }
+    .ndd-ng-navbar-content {
+        display: inline-flex;
+        float: left;
+        width: calc(100% - #{rem-calc(50px)});
+        border-bottom: $navbar-border-width solid $secondary-color;
+    }
+    .ndd-ng-navbar__pipe {
+        width: rem-calc(1px);
+        height: rem-calc(20px);
+        background-color: #fff;
+        margin: 10px 0 10px 10px;
+    }
+    .ndd-ng-navbar__pipe-blue {
+        width: 1px;
+        height: 20px;
+        background-color: #fff;
+        margin: 10px 0 10px 10px;
+        &--off-border {
+            margin: 10px 10px 10px 0;
+        }
+        &--full {
+            height: rem-calc(40px);
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    .ndd-ng-navbar__breadcrumb {
+        flex-grow: 1;
+        height: $navbar-height;
+    }
+    .ndd-ng-navbar__logo,
+    .ndd-ng-navbar__pipe {
+        float: left;
+    }
+    .ndd-ng-navbar__logo,
+    .ndd-ng-navbar__pipe-blue {
+        float: left;
+    }
+    .ndd-ng-navbar__menu-area {
+        flex: 0 0 auto;
+        flex-shrink: 0;
+        max-height: $navbar-height; // sass-lint:disable no-qualifying-elements
+        div[ndd-ng-navbar-menu] {
+            float: right;
+        }
+    }
+}

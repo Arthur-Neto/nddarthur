@@ -1,0 +1,27 @@
+<kendo-grid [style.height]="'100%'" [data]="gridService | async" [loading]="gridService.loading" [pageSize]="state.take"
+    [selectable]="selectableSettings" [skip]="state.skip" [sort]="state.sort" [sortable]="true" [pageable]="pageableSettings"
+    (dataStateChange)="dataStateChange($event)" (selectionChange)="onSelectionChange($event)">
+
+    <ng-template kendoGridToolbarTemplate position="top">
+        <div class="pkg-manager-grid__action-container">
+            <button (click)="onClick()" class="pkg-manager-grid__action">
+                <i class="ndd-font ndd-font-create pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Novo Produto</span>
+            </button>
+            <button (click)="deleteProduct()" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+                <i class="ndd-font ndd-font-delete pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Remover</span>
+            </button>
+            <button (click)="redirectOpenProduct()" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+                <i class="ndd-font ndd-font-open pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Abrir</span>
+            </button>
+        </div>
+    </ng-template>
+
+    <kendo-grid-checkbox-column width="40"></kendo-grid-checkbox-column>
+    <kendo-grid-column field="documento" title="Documento" width="75"></kendo-grid-column>
+    <kendo-grid-column field="nomeRazaoSocial" title="Nome" width="75"></kendo-grid-column>
+    <kendo-grid-column field="inscricaoEstadual" title="InscricaoEstadual" width="100"></kendo-grid-column>
+    <kendo-grid-column field="enderecoMunicipio" title="Endereco Municipio" width="100"></kendo-grid-column>
+</kendo-grid>

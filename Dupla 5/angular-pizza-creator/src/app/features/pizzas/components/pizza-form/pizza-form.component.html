@@ -1,0 +1,114 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formModel" class="form">
+  <h1 class="form__title">Enter your details</h1>
+
+  <div class="form__fieldset" formGroupName="details">
+
+    <div class="form__group">
+      <label class="form__label" for="name">
+        Name
+        <span class="form__label form__label--required">*</span>
+        <span class="form__label form__label--error" *ngIf="formModel.get('details').get('name').hasError('required')
+                    && formModel.get('details').get('name').touched">
+          Field is required
+        </span>
+      </label>
+      <input formControlName="name" type="text" id="name" class="form__input" placeholder="Enter your name">
+    </div>
+
+    <div class="form__group">
+      <label class="form__label" for="email">
+        Email
+        <span class="form__label form__label--required">*</span>
+        <span *ngIf="formModel.get('details').get('email').touched">
+          <span class="form__label form__label--error" *ngIf="formModel.get('details').get('email').hasError('required')">
+            Field is required
+          </span>
+          <span class="form__label form__label--error" *ngIf="formModel.get('details').get('email').hasError('email')">
+            Email format is wrong
+          </span>
+        </span>
+      </label>
+      <input formControlName="email" type="text" id="email" class="form__input" placeholder="Enter your email">
+    </div>
+
+    <div class="form__group">
+      <label class="form__label" for="confirm">
+        Confirm Email
+        <span class="form__label form__label--required">*</span>
+        <span *ngIf="formModel.get('details').get('confirm').touched">
+          <span class="form__label form__label--error" *ngIf="formModel.get('details').get('confirm').hasError('required')">
+            Field is required
+          </span>
+          <span class="form__label form__label--error" *ngIf="!formModel.get('details').get('confirm').hasError('required')
+                  && formModel.get('details').hasError('nomatch')">
+            Emails must match
+          </span>
+        </span>
+      </label>
+      <input formControlName="confirm" type="text" id="confirm" class="form__input" placeholder="Confirm your email">
+    </div>
+  </div>
+
+  <div class="form__fieldset" formGroupName="details">
+    <div class="form__group">
+      <label class="form__label" for="phone">
+        Phone
+        <span class="form__label form__label--required">*</span>
+        <span class="form__label form__label--error" *ngIf="formModel.get('details').get('phone').hasError('required')
+                      && formModel.get('details').get('phone').touched">
+          Field is required
+        </span>
+      </label>
+      <input formControlName="phone" type="text" id="phone" class="form__input" placeholder="Enter your phone">
+    </div>
+
+    <div class="form__group">
+      <label class="form__label" for="address">
+        Address
+        <span class="form__label form__label--required">*</span>
+        <span *ngIf="formModel.get('details').get('address').touched">
+          <span class="form__label form__label--error" *ngIf="formModel.get('details').get('address').hasError('required')">
+            Field is required
+          </span>
+          <span class="form__label form__label--error" *ngIf="formModel.get('details').get('address').hasError('minlength')">
+            Min 3 characters
+          </span>
+        </span>
+      </label>
+      <input formControlName="address" type="text" id="address" class="form__input" placeholder="Enter your address">
+    </div>
+
+    <div class="form__group">
+      <label class="form__label" for="postcode">
+        Post Code
+        <span class="form__label form__label--required">*</span>
+        <span *ngIf="formModel.get('details').get('postcode').touched">
+            <span class="form__label form__label--error" *ngIf="formModel.get('details').get('postcode').hasError('required')">
+              Field is required
+            </span>
+            <span class="form__label form__label--error" *ngIf="formModel.get('details').get('postcode').hasError('minlength')">
+              Min 3 characters
+            </span>
+          </span>
+      </label>
+      <input formControlName="postcode" type="text" id="postcode" class="form__input" placeholder="Enter your post code">
+    </div>
+  </div>
+
+  <pizza-creator [pizzas]="formModel.get('pizzas')"
+                 (add)="onAddPizza($event)"
+                 (remove)="onRemovePizza($event)"
+                 (toggle)="onToggle($event)">
+  </pizza-creator>
+
+  <pizza-summary [pizzas]="formModel.get('pizzas')"
+                 [total]="total"
+                 [prices]="prices">
+  </pizza-summary>
+
+  <button type="submit" class="form__button" [disabled]="formModel.invalid">
+    Place order
+  </button>
+</form>
+
+

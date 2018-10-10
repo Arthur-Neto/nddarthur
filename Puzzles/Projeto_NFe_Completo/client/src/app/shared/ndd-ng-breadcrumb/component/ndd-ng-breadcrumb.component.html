@@ -1,0 +1,56 @@
+<nav class="ndd-ng-hide-when-mobile">
+    <ul class="ndd-ng-breadcrumb">
+        <!-- logo -->
+        <li class="ndd-ng-breadcrumb__item ndd-ng-breadcrumb__item--initial ndd-ng-breadcrumb__item--with-arrow"
+            [ngClass]="{ 'ndd-ng-breadcrumb__item--disabled': breadcrumbStartLinkDisabled }"
+            routerLink=""
+            nddBreadcrumbResize
+            (onEnterDOM)="addBreadcrumb($event, true)">
+
+            <a  class="ndd-ng-breadcrumb__item__link" routerLink="">
+                <ng-content select="[ndd-ng-breadcrumb-start]"></ng-content>
+            </a>
+            <span class="ndd-ng-breadcrumb__item__content"></span>
+        </li>
+        <!-- titulo inicial -->
+        <li class="ndd-ng-breadcrumb__item" 
+            [ngClass]="{ 'ndd-ng-breadcrumb__item--with-arrow': !!breadcrumbs.length || !!hiddenBreadcrumbs.length }"
+            routerLink=""
+            nddBreadcrumbResize
+            (onEnterDOM)="addBreadcrumb($event, true)"
+            (onExitDOM)="removeBreadcrumb($event, true)"
+            *ngIf="breadcrumbHomeName">
+
+            <a class="ndd-ng-breadcrumb__item__link" routerLink="">
+                {{ breadcrumbHomeName }}
+            </a>
+            <span routerLink="" class="ndd-ng-breadcrumb__item__content"></span>
+            <span routerLink="" class="ndd-ng-breadcrumb__item__content-overflow"></span>
+        </li>
+        <!-- step para adicionar o overflow --> 
+        <li class="ndd-ng-breadcrumb__item ndd-ng-breadcrumb__item--menu" 
+            *ngIf="hiddenBreadcrumbs.length"
+            [ngClass]="{ 'ndd-ng-breadcrumb__item--with-arrow': !!breadcrumbs.length }"
+            (click)="toggleMenu()"
+            nddBreadcrumbResize>
+
+            <span class="ndd-ng-breadcrumb__item__link" >...</span>
+            <span class="ndd-ng-breadcrumb__item__content"></span>
+            <span class="ndd-ng-breadcrumb__item__content-overflow"></span>
+            <ndd-ng-breadcrumb-popup [isOpen]="isOpenMenu" [breadcrumbs]="hiddenBreadcrumbs" [isI18n]="breadcrumbI18n"></ndd-ng-breadcrumb-popup>
+        </li>
+         <!-- steps do breadcrumb -->
+        <li *ngFor="let breadcrumb of breadcrumbs; let i = index" class="ndd-ng-breadcrumb__item" 
+            [ngClass]="{ 'ndd-ng-breadcrumb__item--with-arrow': (i < (breadcrumbs.length - 1))}"
+            [routerLink]="[breadcrumb.url]"
+            nddBreadcrumbResize
+            (onEnterDOM)="addBreadcrumb($event)">
+        
+            <a class="ndd-ng-breadcrumb__item__link" [ngClass]="{'ndd-ng-breadcrumb__item--size-limit' : breadcrumb.sizeLimit}">
+                {{ breadcrumb.label }}
+            </a>
+            <span [routerLink]="[breadcrumb.url]" class="ndd-ng-breadcrumb__item__content"></span>
+            <span [routerLink]="[breadcrumb.url]" class="ndd-ng-breadcrumb__item__content-overflow"></span>
+        </li>
+    </ul>
+</nav>

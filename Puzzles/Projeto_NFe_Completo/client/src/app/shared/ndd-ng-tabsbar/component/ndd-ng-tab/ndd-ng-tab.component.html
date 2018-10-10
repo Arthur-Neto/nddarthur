@@ -1,0 +1,12 @@
+<li
+    class="ndd-ng-tab"
+    [ngClass]="{'ndd-ng-tab--disabled' : tabDisabled}"
+    id="{{ tabId }}"
+    [title]="tabTitle">
+    <a
+        class="link"
+        routerLinkActive="link--active"
+        [routerLink]="tabRouteParams ? [tabRoute, tabRouteParams] : [tabRoute]">
+        {{ tabTitle }}
+    </a>
+</li>

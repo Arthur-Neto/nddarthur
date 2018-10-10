@@ -1,0 +1,33 @@
+$ndd-ng-theme-primary-color: #0f75b3 !default;
+$ndd-ng-theme-secondary-color: #e25d41 !default;
+
+/**/
+$ndd-ng-theme-color-success: #45a900 !default;
+$ndd-ng-theme-color-info: #3385ff !default;
+$ndd-ng-theme-color-warning: #ffad33 !default;
+$ndd-ng-theme-color-error: #ff4733 !default;
+
+/**/
+
+$ndd-ng-textbtn-color: #444 !default;
+$ndd-ng-textbtn-hover-color: #999 !default;
+$ndd-ng-textbtn-active-color: #787878 !default;
+$ndd-ng-textbtn-disabled-color: #a0a0a0 !default;
+$ndd-ng-textbtn-pd: 4px 5px !default;
+
+/**/
+
+$ndd-ng-element-hover-bg-color: #f5f5f5 !default;
+$ndd-ng-element-active-bg-color: #e5e5e5 !default;
+$ndd-ng-element-border-color: #d0d0d0 !default;
+$ndd-ng-element-overlay-bg-color: rgba(#000, .2) !default;
+
+/**/
+
+$ndd-ng-browsers-default-font-size: 16px !default; // Base para cálculos.
+$ndd-ng-base-font-size: 100% !default; // 16px; base para html/body.
+$ndd-ng-font-family: 'Segoe UI',
+Tahoma,
+Geneva,
+Verdana,
+sans-serif !default;

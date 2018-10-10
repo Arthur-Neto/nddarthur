@@ -1,0 +1,33 @@
+%action-vertical-align{
+    vertical-align: middle;
+}
+
+.pkg-manager-grid {
+    &__action-container{
+        float: right;
+    }
+    &__action {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: rem-calc(5px);
+
+        &[disabled]{
+            opacity: 0.4;
+        }
+
+        &__icon{
+            @extend %action-vertical-align;
+            font-size: rem-calc(12px);
+            padding-right: rem-calc(2px);
+        }
+
+        &__description{
+            @extend %action-vertical-align;
+        }
+    }
+}
+// Removendo outline do kendo
+.k-grid-content{
+    outline: 0;
+}

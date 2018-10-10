@@ -1,0 +1,65 @@
+/* Sidebar */
+
+$ndd-sidebar-height: 100% !default;
+$ndd-sidebar-background-color: #fff !default;
+$ndd-sidebar-color: #787878 !default;
+$ndd-sidebar-width: 50px !default;
+$ndd-sidebar-width-expand: 240px !default;
+$ndd-sidebar-top: 40px !default;
+$ndd-sidebar-border-color: #d4d5d0;
+
+/* Menu */
+
+$ndd-sidebar-menu-background-color: #f5f5f5 !default;
+
+/* Header */
+
+$ndd-sidebar-header: 40px !default;
+$ndd-sidebar-header-color: $ndd-sidebar-color !default;
+$ndd-sidebar-header-bg-color-btn: rgba(255, 255, 255, .2) !default;
+
+/* Item */
+
+$ndd-sidebar-item-focus-background-color: $ndd-sidebar-menu-background-color + 10 !default;
+$ndd-sidebar-item-color: $ndd-sidebar-color !default;
+$ndd-sidebar-item-color-hover: $ndd-sidebar-menu-background-color + 10 !default;
+$ndd-sidebar-item-active-bg-color: $ndd-ng-theme-secondary-color !default;
+$ndd-sidebar-item-active-color: #fff !default;
+
+/* Submenu */
+
+$ndd-sidebar-submenu-title-height: 40px;
+$ndd-sidebar-submenu-title-color: $ndd-sidebar-color !default;
+$ndd-sidebar-submenu-background-color: #f3f3f3 !default;
+$ndd-sidebar-submenu-active-border: 4px solid $ndd-ng-theme-secondary-color !default;
+$ndd-sidebar-submenu-item-bg-color: rgba(255, 255, 255, .4) !default;
+$ndd-sidebar-submenu-width: $ndd-sidebar-width-expand - $ndd-sidebar-width;
+
+/* Pin */
+
+$ndd-sidebar-pin-color: $ndd-sidebar-color !default;
+$ndd-sidebar-pin-active-color: $ndd-ng-theme-secondary-color !default;
+
+/* Placeholders */
+
+%collapse-animation {
+    transition: width .3s;
+}
+
+%collapse-animation-delay {
+    transition: width .3s .1s;
+}
+
+%sidebar-item-animation {
+    transition-duration: 300ms;
+}
+
+// utils
+%clear-fix {
+    &::before,
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}

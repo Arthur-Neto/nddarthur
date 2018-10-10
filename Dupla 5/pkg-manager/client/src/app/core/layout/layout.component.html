@@ -1,0 +1,24 @@
+<ngx-loading-bar></ngx-loading-bar>
+<ndd-ng-navbar navbarLogoClass="ndd-ng-navbar__brand-image" (onNavbarToggle)="toggleSidebar()">
+</ndd-ng-navbar>
+
+<ndd-ng-sidebar [sidebarHeader]="false" [sidebarI18n]="true" (onSidebarPin)="setPin($event)">
+    <div ndd-ng-sidebar-menu class="ndd-ng-sidebar-menu">
+        <ndd-ng-sidebar-option
+            optionId="menu-products"
+            optionHref="/produtos"
+            optionText="Produtos"
+            optionIcon="ndd-font ndd-font-cardboard-box">
+         </ndd-ng-sidebar-option>
+         <ndd-ng-sidebar-option
+            optionId="menu-orders"
+            optionHref="/pedidos"
+            optionText="Pedidos"
+            optionIcon="ndd-font ndd-font-cardboard-box">
+         </ndd-ng-sidebar-option>
+    </div>
+</ndd-ng-sidebar>
+
+<div class="content" [ngClass]="{'content--ndd-sidebar-pinned': pinned}">
+    <router-outlet></router-outlet>
+</div>

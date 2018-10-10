@@ -1,0 +1,7 @@
+ <li [id]="subOptionId"
+    class="ndd-ng-sidebar__item-submenu" 
+    [ngClass]="{'ndd-ng-sidebar__item-submenu--active': isSelected}"
+    title="{{ subOptionText }}"
+    (click)="nddSidebar.selectSuboption(this)"> 
+    <span>{{ subOptionText }}</span>
+</li>

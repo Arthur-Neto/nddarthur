@@ -1,0 +1,127 @@
+@include exports('ndd-ng-sidebar/style') {
+    .ndd-ng-sidebar {
+        @extend %collapse-animation;
+        position: fixed;
+        height: $ndd-sidebar-height;
+        background-color: $ndd-sidebar-background-color;
+        top: $ndd-sidebar-top;
+        width: $ndd-sidebar-width;
+        overflow: hidden;
+        z-index: 9;
+    }
+    .ndd-ng-sidebar__menu {
+        @extend %collapse-animation;
+        height: 100%;
+        position: relative;
+        width: $ndd-sidebar-width;
+        z-index: 1;
+        &--expand {
+            width: $ndd-sidebar-width-expand;
+        }
+    }
+    .ndd-ng-sidebar__title {
+        position: relative;
+        visibility: visible;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: rem-calc(11px);
+        color: $ndd-sidebar-header-color;
+        text-align: center;
+        height: $ndd-sidebar-header;
+        background-color: $ndd-sidebar-menu-background-color;
+        border-right: 1px solid $ndd-sidebar-border-color;
+        width: 100%;
+        border-bottom: 1px solid $ndd-sidebar-border-color;
+    }
+    .ndd-ng-sidebar__title a {
+        font-size: rem-calc(16px);
+        color: inherit;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 12px 16px;
+        &:focus,
+        &:hover {
+            color: inherit;
+            text-decoration: none;
+            outline: 0;
+            background-color: $ndd-sidebar-header-bg-color-btn;
+        }
+    }
+    .ndd-ng-sidebar__title-content {
+        @extend %clear-fix;
+        position: relative;
+        visibility: hidden; // precisamos descontar o tamanho do botão de collapse
+        width: calc(100% - 43px);
+        height: 100%; // para ajustar os textos no centro do transclude header.
+        line-height: $ndd-sidebar-header;
+    }
+    .ndd-ng-sidebar__nav {
+        @extend %collapse-animation;
+        height: calc(100% - #{$ndd-sidebar-header});
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        background-color: $ndd-sidebar-menu-background-color;
+        border-right: 1px solid $ndd-sidebar-border-color; // extends
+    } // Classe responsável por permitir o scroll do sidebar sem aparecer a barra de scroll
+    div.ndd-ng-sidebar__overflow,
+    ul.ndd-ng-sidebar__overflow {
+        @extend %clear-fix;
+        position: absolute;
+        left: 0;
+        right: -18px;
+        height: 100%;
+        list-style: none;
+        padding: 0;
+        padding-bottom: 15px;
+        overflow-y: scroll;
+        &--subgroup {
+            height: calc(100% - #{ $ndd-sidebar-top + $ndd-sidebar-submenu-title-height });
+        }
+    }
+    .ndd-ng-sidebar__nav-submenu {
+        @extend %collapse-animation;
+        height: 100%;
+        width: 0;
+        background-color: $ndd-sidebar-submenu-background-color;
+        position: absolute;
+        left: 50px;
+        top: 0;
+        overflow: hidden;
+        &>div {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .ndd-ng-submenu-is-showing .ndd-ng-sidebar__nav-submenu {
+        width: $ndd-sidebar-submenu-width;
+        border-right: 1px solid $ndd-sidebar-border-color;
+    }
+    .ndd-ng-sidebar:not(.ndd-ng-submenu-is-showing),
+    .ndd-ng-sidebar.ndd-ng-sidebar-submenu-pinned {
+        .ndd-ng-sidebar__menu--expand .ndd-ng-sidebar__title {
+            .ndd-ng-sidebar__title-transclude {
+                visibility: visible;
+            }
+            a {
+                color: inherit;
+                margin: 0 auto;
+                display: inline-block;
+            }
+        }
+    }
+    /* Estados do sidebar */
+    .ndd-ng-sidebar-expand {
+        width: $ndd-sidebar-width-expand;
+    }
+    @media (max-width: 768px) {
+        .ndd-ng-sidebar:not(.ndd-ng-sidebar-expand) {
+            width: 0;
+        }
+        ul.ndd-ng-sidebar__overflow--subgroup {
+            width: 100%;
+        }
+    }
+}

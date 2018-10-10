@@ -1,0 +1,49 @@
+@include exports('ndd-ng-breadcrumb/style') {
+    .ndd-ng-breadcrumb {
+        display: block;
+        height: 40px;
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: $ndd-ng-theme-primary-color;
+        font-weight: 600;
+        overflow: hidden;
+        &::before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+    }
+    .ndd-ng-breadcrumb__item {
+        display: inline;
+        vertical-align: middle;
+        max-height: 40px;
+        font-size: rem-calc(13.5px);
+        &__value {
+            white-space: pre;
+        }
+        &+::before {
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #fff;
+            font-family: FontAwesome;
+            content: '\f105';
+        }
+        a {
+            /* TODO: Criar classe. */
+            word-break: break-all;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .ndd-ng-breadcrumb__item--size-limit {
+            max-width: 250px;
+            max-height: 20px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            vertical-align: text-top;
+        }
+    }
+}

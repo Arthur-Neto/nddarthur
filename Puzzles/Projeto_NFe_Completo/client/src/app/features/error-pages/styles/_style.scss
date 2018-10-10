@@ -1,0 +1,22 @@
+@include exports('error-page/style') {
+    .error-page {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100vh;
+        &__content {
+            padding: 20px;
+            align-self: center;
+            width: 100%;
+        }
+        &__title {
+            font-size: rem-calc(80px);
+            color: $primary-color;
+        }
+        &__description {
+            color: #6e6e6e;
+            text-transform: uppercase;
+        }
+    }
+}

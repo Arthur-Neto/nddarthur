@@ -1,0 +1,25 @@
+@import '../ndd-ng-theme-default/variables';
+$ndd-ng-theme-primary-color: #a58855;
+
+@import '../ndd-ng-navbar/component/sass/variables';
+@import '../ndd-ng-sidebar/component/sass/variables';
+
+// Tamanho do ndd-ng-tabsbar
+$header-height: 40px;
+
+/*
+ * Tamanho do logo padrão na navbar.
+ * Está nesse arquivo pois é utilizado em mais lugares além do ndd-ng-navbar do layout
+ *
+ */
+$logo-height: rem-calc(22px);
+$logo-width: rem-calc(120px);
+
+/*
+ * Compartilha as cores dos componentes com o resto da aplicação.
+ * Não usar diretamente o $ndd-ng-theme-primary-color no resto da aplicação pois ele é referente diretamente aos componentes
+ *
+ */
+$primary-color: $ndd-ng-theme-primary-color;
+$secondary-color: $ndd-ng-theme-secondary-color;
+$text-color: #666;

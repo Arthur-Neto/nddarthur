@@ -1,0 +1,11 @@
+<li [id]="optionId"
+    [ngClass]="{'ndd-ng-sidebar__item--active': isSelected,
+               'ndd-ng-sidebar__item--focus' : isFocused }" 
+    class="ndd-ng-sidebar__item" 
+    title="{{ optionText }}"
+    (click)="nddSidebar.selectOption(this)">
+    <i *ngIf="optionIcon" [ngClass]="optionIcon" class="ndd-ng-sidebar__item-figure"></i>
+    <div class="ndd-ng-sidebar__item-content">
+        <span class="ndd-ng-sidebar__item-description">{{ optionText }}</span>
+    </div>
+</li>

@@ -1,0 +1,138 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formModel" class="form">
+    <div class="feature-view-tab__content">
+        <div class="row">
+            <!-- #region Coluna 1 -->
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">DADOS CADASTRAIS</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Nome</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span class="feature-view__label feature-view__label--error"
+                                          *ngIf="formModel.get('name').hasError('required')
+                                                && formModel.get('name').touched">
+                                                Field is required
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <input formControlName="name" type="text" id="name" class="feature-view__input">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Disponibilidade</span>
+                                </div>
+                                <div class="truncate">
+                                    <input formControlName="isAvailable" type="checkbox" id="isAvailable" class="feature-view__input">Disponível?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">INFORMAÇÕES FINANCEIRAS</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Preço de Custo</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span class="feature-view__label feature-view__label--error"
+                                          *ngIf="formModel.get('expense').hasError('required')
+                                                && formModel.get('expense').touched">
+                                                Field is required
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <input formControlName="expense" type="number" id="expense" class="feature-view__input">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Preço de Venda</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span class="feature-view__label feature-view__label--error"
+                                          *ngIf="formModel.get('sale').hasError('required')
+                                                && formModel.get('sale').touched">
+                                                Field is required
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <input formControlName="sale" type="number" id="sale" class="feature-view__input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region Coluna 2 -->
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">PRAZOS</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Data de Fabricação</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span *ngIf="formModel.get('manufacture').touched">
+                                        <span class="feature-view__label feature-view__label--error"
+                                              *ngIf="formModel.get('manufacture').hasError('required')">
+                                                    Field is required
+                                        </span>
+                                        <span class="feature-view__label feature-view__label--error"
+                                              *ngIf="!formModel.get('manufacture').hasError('required')
+                                                    && formModel.hasError('nomatch')">
+                                                    Data inválida
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <kendo-datepicker formControlName="manufacture" [format]="'yyyy-MM-dd'"></kendo-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Data de Validade</span>
+                                    <span class="feature-view__label feature-view__label--required">*</span>
+                                    <span class="feature-view__label feature-view__label--error"
+                                          *ngIf="formModel.get('expiration').hasError('required')
+                                                 && formModel.get('expiration').touched">
+                                                 Field is required
+                                    </span>
+                                </div>
+                                <div class="truncate">
+                                    <kendo-datepicker formControlName="expiration" [format]="'yyyy-MM-dd'"></kendo-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+        </div>
+    </div>
+</form>
+<div class="feature-view-tab__footer">
+    <button class="ndd-ng-button ndd-ng-button--primary" (click)="onSubmit($event)" [disabled]="formModel.invalid">Salvar</button>
+    <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect($event)">Voltar</button>
+</div>
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

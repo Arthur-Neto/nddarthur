@@ -1,0 +1,9 @@
+<div class="ndd-ng-breadcrumb-popup-arrow" [ngClass]="{ 'ndd-ng-breadcrumb-popup-arrow--open': isOpen }"></div>
+
+<div class="ndd-ng-breadcrumb-popup" [ngClass]="{ 'ndd-ng-breadcrumb-popup--open': isOpen }">
+    <ul class="ndd-ng-breadcrumb-popup__list">
+        <li class="ndd-ng-breadcrumb-popup__item" *ngFor="let breadcrumb of breadcrumbs;" (click)="redirect($event)" [routerLink]="[breadcrumb.url]">
+            {{ breadcrumb.label }}
+        </li>
+    </ul>
+</div>

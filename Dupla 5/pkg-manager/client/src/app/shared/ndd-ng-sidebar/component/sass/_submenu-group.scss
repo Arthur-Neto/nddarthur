@@ -1,0 +1,43 @@
+@include exports('ndd-ng-sidebar/submenu-group') {
+    .ndd-ng-sidebar-menu-group {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    .ndd-ng-sidebar__submenu-title {
+        font-size: rem-calc(16px);
+        padding: 12px 10px;
+        margin: 0;
+        text-transform: uppercase;
+        color: $ndd-sidebar-submenu-title-color;
+        height: $ndd-sidebar-submenu-title-height;
+    }
+    .ndd-ng-sidebar__submenu-content {
+        width: calc(100% - 20px);
+        float: left;
+    }
+    .ndd-ng-sidebar__pin-btn {
+        display: block;
+        color: $ndd-sidebar-pin-color;
+        width: 20px;
+        text-align: center;
+        float: left;
+        cursor: pointer;
+        line-height: 1.6;
+        transition: transform linear 100ms;
+        font-size: rem-calc(14px);
+        &--active {
+            transform: rotate(45deg);
+            color: $ndd-sidebar-pin-active-color;
+        }
+        &:hover {
+            color: $ndd-sidebar-pin-active-color;
+        }
+    }
+    @media (max-width: 768px) {
+        .ndd-ng-sidebar__pin-btn {
+            display: none;
+        }
+    }
+}

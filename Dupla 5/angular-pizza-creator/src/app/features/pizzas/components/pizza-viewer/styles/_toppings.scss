@@ -1,0 +1,119 @@
+@mixin generateToppingProperties($url, $width, $height) {
+  background-image: url($url);
+  width: $width;
+  height: $height;
+}
+
+@mixin generateItemToppingProperties($index, $left, $top, $disable:false) {
+  @at-root {
+    &:nth-child(#{$index}) {
+      @if($disable==true) {
+        display: none;
+      }
+      left: $left;
+      top: $top;
+    }
+  }
+}
+
+.pizza-viewer__pizza__topping {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  &--anchovy {
+    @include generateToppingProperties("shared/images/anchovy.svg", 51px, 37px);
+    @include generateItemToppingProperties(1, 140px, 26px);
+    @include generateItemToppingProperties(2, 80px, 82px);
+    @include generateItemToppingProperties(3, 263px, 95px);
+    @include generateItemToppingProperties(4, 0, 0, true);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+  &--bacon {
+    @include generateToppingProperties("shared/images/bacon.svg", 56px, 31px);
+    @include generateItemToppingProperties(1, 124px, 50px);
+    @include generateItemToppingProperties(2, 39px, 100px);
+    @include generateItemToppingProperties(3, 132px, 86px);
+    @include generateItemToppingProperties(4, 199px, 59px);
+    @include generateItemToppingProperties(5, 140px, 154px);
+  }
+  &--basil {
+    @include generateToppingProperties("shared/images/basil.svg", 46px, 32px);
+    @include generateItemToppingProperties(1, 136px, 63px);
+    @include generateItemToppingProperties(2, 126px, 127px);
+    @include generateItemToppingProperties(3, 222px, 98px);
+    @include generateItemToppingProperties(4, 0, 0, true);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+  &--chili {
+    @include generateToppingProperties("shared/images/chili.svg", 63px, 35px);
+    @include generateItemToppingProperties(1, 150px, 40px);
+    @include generateItemToppingProperties(2, 68px, 40px);
+    @include generateItemToppingProperties(3, 52px, 144px);
+    @include generateItemToppingProperties(4, 210px, 17px);
+    @include generateItemToppingProperties(5, 240px, 120px);
+  }
+  &--mozzarella {
+    @include generateToppingProperties("shared/images/mozzarella.svg", 46px, 32px);
+    @include generateItemToppingProperties(1, 6px, 106px);
+    @include generateItemToppingProperties(2, 186px, 114px);
+    @include generateItemToppingProperties(3, 162px, 8px);
+    @include generateItemToppingProperties(4, 0, 0, true);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+  &--mushroom {
+    @include generateToppingProperties("shared/images/mushroom.svg", 45px, 26px);
+    @include generateItemToppingProperties(1, 120px, 20px);
+    @include generateItemToppingProperties(2, 40px, 60px);
+    @include generateItemToppingProperties(3, 90px, 120px);
+    @include generateItemToppingProperties(4, 240px, 30px);
+    @include generateItemToppingProperties(5, 220px, 129px);
+  }
+  &--olive {
+    @include generateToppingProperties("shared/images/olive.svg", 45px, 26px);
+    @include generateItemToppingProperties(1, 161px, 60px);
+    @include generateItemToppingProperties(2, 90px, 57px);
+    @include generateItemToppingProperties(3, 110px, 110px);
+    @include generateItemToppingProperties(4, 279px, 47px);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+  &--onion {
+    @include generateToppingProperties("shared/images/onion.svg", 57px, 36px);
+    @include generateItemToppingProperties(1, 101px, 55px);
+    @include generateItemToppingProperties(2, 10px, 61px);
+    @include generateItemToppingProperties(3, 261px, 55px);
+    @include generateItemToppingProperties(4, 172px, 132px);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+  &--pepper {
+    @include generateToppingProperties("shared/images/pepper.svg", 57px, 36px);
+    @include generateItemToppingProperties(1, 122px, 30px);
+    @include generateItemToppingProperties(2, 175px, 87px);
+    @include generateItemToppingProperties(3, 30px, 81px);
+    @include generateItemToppingProperties(4, 282px, 69px);
+    @include generateItemToppingProperties(5, 105px, 147px);
+  }
+  &--pepperoni {
+    @include generateToppingProperties("shared/images/pepperoni.svg", 57px, 36px);
+    @include generateItemToppingProperties(1, 222px, 35px);
+    @include generateItemToppingProperties(2, 145px, 107px);
+    @include generateItemToppingProperties(3, 81px, 21px);
+    @include generateItemToppingProperties(4, 221px, 80px);
+    @include generateItemToppingProperties(5, 75px, 137px);
+  }
+  &--sweetcorn {
+    @include generateToppingProperties("shared/images/sweetcorn.svg", 57px, 36px);
+    @include generateItemToppingProperties(1, 192px, 35px);
+    @include generateItemToppingProperties(2, 41px, 41px);
+    @include generateItemToppingProperties(3, 212px, 146px);
+    @include generateItemToppingProperties(4, 0, 0, true);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+  &--tomato {
+    @include generateToppingProperties("shared/images/tomato.svg", 57px, 36px);
+    @include generateItemToppingProperties(1, 175px, 147px);
+    @include generateItemToppingProperties(2, 41px, 41px);
+    @include generateItemToppingProperties(3, 85px, 100px);
+    @include generateItemToppingProperties(4, 280px, 99px);
+    @include generateItemToppingProperties(5, 0, 0, true);
+  }
+}

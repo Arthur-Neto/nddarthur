@@ -1,0 +1,41 @@
+@include exports('ndd-ng-tabsbar/style') {
+    .ndd-ng-tab {
+        display: inline-block;
+        position: relative;
+        text-transform: uppercase;
+        padding-top: 5px;
+        margin-right: 25px;
+        cursor: pointer;
+        .link {
+            display: block;
+            text-decoration: none;
+            color: $ndd-ng-textbtn-color;
+            font-weight: 600;
+            font-size: rem-calc(12.5px);
+            padding: 0 5px 5px 5px;
+            border-bottom: 3px solid transparent;
+            &--active {
+                border-bottom: 3px solid $ndd-ng-theme-secondary-color;
+                font-weight: 700;
+            }
+        }
+        &--disabled {
+            pointer-events: none;
+            opacity: .6;
+        }
+    }
+    .ndd-ng-tabsbar__scroll {
+        width: 100%;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+    .ndd-ng-tabsbar {
+        padding: 0 5px;
+        background-color: #f2f2f2;
+    }
+    .ndd-ng-tabsbar__tabs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}

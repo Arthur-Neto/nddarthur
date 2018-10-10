@@ -1,0 +1,7 @@
+// Initial Style
+@import './app/app.component.scss';
+// Load frameworks and external components
+@import './app/shared/styles/frameworks/**/*.scss';
+@import './app/shared/styles/components/**/*.scss';
+// Load features styles
+@import './app/features/**/**/_styles.scss';

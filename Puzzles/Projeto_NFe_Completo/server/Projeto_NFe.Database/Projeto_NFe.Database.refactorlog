@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="bd01dee3-4e28-4c43-8570-d4367a507b91" ChangeDateTime="06/05/2018 16:58:15">
+    <Property Name="ElementName" Value="[dbo].[TBDESTINATARIO].[NomeRazaoSocial]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBDESTINATARIO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nome" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="26d1cbbd-1955-43df-9762-1373b2b9d92d" ChangeDateTime="06/05/2018 17:03:55">
+    <Property Name="ElementName" Value="[dbo].[TBDESTINATARIO].[Endereco_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBDESTINATARIO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EnderecoId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="64dfb59f-046d-40f1-bf67-9fdeb87e44ef" ChangeDateTime="06/05/2018 17:04:25">
+    <Property Name="ElementName" Value="[dbo].[FK_TBDESTINATARIO_ToTBENDERECO]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TBDESTINATARIO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TBDESTINATARIO_TBENDERECO]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a6e183d-4bf1-448c-9853-7b892f0c4f03" ChangeDateTime="06/08/2018 19:04:16">
+    <Property Name="ElementName" Value="[dbo].[TBNOTAFISCAL].[T]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBNOTAFISCAL]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TransportadorId" />
+  </Operation>
+</Operations>

@@ -1,0 +1,15 @@
+// Variáveis
+$ndd-ng-breadcrumb-color-text: #fff !default;
+$ndd-ng-breadcrumb-arrow-border: 1px solid rgba(255, 255, 255, .33) !default;
+
+// Placeholders    
+%ndd-ng-breadcrumb-arrow {
+    content: '';
+    position: absolute;
+}
+
+%ndd-ng-breadcrumb-popup-arrow {
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    z-index: 9;
+}

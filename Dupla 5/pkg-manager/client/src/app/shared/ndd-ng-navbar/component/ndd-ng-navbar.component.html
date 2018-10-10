@@ -1,0 +1,19 @@
+<nav class="ndd-ng-navbar">
+    <!--responsive retrat button-->
+    <a class="ndd-ng-navbar__link-retreat" (click)="toggleCollapse()">
+        <i class="ndd-font ndd-font-retreat"></i>
+    </a>
+    <!--navbar -->
+    <div class="ndd-ng-navbar-content">
+        <div class="ndd-ng-navbar__breadcrumb">
+            <ndd-ng-breadcrumb [breadcrumbI18n]="true" [breadcrumbHomeName]="navbarBreadcrumbHomeName">
+                <div ndd-ng-breadcrumb-start class="ndd-ng-hide-when-mobile">
+                    <div [class]="navbarLogoClass"> </div>
+                </div>
+            </ndd-ng-breadcrumb>
+        </div>
+        <div class="ndd-ng-navbar__menu-area">
+            <ng-content select="[ndd-ng-navbar-menu]"></ng-content>
+        </div>
+    </div>
+</nav>

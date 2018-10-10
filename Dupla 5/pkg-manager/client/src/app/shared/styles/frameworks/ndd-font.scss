@@ -1,0 +1,10 @@
+@include exports('ndd-font/style') {
+    .ndd-font {
+        display: inline-block;
+        font: normal normal normal $ndd-ng-browsers-default-font-size / 1 NddFont;
+        font-size: inherit;
+        text-rendering: auto;
+        // sass-lint:disable no-vendor-prefixes
+        -webkit-font-smoothing: antialiased;
+    }
+}

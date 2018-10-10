@@ -1,0 +1,40 @@
+@include exports('layout/style') {
+    .ndd-ng-navbar__brand-image {
+        background-image: url($navbar-logo-url);
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: $logo-height;
+        width: $logo-width;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+    .ndd-ng-sidebar-menu {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .content {
+        width: calc(100% - #{$ndd-sidebar-width});
+        left: $ndd-sidebar-width;
+        height: calc(100% - #{$navbar-height + $navbar-border-width});
+        transform: translateY(#{$navbar-height + $navbar-border-width});
+        position: absolute;
+        transition: all .4s;
+        background-color: $content-background-color;
+        display: inline-block;
+        &--ndd-sidebar-pinned {
+            left: $ndd-sidebar-width-expand;
+            width: calc(100% - #{$ndd-sidebar-width-expand});
+        }
+    }
+    .full-size {
+        height: 100%;
+    }
+    @media (max-width: 768px) {
+        .content {
+            transform: translateY($navbar-height-small);
+            left: 0;
+            width: 100%;
+        }
+    }
+}

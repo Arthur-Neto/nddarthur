@@ -1,0 +1,20 @@
+@include exports('ndd-ng-breadcrumb/style') {
+    /* Block do componente */
+    .ndd-ng-breadcrumb {
+        display: block;
+        height: rem-calc(40px);
+        margin: 0;
+        padding: 0;
+        background-color: $ndd-ng-theme-primary-color;
+        font-weight: 400;
+        &::before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+        &[hidden] {
+            visibility: hidden;
+        }
+    }
+}

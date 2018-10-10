@@ -1,0 +1,20 @@
+@include exports('ndd-ng-sidebar/suboption') {
+    .ndd-ng-sidebar__item-submenu {
+        @extend %sidebar-item;
+        width: 100%;
+        padding: 10px;
+        overflow-x: hidden;
+        font-size: rem-calc(14px);
+        span {
+            display: block;
+            width: $ndd-sidebar-submenu-width - 10px;
+        }
+        &:hover {
+            background-color: $ndd-sidebar-submenu-item-bg-color;
+        }
+        &--active {
+            background-color: $ndd-sidebar-submenu-item-bg-color;
+            border-right: $ndd-sidebar-submenu-active-border;
+        }
+    }
+}

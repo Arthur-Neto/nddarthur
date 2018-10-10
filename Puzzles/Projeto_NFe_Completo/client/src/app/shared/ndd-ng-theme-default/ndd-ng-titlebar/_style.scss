@@ -1,0 +1,98 @@
+@include exports('ndd-ng-titlebar/style') {
+    /**/
+    .ndd-ng-titlebar {
+        position: relative;
+        color: $ndd-ng-textbtn-color;
+        background-color: #fff;
+        height: $ndd-ng-titlebar-h;
+        border-top: 1px solid $ndd-ng-element-border-color;
+        border-bottom: 1px solid $ndd-ng-element-border-color;
+        &__icon {
+            position: relative;
+            float: left;
+            text-align: center;
+            font-size: rem-calc(35px);
+            line-height: 1.2;
+            color: #fff;
+            background-color: $ndd-ng-titlebar-icon-bg-color;
+            height: $ndd-ng-titlebar-h - 20px;
+            width: $ndd-ng-titlebar-icon-w;
+            margin: $ndd-ng-titlebar-margin-icon-title;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 0;
+                border-top: solid 14px $ndd-ng-titlebar-icon-bg-color;
+                border-right: solid ($ndd-ng-titlebar-icon-w / 2) transparent;
+                border-left: solid ($ndd-ng-titlebar-icon-w / 2) transparent;
+            }
+        }
+        &__main-title {
+            font-size: rem-calc(21px);
+            padding: 10px 0 5px 0;
+            margin: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            &__value {
+                white-space: pre;
+            }
+        }
+        &__info {
+            float: left;
+            margin: $ndd-ng-titlebar-margin-icon-title;
+            width: calc(100% - 126px);
+            &__item {
+                float: left;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: rem-calc(10.5px);
+                margin-right: 18px;
+                color: lighten($ndd-ng-textbtn-color, 20);
+                &--hide {
+                    display: none;
+                }
+                &__value {
+                    white-space: pre;
+                }
+            }
+        }
+        &__action {
+            position: absolute;
+            top: 1px;
+            right: 35px;
+        }
+        &__close {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            font-size: rem-calc(16.8px);
+            cursor: pointer;
+            padding: $ndd-ng-textbtn-pd;
+            background: none;
+            border: 0;
+            &:hover,
+            &:focus {
+                outline: none;
+                color: $ndd-ng-textbtn-hover-color;
+            }
+            &:active {
+                color: $ndd-ng-textbtn-active-color;
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        .ndd-ng-titlebar__main-title {
+            padding: 5px 0 2px 0;
+        }
+        .ndd-ng-titlebar__info {
+            margin-left: 10px;
+            width: calc(100% - 46px);
+        }
+        .ndd-ng-titlebar__info__item {
+            display: block;
+            padding-top: 3px;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+@include exports('ndd-ng-form/style') {
+    /**/
+    .ndd-ng-form {
+        position: relative;
+        width: 100%;
+        font-size: rem-calc(14px);
+    }
+    .ndd-ng-form__wrapper {
+        background-color: $ndd-ng-form-bg-color;
+        position: relative;
+        overflow: auto;
+        padding-left: 20px;
+        width: 100%;
+        height: calc(100% - #{$ndd-ng-form-bottom-height});
+        &--loading {
+            .ndd-ng-form__footer {
+                opacity: .6;
+                pointer-events: none;
+            }
+        }
+    }
+    .ndd-ng-form__field-group {
+        margin-bottom: 16px;
+    }
+    .ndd-ng-form__field {
+        width: 100%;
+        height: 32px;
+        border-radius: 2px;
+        padding-left: 3px;
+        border: 1px solid $ndd-ng-form-border-color;
+        &:enabled {
+            background-color: $ndd-ng-form-bg-color;
+        }
+        &:disabled {
+            background-color: $ndd-ng-form-bg-disabled-color;
+        }
+        &:focus {
+            outline: none;
+            border-color: $ndd-ng-form-focus-border-color;
+            box-shadow: 0 0 8px $ndd-ng-form-focus-border-color;
+        }
+        &:hover {
+            cursor: text;
+        }
+        &--invalid {
+            border-color: $ndd-ng-form-error-color !important;
+            &:focus {
+                box-shadow: 0 0 2px $ndd-ng-form-error-color !important;
+            }
+        }
+        &__select {
+            cursor: pointer;
+        }
+    }
+    .ndd-ng-form__label__description {
+        width: 100%;
+        margin: 10px 0 5px;
+        display: block;
+        font-weight: 600;
+    }
+    .ndd-ng-form__action {
+        width: 100%;
+        height: 65px;
+        padding: 10px 10px 10px 25px;
+    }
+    .ndd-ng-form-validator-description {
+        display: block;
+        position: absolute;
+        height: 14px;
+        min-width: 100px;
+        color: $ndd-ng-form-error-color;
+        font-size: rem-calc(11px);
+    }
+    @media(max-width: 768px) {
+        .ndd-ng-form__wrapper {
+            margin: 0;
+            padding: 15px;
+            border: 0;
+        }
+        .ndd-ng-button {
+            &--secondary {
+                display: none;
+            }
+        }
+    }
+}

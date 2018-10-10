@@ -1,0 +1,83 @@
+<div class="feature-view-tab__content">
+        <div class="row">
+            <!-- #region Coluna 1 -->
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">DADOS CADASTRAIS</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Nome do cliente</span>
+                                </div>
+                                <div class="truncate">
+                                    <span title="{{ order?.customer }}" class="feature-view__value">
+                                        {{ order?.customer }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Quantidade</span>
+                                </div>
+                                <div class="truncate">
+                                    <span title="{{ order?.quantity }}" class="feature-view__value">
+                                        {{ order?.quantity }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+    
+            <!-- #region Coluna 2 -->
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="feature-view__title">PRODUTO</span>
+                    </div>
+                </div>
+                <div class="row feature-view__group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Nome do produto</span>
+                                </div>
+                                <div class="truncate">
+                                    <span title="{{ order?.productName }}" class="feature-view__value">
+                                        {{ order?.productName }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 feature-view__body">
+                                <div>
+                                    <span class="feature-view__label">Total</span>
+                                </div>
+                                <div class="truncate">
+                                    <span title="{{ order?.total }}" class="feature-view__value">
+                                        {{ order?.total | currency:'USD':'symbol' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+        </div>
+        <div class="feature-view-tab__footer">
+            <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+            <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+        </div>
+        <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+        <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+    </div>
+    

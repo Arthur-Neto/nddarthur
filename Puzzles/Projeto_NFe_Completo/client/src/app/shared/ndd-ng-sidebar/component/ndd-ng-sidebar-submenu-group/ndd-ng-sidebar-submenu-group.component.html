@@ -1,0 +1,13 @@
+<div *ngIf="groupVisible" class="ndd-ng-sidebar-menu-group">
+    <div class="ndd-ng-sidebar__submenu-title">
+        <div class="ndd-ng-sidebar__submenu-content">
+            {{ groupHeader }}
+        </div>
+        <a class="ndd-ng-sidebar__pin-btn" [ngClass]="{'ndd-ng-sidebar__pin-btn--active': nddSidebar.pinned}"  (click)="nddSidebar.pinSubmenu()" >
+            <i class="fa fa-thumb-tack"></i>
+        </a>
+    </div>
+    <ul class="ndd-ng-sidebar__overflow ndd-ng-sidebar__overflow--subgroup">
+        <ng-content select="[ndd-ng-sidebar-submenu-group-content]"></ng-content>
+    </ul>
+</div>

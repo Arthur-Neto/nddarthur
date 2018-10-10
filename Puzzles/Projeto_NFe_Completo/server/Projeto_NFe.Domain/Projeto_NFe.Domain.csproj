@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Projeto_NFe.Domain</RootNamespace>
+    <AssemblyName>Projeto_NFe.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Entidade.cs" />
+    <Compile Include="Excecoes\CodigosErros.cs" />
+    <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
+    <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
+    <Compile Include="Excecoes\ExcecaoNaoPermitido.cs" />
+    <Compile Include="Excecoes\ExcecaoObjetoExistente.cs" />
+    <Compile Include="Excecoes\ExcecaoObjetoInvalido.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Destinatario.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualNula.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemDocumento.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemNome.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\IDestinatarioRepositorio.cs" />
+    <Compile Include="Funcionalidades\Documentos\CNPJs\CNPJ.cs" />
+    <Compile Include="Funcionalidades\Documentos\CNPJs\ExcecaoCNPJNaoPossuiQuatorzeNumeros.cs" />
+    <Compile Include="Funcionalidades\Documentos\CNPJs\ExcecaoNumeroCNPJInvalido.cs" />
+    <Compile Include="Funcionalidades\Documentos\CPFs\CPF.cs" />
+    <Compile Include="Funcionalidades\Documentos\CPFs\ExcecaoCPFNaoPossuiOnzeNumeros.cs" />
+    <Compile Include="Funcionalidades\Documentos\CPFs\ExcecaoNumeroCPFInvalido.cs" />
+    <Compile Include="Funcionalidades\Documentos\Documento.cs" />
+    <Compile Include="Funcionalidades\Documentos\TipoDocumento.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoMunicipalEmitenteComLetras.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoEstadualEmitenteComLetras.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteComInscricaoEstadualAcimaDoLimite.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoMunicipal.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoEstadual.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemCNPJ.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemNome.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemRazaoSocial.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoRazaoSocialEmitentePequeno.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoNomeEmitentePequeno.cs" />
+    <Compile Include="Funcionalidades\Emitentes\IEmitenteRepositorio.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemBairro.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemEstado.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemLogradouro.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemMunicipio.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemNumero.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
+    <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoDataEntradaInvalida.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoDestinatarioIgualAEmitente.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoDestinatarioInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoEmitenteInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoListaDeProdutoVazia.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoProdutoSemValor.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoSemNaturezaOperacao.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalICMSInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalImpostosInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalIPIInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalNotaInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalProdutoInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalEmitidaRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscal.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalComQuantidadeInferiorAzero.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemNotaFiscal.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemProduto.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\IProdutoNotaFiscalRepositorio.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\ProdutoNotaFiscal.cs" />
+    <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoComValorNegativo.cs" />
+    <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoSemCodigo.cs" />
+    <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoSemDescricao.cs" />
+    <Compile Include="Funcionalidades\Produtos\IProdutoRepositorio.cs" />
+    <Compile Include="Funcionalidades\Produtos\Produto.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualNula.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemDocumento.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemNome.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\ITransportadorRepositorio.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Transportador.cs" />
+    <Compile Include="Interfaces\IRepositorio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
+      <Project>{46825EC0-CC2C-4752-A78E-D6F816F32CCD}</Project>
+      <Name>Projeto_NFe.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,38 @@
+<kendo-grid
+    [style.height]="'100%'"
+    [data]="gridService | async"
+    [loading]="gridService.loading"
+    [pageSize]="state.take"
+    [skip]="state.skip"
+    [selectable]="selectableSettings"
+    [sort]="state.sort"
+    [sortable]="true"
+    [pageable]="pageableSettings"
+    [scrollable]="'true'"
+    (dataStateChange)="onDataStateChange($event)"
+    (selectionChange)="onSelectionChange($event)">
+
+    <ng-template kendoGridToolbarTemplate position="top">
+        <div class="pkg-manager-grid__action-container">
+            <button (click)="onClick()" class="pkg-manager-grid__action">
+                <i class="ndd-font ndd-font-create pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Novo Pedido</span>
+            </button>
+            <button (click)="deleteOrder($event)" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+                <i class="ndd-font ndd-font-delete pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Remover</span>
+            </button>
+            <button (click)="redirectOpenOrder()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
+                <i class="ndd-font ndd-font-open pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Abrir</span>
+            </button>
+        </div>
+    </ng-template>
+
+    <kendo-grid-checkbox-column width="5"></kendo-grid-checkbox-column>
+    <kendo-grid-column field="id" title="ID" width="10"></kendo-grid-column>
+    <kendo-grid-column field="customer" title="Customer" width="100"></kendo-grid-column>
+    <kendo-grid-column field="quantity" title="Quantity" width="50"></kendo-grid-column>
+    <kendo-grid-column field="productName" title="Product" width="50"></kendo-grid-column>
+    <kendo-grid-column field="total" title="Total" width="50"></kendo-grid-column>
+</kendo-grid>

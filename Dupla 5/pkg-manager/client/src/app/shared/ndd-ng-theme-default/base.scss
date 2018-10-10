@@ -1,0 +1,31 @@
+html,
+body {
+    font-size: $ndd-ng-base-font-size !important;
+    font-family: $ndd-ng-font-family;
+}
+
+.k-widget ::selection {
+    background-color: rgb(51, 149, 255);
+}
+
+.k-widget .k-grid-header .k-header .k-link .k-icon {
+    color: #656565;
+}
+
+@media (min-width: 1200px) {
+    .ndd-ng-hide-when-desktop {
+        display: none;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    .ndd-ng-hide-when-responsive {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .ndd-ng-hide-when-mobile {
+        display: none;
+    }
+}

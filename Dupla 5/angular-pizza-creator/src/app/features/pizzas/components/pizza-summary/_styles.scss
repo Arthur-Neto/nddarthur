@@ -1,0 +1,53 @@
+.pizza-summary {
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+  &__border {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+    &__header {
+      font-size: 28px;
+      padding: 10px 15px;
+      color: rgba(0, 0, 0, 0.6);
+      position: relative;
+      display: flex;
+
+      &__size {
+        flex: 1;
+        text-align: left;
+      }
+
+      &__price {
+        flex: 1;
+        text-align: right;
+      }
+    }
+
+    &__content {
+      padding: 5px 15px;
+      padding-bottom: 20px;
+      position: relative;
+      font-size: 22px;
+      color: rgba(0, 0, 0, 0.8);
+      margin-left: 10px;
+      display: flex;
+
+      &__name {
+        flex: 1;
+        text-align: left;
+      }
+
+      &__price {
+        flex: 1;
+        text-align: right;
+      }
+    }
+  }
+
+  &__footer {
+
+    &__total {
+      text-align: right;
+    }
+  }
+}

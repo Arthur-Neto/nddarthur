@@ -1,0 +1,148 @@
+$view-footer-height: rem-calc(76px);
+$view-tab-height: rem-calc(30px);
+$view-entitled-title-height: rem-calc(45px);
+
+@include exports('feature-view/style') {
+    // Estilo para abranger a área total da view
+    .feature__content {
+        width: 100%;
+        height: calc(100vh - #{$navbar-height} - #{$ndd-ng-titlebar-h} - #{$ndd-ng-tabsbar-h});
+    }
+    // Estilo para páginas gerais com Titlebar.
+    .feature-view {
+        /* Inserir Titlebar nesta hierarquia. */
+        position: relative;
+        height: calc(100vh - #{$header-height});
+        &__content {
+            position: relative;
+            height: calc(100% - #{$ndd-ng-titlebar-h} - #{$view-footer-height});
+            &--without-footer {
+                height: calc(100% - #{$ndd-ng-titlebar-h});
+            }
+        }
+    }
+    // Estilo para páginas de detalhes (dentro de abas).
+    .feature-view-tab {
+        position: relative;
+        height: calc(100vh - #{$header-height} - #{$ndd-ng-titlebar-h} - #{$view-tab-height});
+        &__content {
+            position: relative;
+            height: calc(100% - #{$view-footer-height});
+            &--without-footer {
+                height: 100%;
+            }
+        }
+    }
+    // Estilo para páginas que contenham título abaixo da Titlebar.
+    .feature-view-entitled {
+        /* Inserir Titlebar nesta hierarquia. */
+        height: calc(100vh - #{$header-height} - #{$ndd-ng-titlebar-h});
+        &__title {
+            /* <h2></h2> */
+            height: rem-calc($view-entitled-title-height);
+            width: 100%;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-size: rem-calc(14px);
+            text-transform: uppercase;
+            padding: rem-calc(15px);
+        }
+        &__content {
+            height: calc(100% - #{$view-entitled-title-height} - #{$view-footer-height});
+            &--without-footer {
+                height: calc(100% - #{$ndd-ng-titlebar-h} - #{$view-entitled-title-height});
+            }
+        }
+    }
+    .feature-view__content,
+    .feature-view-tab__content,
+    .feature-view-entitled__content {
+        overflow: auto;
+        padding-bottom: 0;
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-track {
+            margin-left: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #c4c4c4;
+        }
+    }
+    .feature-view__footer,
+    .feature-view-tab__footer,
+    .feature-view-entitled__footer {
+        height: $view-footer-height;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $ndd-ng-element-border-color;
+    }
+    .feature-view__content,
+    .feature-view__footer,
+    .feature-view-tab__content,
+    .feature-view-tab__footer,
+    .feature-view-entitled__content,
+    .feature-view-entitled__footer {
+        padding: rem-calc(20px);
+    }
+    /*
+ * Esconde botões quando o tamanho da tela for mobile.
+ * Para exibir os botões, usar o modificador `--dont-hide-when-mobile`.
+ */
+    @media (max-width: 767px) {
+        .feature-view__content:not(.feature-view__content--dont-hide-when-mobile) {
+            height: calc(100% - #{$ndd-ng-titlebar-h});
+        }
+        .feature-view-tab__content:not(.feature-view-tab__content--dont-hide-when-mobile) {
+            height: 100%;
+        }
+        .feature-view-entitled__content:not(.feature-view-entitled__content--dont-hide-when-mobile) {
+            height: calc(100% - #{$view-entitled-title-height});
+        }
+        .feature-view__footer:not(.feature-view__footer--dont-hide-when-mobile),
+        .feature-view-tab__footer:not(.feature-view-tab__footer--dont-hide-when-mobile),
+        .feature-view-entitled__footer:not(.feature-view-entitled__footer--dont-hide-when-mobile) {
+            display: none;
+        }
+    }
+
+    %feature-view-text-color {
+        color: $text-color;
+    }
+
+    .feature-view__group {
+        padding-left: rem-calc(10px);
+    }
+    .feature-view__body {
+        padding-bottom: rem-calc(10px);
+    }
+    .feature-view__title {
+        display: block;
+        color: $text-color;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: rem-calc(16px);
+        margin-bottom: rem-calc(10px);
+        border-bottom: 0;
+    }
+    .feature-view__label {
+        @extend %feature-view-text-color;
+        font-size: rem-calc(14px);
+
+        &--required,
+        &--error {
+            color: #E01D3B;
+            font-weight: 700;
+        }
+    }
+    .feature-view__value {
+        @extend %feature-view-text-color;
+        font-size: rem-calc(18px);
+    }
+    @media (max-width: 767px) {
+        .feature-view__group {
+            padding-bottom: rem-calc(20px);
+        }
+    }
+}
