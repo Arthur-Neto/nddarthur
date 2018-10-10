@@ -13,7 +13,6 @@ namespace Projeto_NFe.Application.Funcionalidades.Produtos.Modelos
         public string InscricaoEstadual { get; set; }
         public bool ResponsabilidadeFrete { get; set; }
         public string Documento { get; set; }
-        public string TipoDeDocumento { get; set; }
         public string EnderecoLogradouro { get; set; }
         public int EnderecoNumero { get; set; }
         public string EnderecoBairro { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Infrastructure.Data.Base;
 using System.Linq;
 
@@ -41,6 +42,14 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
         public bool Excluir(NotaFiscal notaFiscal)
         {
             _contexto.NotasFiscais.Remove(notaFiscal);
+
+            ProdutoNotaFiscalRepositorioSql produtoNotaFiscalRepositorio = new ProdutoNotaFiscalRepositorioSql(_contexto);
+
+            //foreach (ProdutoNotaFiscal produtoNotaFiscal in notaFiscal.Produtos)
+            //{
+            //    produtoNotaFiscalRepositorio.Excluir(produtoNotaFiscal);
+            //}
+
             return _contexto.SaveChanges() != 0;
         }
     }

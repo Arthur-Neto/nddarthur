@@ -4,8 +4,10 @@ using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Base;
 using Projeto_NFe.Common.Tests.Funcionalidades;
 using Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Infrastructure.Data.Tests.Context;
 using Projeto_NFe.Infrastructure.Data.Tests.Inicializador;
@@ -17,119 +19,91 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
 {
-    //[TestFixture]
-    //public class NotaFiscalRepositorioSqlTeste : EffortTestBase
-    //{
-    //    private FakeDbContext _fakeDbContext;
-    //    private INotaFiscalRepositorio _repositorio;
+    [TestFixture]
+    public class NotaFiscalRepositorioSqlTeste : EffortTestBase
+    {
+        private FakeDbContext _fakeDbContext;
+        private INotaFiscalRepositorio _repositorio;
 
-    //    private NotaFiscal _notaFiscalValida;
+        [SetUp]
+        public void IniciarCenario()
+        {
+            var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
+            _fakeDbContext = new FakeDbContext(connection);
+            _repositorio = new NotaFiscalRepositorioSql(_fakeDbContext);
 
-    //    [SetUp]
-    //    public void IniciarCenario()
-    //    {
-    //        var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
-    //        _fakeDbContext = new FakeDbContext(connection);
-    //        _repositorio = new NotaFiscalRepositorioSql(_fakeDbContext);
+            SementeBaseSQL semeador = new SementeBaseSQL(_fakeDbContext);
+            semeador.Semear();
+        }
 
+        [Test]
+        public void NotaFiscal_InfraData_Adicionar_Sucesso()
+        {
+            Destinatario destinatario = ObjectMother.PegarDestinatarioValidoComCNPJSemDependencias();
+            Emitente emitente = ObjectMother.PegarEmitenteValidoSemDependencias();
+            Transportador transportador = ObjectMother.PegarTransportadorValidoSemDependencias();
 
-    //        long idEmitenteCadastradoPorBaseSql = 1;
-    //        long idDestinatarioCadastradoPorBaseSql = 1;
-    //        long idTransportadorCadastradoPorBaseSql = 1;
+            NotaFiscal notaFiscal = ObjectMother.PegarNotaFiscalValida(emitente, destinatario, transportador);
 
-    //        _notaFiscalValida = ObjectMother.PegarNotaFiscalValidaComIdDasDependencias(idEmitenteCadastradoPorBaseSql, idDestinatarioCadastradoPorBaseSql, idTransportadorCadastradoPorBaseSql);
-    //    }
+           _repositorio.Adicionar(notaFiscal);
 
-    //    [Test]
-    //    public void NotaFiscal_InfraData_Adicionar_Sucesso()
-    //    {
-    //        NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(_notaFiscalValida);
+            notaFiscal.Id.Should().BeGreaterThan(0);
 
-    //        notaFiscalAdicionada.Id.Should().BeGreaterThan(0);
-    //    }
+            NotaFiscal notaFiscalResultadoDoGet = _repositorio.BuscarPorId(notaFiscal.Id);
 
-    //    [Test]
-    //    public void NotaFiscal_InfraData_Atualizar_Sucesso()
-    //    {
-    //        NotaFiscal notaFiscalParaAtualizar = _notaFiscalValida;
-    //        notaFiscalParaAtualizar.Id = 1;
+            notaFiscalResultadoDoGet.NaturezaOperacao.Should().Be(notaFiscal.NaturezaOperacao);
 
-    //        string naturezaOperacaoSobrescrita = notaFiscalParaAtualizar.NaturezaOperacao;
+        }
 
-    //        notaFiscalParaAtualizar.NaturezaOperacao = "Atualizada";
+        [Test]
+        public void NotaFiscal_InfraData_Atualizar_Sucesso()
+        {
+            long idDaNotaFiscalDaBaseSql = 1;
 
-    //        _repositorio.Atualizar(notaFiscalParaAtualizar);
+            NotaFiscal notaFiscalResultadoDoBuscarParaAtualizar = _repositorio.BuscarPorId(idDaNotaFiscalDaBaseSql);
 
-    //        NotaFiscal notaFiscalBuscada = _repositorio.BuscarPorId(notaFiscalParaAtualizar.Id);
+            notaFiscalResultadoDoBuscarParaAtualizar.NaturezaOperacao = "Alterado";
 
-    //        notaFiscalBuscada.NaturezaOperacao.Should().Be(notaFiscalParaAtualizar.NaturezaOperacao);
-    //        notaFiscalBuscada.NaturezaOperacao.Should().NotBe(naturezaOperacaoSobrescrita);
+            _repositorio.Atualizar(notaFiscalResultadoDoBuscarParaAtualizar);
 
-    //        notaFiscalBuscada.DataEntrada.Minute.Should().Be(notaFiscalParaAtualizar.DataEntrada.Minute);
-    //    }
+            NotaFiscal resultado = _repositorio.BuscarPorId(notaFiscalResultadoDoBuscarParaAtualizar.Id);
 
-    //    [Test]
-    //    public void NotaFiscal_InfraData_BuscarPorId_EntidadesComCNPJ_Sucesso()
-    //    {
-    //        NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
+            resultado.NaturezaOperacao.Should().Be(notaFiscalResultadoDoBuscarParaAtualizar.NaturezaOperacao);
 
-    //        NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
+        }
 
-    //        NotaFiscal notaFiscalParaBuscar = _repositorio.BuscarPorId(notaFiscalAdicionada.Id);
+        [Test]
+        public void NotaFiscal_InfraData_BuscarPorId_Sucesso()
+        {
 
-    //        notaFiscalParaBuscar.Should().NotBeNull();
-    //        notaFiscalParaBuscar.NaturezaOperacao.Should().Be(notaFiscalAdicionada.NaturezaOperacao);
-    //        notaFiscalParaBuscar.DataEntrada.Minute.Should().Be(notaFiscalAdicionada.DataEntrada.Minute);
-    //        notaFiscalParaBuscar.Destinatario.Id.Should().Be(notaFiscalAdicionada.Destinatario.Id);
-    //        notaFiscalParaBuscar.Emitente.Id.Should().Be(notaFiscalAdicionada.Emitente.Id);
-    //        notaFiscalParaBuscar.Transportador.Id.Should().Be(notaFiscalAdicionada.Transportador.Id);
-    //    }
+            long idDaNotaFiscalDaBaseSql = 1;
 
-    //    [Test]
-    //    public void NotaFiscal_InfraData_BuscarPorId_EntidadesComCPF_Sucesso()
-    //    {
-    //        long idEmitenteCadastradoPorBaseSql = 2;
-    //        long idDestinatarioCadastradoPorBaseSql = 2;
-    //        long idTransportadorCadastradoPorBaseSql = 2;
-    //        _notaFiscalValida = ObjectMother.PegarNotaFiscalValidaComIdDasDependencias(idEmitenteCadastradoPorBaseSql, idDestinatarioCadastradoPorBaseSql, idTransportadorCadastradoPorBaseSql);
+            NotaFiscal notaFiscalDaBaseSql = _repositorio.BuscarPorId(idDaNotaFiscalDaBaseSql);
 
-    //        NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
+            notaFiscalDaBaseSql.Should().NotBeNull();
+        }
 
-    //        NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
+        [Test]
+        public void NotaFiscal_InfraData_BuscarTodos_Sucesso()
+        {
+            IEnumerable<NotaFiscal> notasFiscaisBuscadas = _repositorio.BuscarTodos();
 
-    //        NotaFiscal notaFiscalParaBuscar = _repositorio.BuscarPorId(notaFiscalAdicionada.Id);
+            notasFiscaisBuscadas.Should().NotBeNull();
+            notasFiscaisBuscadas.Should().HaveCountGreaterOrEqualTo(1);
+        }
 
-    //        notaFiscalParaBuscar.Should().NotBeNull();
-    //        notaFiscalParaBuscar.NaturezaOperacao.Should().Be(notaFiscalAdicionada.NaturezaOperacao);
-    //        notaFiscalParaBuscar.DataEntrada.Minute.Should().Be(notaFiscalAdicionada.DataEntrada.Minute);
-    //        notaFiscalParaBuscar.Destinatario.Id.Should().Be(notaFiscalAdicionada.Destinatario.Id);
-    //        notaFiscalParaBuscar.Emitente.Id.Should().Be(notaFiscalAdicionada.Emitente.Id);
-    //        notaFiscalParaBuscar.Transportador.Id.Should().Be(notaFiscalAdicionada.Transportador.Id);
-    //    }
+        [Test]
+        public void NotaFiscal_InfraData_Excluir_Sucesso()
+        {
+            long idDaNotaFiscalDaBaseSql = 1;
 
-    //    [Test]
-    //    public void NotaFiscal_InfraData_BuscarTodos_Sucesso()
-    //    {
-    //        IEnumerable<NotaFiscal> notasFiscaisBuscadas = _repositorio.BuscarTodos();
+            NotaFiscal notaFiscalBuscadaParaDeletar = _repositorio.BuscarPorId(idDaNotaFiscalDaBaseSql);
 
-    //        notasFiscaisBuscadas.Should().NotBeNull();
-    //        notasFiscaisBuscadas.Should().HaveCountGreaterOrEqualTo(1);
-    //    }
+            _repositorio.Excluir(notaFiscalBuscadaParaDeletar);
 
-    //    [Test]
-    //    public void NotaFiscal_InfraData_Excluir_Sucesso()
-    //    {
-    //        NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
+            NotaFiscal notaFiscalParaBuscar = _repositorio.BuscarPorId(notaFiscalBuscadaParaDeletar.Id);
 
-    //        NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
-
-    //        NotaFiscal notaFiscalParaDeletar = notaFiscalAdicionada;
-
-    //        _repositorio.Excluir(notaFiscalParaDeletar);
-
-    //        NotaFiscal notaFiscalParaBuscar = _repositorio.BuscarPorId(notaFiscalParaDeletar.Id);
-
-    //        notaFiscalParaBuscar.Should().BeNull();
-    //    }
-    //}
+            notaFiscalParaBuscar.Should().BeNull();
+        }
+    }
 }

@@ -17,12 +17,13 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Produtos
             Property(p => p.Id).HasColumnName("IdProdutoNotaFiscal");
 
             HasRequired(p => p.Produto).WithMany().HasForeignKey(p => p.ProdutoId).WillCascadeOnDelete(false);
-            HasRequired(p => p.NotaFiscal).WithMany().HasForeignKey(p => p.NotaFiscalId).WillCascadeOnDelete(false);
-            Property(p => p.Quantidade).HasColumnName("Quantidade").HasColumnType("INTEGER").IsRequired();
-            Property(p => p.Quantidade).HasColumnName("Quantidade").HasColumnType("INTEGER").IsRequired();
-            Property(p => p.ValorICMS).HasColumnName("ValorICMS").HasColumnType("DECIMAL").IsRequired();
-            Property(p => p.ValorIPI).HasColumnName("ValorIPI").HasColumnType("DECIMAL").IsRequired();
-            Property(p => p.ValorTotal).HasColumnName("ValorTotal").HasColumnType("DECIMAL").IsRequired();
+            HasRequired(p => p.NotaFiscal).WithMany(nf => nf.Produtos).HasForeignKey(p => p.NotaFiscalId).WillCascadeOnDelete(true);
+            Property(p => p.Quantidade).HasColumnName("Quantidade").HasColumnType("int").IsRequired();
+            Property(p => p.Quantidade).HasColumnName("Quantidade").HasColumnType("int").IsRequired();
+
+            Ignore(p => p.ValorICMS);
+            Ignore(p => p.ValorIPI);
+            Ignore(p => p.ValorTotal);
         }
     }
 }

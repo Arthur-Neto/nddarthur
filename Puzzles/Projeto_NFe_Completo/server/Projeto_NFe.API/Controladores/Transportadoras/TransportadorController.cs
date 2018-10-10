@@ -10,11 +10,11 @@ using System.Web.Http;
 namespace Projeto_NFe.API.Controladores.Transportadors
 {
     [RoutePrefix("api/transportador")]
-    public class TransportadorControlador : ApiControllerBase
+    public class TransportadorController: ApiControllerBase
     {
         private readonly ITransportadorServico _transportadorServico;
 
-        public TransportadorControlador(ITransportadorServico transportadorServico) : base()
+        public TransportadorController(ITransportadorServico transportadorServico) : base()
         {
             _transportadorServico = transportadorServico;
         }

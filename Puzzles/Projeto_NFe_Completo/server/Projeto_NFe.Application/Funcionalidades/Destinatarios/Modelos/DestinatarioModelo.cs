@@ -9,11 +9,11 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios.Modelos
 {
     public class DestinatarioModelo
     {
+        public long Id { get; set; }
+
         public string NomeRazaoSocial { get; set; }
 
         public string Documento { get; set; }
-
-        public string TipoDeDocumento { get; set; }
 
         public string InscricaoEstadual { get; set; }
 

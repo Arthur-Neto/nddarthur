@@ -1,0 +1,11 @@
+<div class="feature-view">
+    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" [titlebarTitle]="title" [titlebarInfoItems]="infoItems" [titlebarRouterToReturnOnClose]="returnRoute">
+    </ndd-ng-titlebar>
+    <ndd-ng-tabsbar>
+        <ndd-ng-tab tabId="ndd-ng-tab-product-info" [tabRoute]="'./info'" tabTitle="Dados Cadastrais">
+        </ndd-ng-tab>
+    </ndd-ng-tabsbar>
+    <div class="features-view-tab">
+        <router-outlet></router-outlet>
+    </div>
+</div>

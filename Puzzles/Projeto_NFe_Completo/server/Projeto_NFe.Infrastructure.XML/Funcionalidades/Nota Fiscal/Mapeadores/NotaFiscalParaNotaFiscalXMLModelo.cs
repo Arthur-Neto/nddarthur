@@ -139,7 +139,7 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
 
             for (int i = 0; i < notaFiscal.Produtos.Count; i++)
             {
-                ProdutoNotaFiscal produtoNotaFiscal = notaFiscal.Produtos[i];
+                ProdutoNotaFiscal produtoNotaFiscal = notaFiscal.Produtos.ToList()[i];
                 ProdutoConfiguracao produto = new ProdutoConfiguracao();
                 produto.Imposto = MontarImpostoConfiguracao(produtoNotaFiscal);
                 produto.nItemNumber = i + 1;

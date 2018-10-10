@@ -19,10 +19,19 @@ const appRoutes: Routes = [
             },
             {
                 path: 'destinatarios',
-                loadChildren: './features/destinatario/destinatario.module#DestinatarioModule',
+                loadChildren: './features/destinatario/shared/destinatario.module#DestinatarioModule',
                 data: {
                     breadcrumbOptions: {
                         breadcrumbLabel: 'Destinatarios',
+                    },
+                },
+            },
+            {
+                path: 'transportadores',
+                loadChildren: './features/transportador/shared/transportador.module#TransportadorModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Transportadores',
                     },
                 },
             },

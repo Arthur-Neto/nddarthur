@@ -52,6 +52,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
         public bool Excluir(ProdutoNotaFiscal produtoNotaFiscal)
         {
             _contexto.ProdutosNotaFiscal.Remove(produtoNotaFiscal);
+
             return _contexto.SaveChanges() != 0;
         }
     }

@@ -25,7 +25,7 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
     [TestFixture]
     public class TransportadorControladorTests : TestControllerBase
     {
-        private TransportadorControlador _transportadorsControlador;
+        private TransportadorController _transportadorsControlador;
         private Mock<ITransportadorServico> _transportadorServicoMock;
         private Mock<Transportador> _transportador;
         private Mock<TransportadorAdicionarComando> _transportadorAdicionarCmd;
@@ -41,7 +41,7 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
             _transportadorServicoMock = new Mock<ITransportadorServico>();
-            _transportadorsControlador = new TransportadorControlador(_transportadorServicoMock.Object)
+            _transportadorsControlador = new TransportadorController(_transportadorServicoMock.Object)
             {
                 Request = request,
             };

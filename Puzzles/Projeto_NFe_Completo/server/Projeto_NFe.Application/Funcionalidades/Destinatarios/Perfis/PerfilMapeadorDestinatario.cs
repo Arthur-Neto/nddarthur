@@ -16,14 +16,12 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios.Perfis
         {
             CreateMap<Destinatario, DestinatarioModelo>()
                 .ForMember(dm => dm.Documento, dm => dm.MapFrom(destinatario => destinatario.Documento.Numero))
-                .ForMember(dm => dm.TipoDeDocumento, dm => dm.MapFrom(destinatario => destinatario.Documento.Tipo))
                 .ForMember(dm => dm.EnderecoBairro, dm => dm.MapFrom(destinatario => destinatario.Endereco.Bairro))
                 .ForMember(dm => dm.EnderecoEstado, dm => dm.MapFrom(destinatario => destinatario.Endereco.Estado))
                 .ForMember(dm => dm.EnderecoLogradouro, dm => dm.MapFrom(destinatario => destinatario.Endereco.Logradouro))
                 .ForMember(dm => dm.EnderecoMunicipio, dm => dm.MapFrom(destinatario => destinatario.Endereco.Municipio))
                 .ForMember(dm => dm.EnderecoNumero, dm => dm.MapFrom(destinatario => destinatario.Endereco.Numero))
                 .ForMember(dm => dm.EnderecoPais, dm => dm.MapFrom(destinatario => destinatario.Endereco.Pais));
-
 
             CreateMap<DestinatarioAdicionarComando, Destinatario>()
                 .ForMember(destinatario => destinatario.Id, comando => comando.Ignore());

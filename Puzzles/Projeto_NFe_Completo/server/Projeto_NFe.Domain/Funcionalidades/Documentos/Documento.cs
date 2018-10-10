@@ -21,6 +21,10 @@ namespace Projeto_NFe.Domain.Funcionalidades.Documentos
             Tipo = tipoDeDocumento;
         }
 
+        public Documento()
+        {
+        }
+
         public virtual void Validar()
         {
             if (Tipo == TipoDocumento.CPF)

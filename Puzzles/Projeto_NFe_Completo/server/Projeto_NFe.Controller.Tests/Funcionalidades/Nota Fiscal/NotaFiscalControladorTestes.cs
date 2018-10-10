@@ -26,7 +26,7 @@ namespace Projeto_NFe.Controller.Tests.Features.NotaFiscals
     [TestFixture]
     public class NotaFiscalControladorTests : TestControllerBase
     {
-        private NotaFiscalControlador _notasFiscaissControlador;
+        private NotaFiscalController _notasFiscaissControlador;
         private Mock<INotaFiscalServico> _notasFiscaisServicoMock;
         private Mock<NotaFiscal> _notasFiscais;
         private Mock<NotaFiscalAdicionarComando> _notasFiscaisAdicionarCmd;
@@ -42,7 +42,7 @@ namespace Projeto_NFe.Controller.Tests.Features.NotaFiscals
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
             _notasFiscaisServicoMock = new Mock<INotaFiscalServico>();
-            _notasFiscaissControlador = new NotaFiscalControlador(_notasFiscaisServicoMock.Object)
+            _notasFiscaissControlador = new NotaFiscalController(_notasFiscaisServicoMock.Object)
             {
                 Request = request,
             };

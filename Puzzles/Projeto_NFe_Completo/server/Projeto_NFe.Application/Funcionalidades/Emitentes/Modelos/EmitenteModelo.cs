@@ -8,6 +8,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes.Modelos
 {
     public class EmitenteModelo
     {
+        public long Id { get; set; }
+
         public string NomeFantasia { get; set; }
 
         public string RazaoSocial { get; set; }

@@ -16,7 +16,6 @@ namespace Projeto_NFe.Application.Funcionalidades.Produtos.Perfis
         {
             CreateMap<Transportador, TransportadorModelo>()
                 .ForMember(tm => tm.Documento, dm => dm.MapFrom(destinatario => destinatario.Documento.Numero))
-                .ForMember(tm => tm.TipoDeDocumento, dm => dm.MapFrom(destinatario => destinatario.Documento.Tipo))
                 .ForMember(tm => tm.EnderecoBairro, tm => tm.MapFrom(emitente => emitente.Endereco.Bairro))
                 .ForMember(tm => tm.EnderecoEstado, tm => tm.MapFrom(emitente => emitente.Endereco.Estado))
                 .ForMember(tm => tm.EnderecoLogradouro, tm => tm.MapFrom(emitente => emitente.Endereco.Logradouro))

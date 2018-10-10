@@ -17,108 +17,99 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
 {
-    //[TestFixture]
-    //public class TransportadorRepositorioSqlTeste : EffortTestBase
-    //{
-    //    private FakeDbContext _fakeDbContext;
-    //    private ITransportadorRepositorio transportadorRepositorio;
-    //    private Documento _cnpj;
-    //    private Documento _cpf;
-    //    private Endereco _endereco;
+    [TestFixture]
+    public class TransportadorRepositorioSqlTeste : EffortTestBase
+    {
+        private FakeDbContext _fakeDbContext;
+        private ITransportadorRepositorio _transportadorRepositorio;
+        private Documento _cnpj;
+        private Documento _cpf;
+        private Endereco _endereco;
 
-    //    [SetUp]
-    //    public void IniciarCenario()
-    //    {
-    //        var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
-    //        _fakeDbContext = new FakeDbContext(connection);
-    //        transportadorRepositorio = new TransportadorRepositorioSql(_fakeDbContext);
-    //        _endereco = new Endereco();
-    //        _cpf = new Documento("619.648.783-30", TipoDocumento.CPF);
-    //        _cnpj = new Documento("37.311.068/0001-00", TipoDocumento.CNPJ);
+        [SetUp]
+        public void IniciarCenario()
+        {
+            var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
+            _fakeDbContext = new FakeDbContext(connection);
+            _transportadorRepositorio = new TransportadorRepositorioSql(_fakeDbContext);
+            _endereco = new Endereco();
+            _cpf = new Documento("619.648.783-30", TipoDocumento.CPF);
+            _cnpj = new Documento("37.311.068/0001-00", TipoDocumento.CNPJ);
 
-    //    }
+            SementeBaseSQL semeador = new SementeBaseSQL(_fakeDbContext);
+            semeador.Semear();
 
-    //    [Test]
-    //    public void Transportador_InfraData_Adicionar_Sucesso()
-    //    {
-    //        long idDoEnderecoDaBaseSql = 3;
-    //        Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_endereco, _cpf);
-    //        transportador.Endereco.Id = idDoEnderecoDaBaseSql;
-    //        Transportador transportadorAdicionado = transportadorRepositorio.Adicionar(transportador);
+        }
 
-    //        transportadorAdicionado.Should().NotBeNull();
+        [Test]
+        public void Transportador_InfraData_Adicionar_Sucesso()
+        {
+            Transportador transportador = ObjectMother.PegarTransportadorValidoSemDependencias();
 
-    //        Transportador transportadorBuscado = transportadorRepositorio.BuscarPorId(transportadorAdicionado.Id);
+            _transportadorRepositorio.Adicionar(transportador);
 
-    //        transportadorBuscado.NomeRazaoSocial.Should().Be(transportadorAdicionado.NomeRazaoSocial);
-    //        transportadorBuscado.Endereco.Id.Should().Be(transportadorAdicionado.Endereco.Id);
-    //    }
+            transportador.Id.Should().BeGreaterThan(0);
+        }
 
-    //    [Test]
-    //    public void Transportador_InfraData_Atualizar_Sucesso()
-    //    {
-    //        long idDoEnderecoDaBaseSql = 3;
-    //        Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_endereco, _cnpj);
-    //        transportador.Id = 1;
-    //        transportador.Endereco.Id = idDoEnderecoDaBaseSql;
+        [Test]
+        public void Transportador_InfraData_Atualizar_Sucesso()
+        {
+            long idDoTransportadorDaBaseSql = 1;
 
-    //        transportadorRepositorio.Atualizar(transportador);
+            Transportador transportadorResultadoDoBuscarParaAtualizar = _transportadorRepositorio.BuscarPorId(idDoTransportadorDaBaseSql);
 
-    //        Transportador buscarTransportador = transportadorRepositorio.BuscarPorId(transportador.Id);
+            transportadorResultadoDoBuscarParaAtualizar.NomeRazaoSocial = "Atualizado";
 
-    //        buscarTransportador.NomeRazaoSocial.Should().Be(transportador.NomeRazaoSocial);
-    //        buscarTransportador.InscricaoEstadual.Should().Be(transportador.InscricaoEstadual);
-    //        buscarTransportador.ResponsabilidadeFrete.Should().Be(transportador.ResponsabilidadeFrete);
-    //        buscarTransportador.Endereco.Id.Should().Be(transportador.Endereco.Id);
-    //        buscarTransportador.Documento.Numero.Should().Be(transportador.Documento.Numero);
-    //    }
+            _transportadorRepositorio.Atualizar(transportadorResultadoDoBuscarParaAtualizar);
 
-    //    [Test]
-    //    public void Transportador_InfraData_BuscarTodos_Sucesso()
-    //    {
-    //        long idDoEnderecoDaBaseSql = 3;
-    //        Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_endereco, _cpf);
-    //        transportador.Endereco.Id = idDoEnderecoDaBaseSql;
-    //        Transportador transportadorAdicionado = transportadorRepositorio.Adicionar(transportador);
+            Transportador resultado = _transportadorRepositorio.BuscarPorId(transportadorResultadoDoBuscarParaAtualizar.Id);
 
-    //        IEnumerable<Transportador> transportadores = transportadorRepositorio.BuscarTodos();
-    //        transportadores.Should().HaveCountGreaterOrEqualTo(2);
-    //    }
+            resultado.NomeRazaoSocial.Should().Be(transportadorResultadoDoBuscarParaAtualizar.NomeRazaoSocial);
+            resultado.InscricaoEstadual.Should().Be(transportadorResultadoDoBuscarParaAtualizar.InscricaoEstadual);
+        }
 
-    //    [Test]
-    //    public void Transportador_InfraData_BuscarPorId_Sucesso()
-    //    {
-    //        long idDoEnderecoDaBaseSql = 3;
-    //        Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_endereco, _cpf);
+        [Test]
+        public void Transportador_InfraData_BuscarTodos_Sucesso()
+        {
+            int numeroDeTransportadoresPreCadastrados = 2;
 
-    //        transportador.Endereco = ObjectMother.PegarEnderecoValido();
-    //        transportador.Endereco.Id = idDoEnderecoDaBaseSql;
-            
-    //        transportador = transportadorRepositorio.Adicionar(transportador);
+            Transportador transportadorValido = ObjectMother.PegarTransportadorValidoSemDependencias();
 
-    //        Transportador transportadorBuscado = transportadorRepositorio.BuscarPorId(transportador.Id);
+            //Adicionando varios transportadores vinculados ao mesmo endereco (Só para teste)
+            long idTransportadorAdicionado1 = _transportadorRepositorio.Adicionar(transportadorValido);
+            long idTransportadorAdicionado2 = _transportadorRepositorio.Adicionar(transportadorValido);
+            long idTransportadorAdicionado3 = _transportadorRepositorio.Adicionar(transportadorValido);
+            long idTransportadorAdicionado4 = _transportadorRepositorio.Adicionar(transportadorValido);
 
-    //        transportadorBuscado.NomeRazaoSocial.Should().Be(transportador.NomeRazaoSocial);
-    //        transportadorBuscado.InscricaoEstadual.Should().Be(transportador.InscricaoEstadual);
-    //        transportadorBuscado.Documento.Numero.Should().Be(transportador.Documento.Numero);
-    //        transportadorBuscado.ResponsabilidadeFrete.Should().Be(transportador.ResponsabilidadeFrete);
-    //        transportadorBuscado.Endereco.Id.Should().Be(transportador.Endereco.Id);
-    //        transportadorBuscado.Endereco.Estado.Should().Be(transportador.Endereco.Estado);
-    //    }
+            int numeroDeTransportadoresCadastradosNesteTeste = 4;
 
-    //    [Test]
-    //    public void Transportador_InfraData_Excluir_Sucesso()
-    //    {
-    //        long idDoEnderecoDaBaseSql = 3;
-    //        Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_endereco, _cnpj);
-    //        transportador.Id = 1;
-    //        transportador.Endereco.Id = idDoEnderecoDaBaseSql;
+            IEnumerable<Transportador> transportadoresResultadoDoBuscarTodos = _transportadorRepositorio.BuscarTodos();
 
-    //        transportadorRepositorio.Excluir(transportador);
+            transportadoresResultadoDoBuscarTodos.Count().Should().Be(numeroDeTransportadoresCadastradosNesteTeste + numeroDeTransportadoresPreCadastrados);
+        }
 
-    //        Transportador buscarTransportador = transportadorRepositorio.BuscarPorId(transportador.Id);
+        [Test]
+        public void Transportador_InfraData_BuscarPorId_Sucesso()
+        {
+            long idDoTransportadorDaBaseSql = 1;
 
-    //        buscarTransportador.Should().BeNull();
-    //    }
-    //}
+            Transportador transportadorDaBaseSql = _transportadorRepositorio.BuscarPorId(idDoTransportadorDaBaseSql);
+
+            transportadorDaBaseSql.Should().NotBeNull();
+        }
+
+        [Test]
+        public void Transportador_InfraData_Excluir_Sucesso()
+        {
+            long idDoTransportadorDaBaseSql = 1;
+
+            Transportador transportadorResultadoDoBuscar = _transportadorRepositorio.BuscarPorId(idDoTransportadorDaBaseSql);
+
+            _transportadorRepositorio.Excluir(transportadorResultadoDoBuscar);
+
+            Transportador transportadorQueDeveSerNullo = _transportadorRepositorio.BuscarPorId(transportadorResultadoDoBuscar.Id);
+
+            transportadorQueDeveSerNullo.Should().BeNull();
+        }
+    }
 }

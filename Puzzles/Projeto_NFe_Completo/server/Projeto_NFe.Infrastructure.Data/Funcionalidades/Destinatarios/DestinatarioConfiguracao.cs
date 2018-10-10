@@ -17,14 +17,10 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Destinatarios
             Property(d => d.Id).HasColumnName("IdDestinatario");
 
             Property(d => d.NomeRazaoSocial).HasColumnName("NomeRazaoSocial").HasColumnType("varchar").HasMaxLength(100).IsRequired();
-            Property(d => d.InscricaoEstadual).HasColumnName("InscricaoEstadual").HasColumnType("varchar").HasMaxLength(15).IsRequired();
-            //Property(d => d.Documento.NumeroComPontuacao).HasColumnName("Documento").HasColumnType("varchar").HasMaxLength(15).IsRequired();
+            Property(d => d.InscricaoEstadual).HasColumnName("InscricaoEstadual").HasColumnType("varchar").HasMaxLength(15).IsOptional();
 
-
-          //  Property(d => d.Documento.NumeroComPontuacao).HasColumnName("teste").HasColumnType("varchar").HasMaxLength(15);
-        //    Property(d => d.Documento.ObterTipo()).HasColumnName("tipo").HasColumnType("varchar").HasMaxLength(4);
-
-            HasRequired(d => d.Endereco);
+            HasRequired(d => d.Documento).WithMany().HasForeignKey(d => d.DocumentoId);
+            HasRequired(d => d.Endereco).WithMany().HasForeignKey(d => d.EnderecoId);
         }
     }
 }

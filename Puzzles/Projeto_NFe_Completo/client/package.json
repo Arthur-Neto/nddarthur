@@ -1,7 +1,7 @@
 {
-    "name": "nddresearch-seed-portal",
+    "name": "nfe-puzzles",
     "version": "2.0.0",
-    "description": "NDDResearch: Portal Seed",
+    "description": "NFe Puzzles",
     "main": "src/app/main.ts",
     "scripts": {
         "build": "rimraf dist/* && webpack --config webpack.config.js --progress --profile",
@@ -17,11 +17,11 @@
         "lint:test": "tslint --config tslint.tests.json --project tsconfig.json --type-check \"./src/**/*.ts\""
     },
     "keywords": [
-        "nddResearch",
-        "Seed",
+        "NFe",
+        "Puzzles",
         "Webapp"
     ],
-    "author": "P&D | nddPrint",
+    "author": "",
     "license": "SEE LICENSE IN LICENSE.md",
     "dependencies": {
         "@angular/animations": "~5.2.10",
@@ -46,7 +46,6 @@
         "@progress/kendo-drawing": "~1.4.0",
         "@progress/kendo-theme-default": "~2.49.0",
         "@progress/kendo-ui": "~2017.2.621",
-        "ajv": "~6.5.4",
         "angular2-text-mask": "~9.0.0",
         "bootstrap-sass": "~3.3.7",
         "core-js": "~2.5.5",
@@ -54,7 +53,8 @@
         "jquery": "~3.2.1",
         "ngx-messages": "~0.2.1",
         "reflect-metadata": "~0.1.12",
-        "rxjs": "~5.5.12",
+        "rxjs": "~5.5.5",
+        "rxjs-compat": "~6.3.2",
         "toastr": "~2.1.4",
         "zone.js": "~0.8.26"
     },
@@ -78,7 +78,7 @@
         "hard-source-webpack-plugin": "~0.6.4",
         "html-loader": "~0.5.5",
         "html-webpack-plugin": "~2.30.1",
-        "htmlhint": "~0.9.13",
+        "htmlhint": "~0.10.1",
         "import-glob-loader": "~1.1.0",
         "jasmine-core": "~2.8.0",
         "json-loader": "~0.5.7",

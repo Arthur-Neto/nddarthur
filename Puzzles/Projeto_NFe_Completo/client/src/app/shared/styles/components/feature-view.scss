@@ -129,6 +129,12 @@ $view-entitled-title-height: rem-calc(45px);
     .feature-view__label {
         @extend %feature-view-text-color;
         font-size: rem-calc(14px);
+
+        &--required,
+        &--error {
+            color: #E01D3B;
+            font-weight: 700;
+        }
     }
     .feature-view__value {
         @extend %feature-view-text-color;

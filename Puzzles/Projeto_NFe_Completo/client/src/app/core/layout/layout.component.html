@@ -5,10 +5,16 @@
 <ndd-ng-sidebar [sidebarHeader]="false" [sidebarI18n]="true" (onSidebarPin)="setPin($event)">
     <div ndd-ng-sidebar-menu class="ndd-ng-sidebar-menu">
         <ndd-ng-sidebar-option
-            optionId="menu-products"
-            optionHref="/produtos"
-            optionText="Produtos"
-            optionIcon="ndd-font ndd-font-cardboard-box">
+            optionId="menu-destinatarios"
+            optionHref="/destinatarios"
+            optionText="Destinatario"
+            optionIcon="ndd-font ndd-font-truck-moving-solid">
+         </ndd-ng-sidebar-option>
+         <ndd-ng-sidebar-option
+            optionId="menu-transportadores"
+            optionHref="/transportadores"
+            optionText="Transportador"
+            optionIcon="ndd-font ndd-font-truck-moving-solid">
          </ndd-ng-sidebar-option>
     </div>
 </ndd-ng-sidebar>

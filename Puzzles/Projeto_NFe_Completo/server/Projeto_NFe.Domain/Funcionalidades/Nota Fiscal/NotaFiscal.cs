@@ -23,7 +23,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }
         public DateTime? DataEmissao { get; set; }
-        public virtual List<ProdutoNotaFiscal> Produtos { get; set; }
+        public virtual ICollection<ProdutoNotaFiscal> Produtos { get; set; }
         public virtual string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }
@@ -31,6 +31,12 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public double ValorTotalFrete { get; set; }
         public double ValorTotalImpostos { get; set; }
         public double ValorTotalNota { get; set; }
+
+        public NotaFiscal()
+        {
+            Produtos = new List<ProdutoNotaFiscal>();
+        }
+
         public bool FoiEmitida {
             get
             {

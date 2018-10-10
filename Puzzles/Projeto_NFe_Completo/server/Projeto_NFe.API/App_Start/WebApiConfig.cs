@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Projeto_NFe.API
 {
@@ -16,6 +17,8 @@ namespace Projeto_NFe.API
     {
         public static void Registrar(HttpConfiguration config)
         {
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             config.MapearRotasApi();
             config.ConfigurarSerializacaoJson();
             config.ConfigurarSerializacaoXML();

@@ -19,105 +19,106 @@ using Projeto_NFe.Infrastructure.Data.Tests.Inicializador;
 
 namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
 {
-//    [TestFixture]
-//    public class EmitenteRepositorioSqlTeste : EffortTestBase
-//    {
-//        private FakeDbContext _fakeDbContext;
-//        private IEmitenteRepositorio _repositorio;
-//        private Endereco _endereco;
-//        private Documento _cnpj;
+    [TestFixture]
+    public class EmitenteRepositorioSqlTeste : EffortTestBase
+    {
+        private FakeDbContext _fakeDbContext;
+        private IEmitenteRepositorio _repositorio;
+        private Endereco _endereco;
+        private Documento _cnpj;
 
-//        [SetUp]
-//        public void IniciarCenario()
-//        {
-//            var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
-//            _fakeDbContext = new FakeDbContext(connection);
-//            _repositorio = new EmitenteRepositorioSql(_fakeDbContext);
-//            _endereco = new Endereco();
-//            _repositorio = new EmitenteRepositorioSql(_fakeDbContext);
-//            _endereco = new Endereco();
-//            _cnpj = new Documento("99.327.235/0001-50", TipoDocumento.CNPJ);
+        [SetUp]
+        public void IniciarCenario()
+        {
+            var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
+            _fakeDbContext = new FakeDbContext(connection);
+            _fakeDbContext.Database.Initialize(true);
 
-//            System.Data.Entity.Database.SetInitializer(new BaseSqlTeste());
-//        }
+            _repositorio = new EmitenteRepositorioSql(_fakeDbContext);
 
-//        [Test]
-//        public void Emitente_InfraData_Adicionar_Sucesso()
-//        {
-//            _endereco.Id = 1;
-//            Emitente emitente = ObjectMother.PegarEmitenteValido(_endereco, _cnpj);
+            SementeBaseSQL semeador = new SementeBaseSQL(_fakeDbContext);
+            semeador.Semear();
+        }
 
-//            Emitente resultado = _repositorio.Adicionar(emitente);
+        [Test]
+        public void Emitente_InfraData_Adicionar_Sucesso()
+        {
+            Emitente emitenteValido = ObjectMother.PegarEmitenteValidoSemDependencias();
 
-//            resultado.Id.Should().BeGreaterThan(0);
-//        }
+            _repositorio.Adicionar(emitenteValido);
 
-//        [Test]
-//        public void Emitente_InfraData_Atualizar_Sucesso()
-//        {
+            emitenteValido.Id.Should().BeGreaterThan(0);
 
-//            Emitente emitente = ObjectMother.PegarEmitenteValidoSemDependencias();
-//            emitente.Id = 1;
+            Emitente emitenteResultadoDoGet = _repositorio.BuscarPorId(emitenteValido.Id);
 
-//            emitente = _repositorio.Adicionar(emitente);
+            emitenteResultadoDoGet.CNPJ.Numero.Should().Be(emitenteValido.CNPJ.Numero);
+            emitenteResultadoDoGet.Endereco.Pais.Should().Be(emitenteValido.Endereco.Pais);
+        }
 
-//            _repositorio.Atualizar(emitente);
+        [Test]
+        public void Emitente_InfraData_Atualizar_Sucesso()
+        {
+            long idDoEmitenteDaBaseSql = 1;
 
-//            Emitente resultado = _repositorio.BuscarPorId(emitente.Id);
+            Emitente emitenteResultadoDoBuscarParaAtualizar = _repositorio.BuscarPorId(idDoEmitenteDaBaseSql);
 
-//            resultado.NomeFantasia.Should().Be(emitente.NomeFantasia);
-//            resultado.RazaoSocial.Should().Be(emitente.RazaoSocial);
-//            resultado.InscricaoEstadual.Should().Be(emitente.InscricaoEstadual);
-//            resultado.InscricaoMunicipal.Should().Be(emitente.InscricaoMunicipal);
-//        }
+            emitenteResultadoDoBuscarParaAtualizar.CNPJ = new Documento("085.544.678-00", TipoDocumento.CNPJ);
+            emitenteResultadoDoBuscarParaAtualizar.NomeFantasia = "Alterado";
 
-//        [Test]
-//        public void Emitente_InfraData_Excluir_Sucesso()
-//        {
-//            Emitente emitente = ObjectMother.PegarEmitenteValidoSemDependencias();
-//            emitente.Id = 1;
+            _repositorio.Atualizar(emitenteResultadoDoBuscarParaAtualizar);
 
-//            emitente = _repositorio.Adicionar(emitente);
+            Emitente resultado = _repositorio.BuscarPorId(emitenteResultadoDoBuscarParaAtualizar.Id);
 
-//            _repositorio.Excluir(emitente);
+            resultado.InscricaoEstadual.Should().Be(emitenteResultadoDoBuscarParaAtualizar.InscricaoEstadual);
+            resultado.NomeFantasia.Should().Be(emitenteResultadoDoBuscarParaAtualizar.NomeFantasia);
+            resultado.CNPJ.Tipo.Should().Be(emitenteResultadoDoBuscarParaAtualizar.CNPJ.Tipo);
 
-//            Emitente emitenteParaBuscar = _repositorio.BuscarPorId(emitente.Id);
+        }
 
-//            emitenteParaBuscar.Should().BeNull(); 
-//        }
+        [Test]
+        public void Emitente_InfraData_Excluir_Sucesso()
+        {
+            long idDoEmitenteDaBaseSql = 1;
 
-//        [Test]
-//        public void Emitente_InfraData_Buscar_Sucesso()
-//        {
-//            Emitente emitente = ObjectMother.PegarEmitenteValidoSemDependencias();
-//            emitente.Id = 1;
+            Emitente emitenteResultadoDoBuscar = _repositorio.BuscarPorId(idDoEmitenteDaBaseSql);
 
-//            emitente = _repositorio.Adicionar(emitente);
+            _repositorio.Excluir(emitenteResultadoDoBuscar);
 
-//            Emitente buscarEmitente =_repositorio.BuscarPorId(emitente.Id);
+            Emitente emitenteQueDeveSerNullo = _repositorio.BuscarPorId(emitenteResultadoDoBuscar.Id);
 
-//            buscarEmitente.Should().NotBeNull();
-//            buscarEmitente.NomeFantasia.Should().Be(emitente.NomeFantasia);
-//            buscarEmitente.RazaoSocial.Should().Be(emitente.RazaoSocial);
-//            buscarEmitente.InscricaoEstadual.Should().Be(emitente.InscricaoEstadual);
-//            buscarEmitente.InscricaoMunicipal.Should().Be(emitente.InscricaoMunicipal);
-//            buscarEmitente.CNPJ.Numero.Should().Be(emitente.CNPJ.Numero);
-//            buscarEmitente.Endereco.Id.Should().Be(emitente.Endereco.Id);
-//        }
+            emitenteQueDeveSerNullo.Should().BeNull();
+        }
 
-//        [Test]
-//        public void Emitente_InfraData_BuscarTodos_Sucesso()
-//        {
-//            Emitente emitente = ObjectMother.PegarEmitenteValidoSemDependencias();
+        [Test]
+        public void Emitente_InfraData_BuscarPorId_Sucesso()
+        {
+            long idDoEmitenteDaBaseSql = 1;
 
-//            emitente = _repositorio.Adicionar(emitente);
+            Emitente emitenteDaBaseSql = _repositorio.BuscarPorId(idDoEmitenteDaBaseSql);
 
-//            IEnumerable<Emitente> listaEmitente;
+            emitenteDaBaseSql.Should().NotBeNull();
+            emitenteDaBaseSql.CNPJ.Tipo.Should().Be(TipoDocumento.CNPJ);
+        }
 
-//            listaEmitente = _repositorio.BuscarTodos();
+        [Test]
+        public void Emitente_InfraData_BuscarTodos_Sucesso()
+        {
+            int numeroDeEmitentesPreCadastrados = 2;
 
-//            listaEmitente.Should().NotBeNull();
-//            listaEmitente.Count().Should().Be(1);
-//        }
-//    }
+            Emitente emitenteValido = ObjectMother.PegarEmitenteValidoSemDependencias();
+
+            //Adicionando varios emitentes vinculados ao mesmo endereco (Só para teste)
+            long idEmitenteAdicionado1 = _repositorio.Adicionar(emitenteValido);
+            long idEmitenteAdicionado2 = _repositorio.Adicionar(emitenteValido);
+            long idEmitenteAdicionado3 = _repositorio.Adicionar(emitenteValido);
+            long idEmitenteAdicionado4 = _repositorio.Adicionar(emitenteValido);
+
+            int numeroDeEmitentesCadastradosNesteTeste = 4;
+
+            IEnumerable<Emitente> emitentesResultadoDoBuscarTodos = _repositorio.BuscarTodos();
+
+            emitentesResultadoDoBuscarTodos.Count().Should().Be(numeroDeEmitentesCadastradosNesteTeste + numeroDeEmitentesPreCadastrados);
+
+        }
+    }
 }

@@ -1,0 +1,92 @@
+<form (ng Submit)="onSubmit($event)" [formGroup]="formModel" class="form">
+
+    <div class="form__container">
+
+        <div class="row form__fieldset">
+            <div class="col-sm-12 form__group">
+                <span class="form__title">Endereço</span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('logradouro')}">Logradouro</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('logradouro')}">*</span>
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('logradouro')}" formControlName="logradouro" type="text" placeholder="Insira o logradouro do endereço">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('logradouro')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('numero')}">Número</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('numero')}">*</span>
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('numero')}" formControlName="numero" type="text" placeholder="Insira o número do endereço">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('numero')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('bairro')}">Bairro</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('bairro')}">*</span>             
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('bairro')}" formControlName="bairro" type="text" placeholder="Insira o bairro do endereço">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('bairro')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('municipio')}">Município</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('municipio')}">*</span>             
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('municipio')}" formControlName="municipio" type="text" placeholder="Insira o município do endereço">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('municipio')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('estado')}">Estado</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('estado')}">*</span>             
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('estado')}" formControlName="estado" type="text" placeholder="Insira o estado do endereço">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('estado')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('pais')}">País</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('pais')}">*</span>             
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('pais')}" formControlName="pais" type="text" placeholder="Insira o pais do endereçp">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('pais')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+            
+        </div>
+
+    </div>
+  
+</form>

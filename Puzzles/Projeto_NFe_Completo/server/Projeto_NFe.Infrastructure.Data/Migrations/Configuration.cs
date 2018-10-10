@@ -10,7 +10,6 @@ namespace Projeto_NFe.Infrastructure.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Projeto_NFe.Infrastructure.Data.Base.ProjetoNFeContexto";
         }
 
         protected override void Seed(Projeto_NFe.Infrastructure.Data.Base.ProjetoNFeContexto context)

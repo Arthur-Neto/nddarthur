@@ -15,93 +15,94 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
 {
-    //[TestFixture]
-    //public class ProdutoRepositorioSqlTeste : EffortTestBase
-    //{
-    //    private FakeDbContext _fakeDbContext;
-    //    private IProdutoRepositorio _repositorio;
+    [TestFixture]
+    public class ProdutoRepositorioSqlTeste : EffortTestBase
+    {
+        private FakeDbContext _fakeDbContext;
+        private IProdutoRepositorio _repositorio;
 
-    //    [SetUp]
-    //    public void IniciarCenario()
-    //    {
-    //        var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
-    //        _fakeDbContext = new FakeDbContext(connection);
-    //        _repositorio = new ProdutoRepositorioSql(_fakeDbContext);
+        [SetUp]
+        public void IniciarCenario()
+        {
+            var connection = DbConnectionFactory.CreatePersistent(Guid.NewGuid().ToString());
+            _fakeDbContext = new FakeDbContext(connection);
+            _fakeDbContext.Database.Initialize(true);
+            _repositorio = new ProdutoRepositorioSql(_fakeDbContext);
 
-    //    }
+            SementeBaseSQL semeador = new SementeBaseSQL(_fakeDbContext);
+            semeador.Semear();
+        }
 
-    //    [Test]
-    //    public void Produto_InfraData_Adicionar_Sucesso()
-    //    {
-    //        Produto produto = ObjectMother.ObterProdutoValido();
+        [Test]
+        public void Produto_InfraData_Adicionar_Sucesso()
+        {
+            Produto produto = ObjectMother.ObterProdutoValido();
 
-    //        Produto produtoAdicionado = _repositorio.Adicionar(produto);
+            _repositorio.Adicionar(produto);
 
-    //        produtoAdicionado.Id.Should().BeGreaterThan(0);
-    //    }
+            produto.Id.Should().BeGreaterThan(0);
+        }
 
-    //    [Test]
-    //    public void Produto_InfraData_Atualizar_Sucesso()
-    //    {
-    //        Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
+        [Test]
+        public void Produto_InfraData_Atualizar_Sucesso()
+        {
+            long idDoProdutoDaBaseSql = 1;
 
-    //        Produto produtoParaAtualizar = _repositorio.Adicionar(produtoParaAdicionar);
+            Produto produtoResultadoDoBuscarParaAtualizar = _repositorio.BuscarPorId(idDoProdutoDaBaseSql);
 
-    //        produtoParaAtualizar.Valor = 1000;
-    //        produtoParaAtualizar.Descricao = "Alterado";
-    //        produtoParaAtualizar.Codigo = "123456";
+            produtoResultadoDoBuscarParaAtualizar.Descricao = "Atualizado";
 
-    //        _repositorio.Atualizar(produtoParaAtualizar);
+            _repositorio.Atualizar(produtoResultadoDoBuscarParaAtualizar);
 
-    //        Produto produtoAtualizado = _repositorio.BuscarPorId(produtoParaAtualizar.Id);
+            Produto resultado = _repositorio.BuscarPorId(produtoResultadoDoBuscarParaAtualizar.Id);
 
-    //        produtoAtualizado.Should().NotBeNull();
-    //        produtoAtualizado.Valor.Should().Be(produtoParaAtualizar.Valor);
-    //        produtoAtualizado.Valor.Should().NotBe(ObjectMother.ObterProdutoValido().Valor);
-    //        produtoAtualizado.Descricao.Should().Be(produtoParaAtualizar.Descricao);
-    //        produtoAtualizado.Codigo.Should().Be(produtoParaAtualizar.Codigo);
+            resultado.Descricao.Should().Be(produtoResultadoDoBuscarParaAtualizar.Descricao);
+            resultado.Codigo.Should().Be(produtoResultadoDoBuscarParaAtualizar.Codigo);
+        }
 
+        [Test]
+        public void Produto_InfraData_Excluir_Sucesso()
+        {
+            long idDoProdutoDaBaseSql = 1;
 
-    //    }
+            Produto produtoResultadoDoBuscar = _repositorio.BuscarPorId(idDoProdutoDaBaseSql);
 
-    //    [Test]
-    //    public void Produto_InfraData_Excluir_Sucesso()
-    //    {
-    //        Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
+            _repositorio.Excluir(produtoResultadoDoBuscar);
 
-    //        Produto produtoAdicionado = _repositorio.Adicionar(produtoParaAdicionar);
+            Produto produtoQueDeveSerNullo = _repositorio.BuscarPorId(produtoResultadoDoBuscar.Id);
 
-    //        _repositorio.Excluir(produtoAdicionado);
+            produtoQueDeveSerNullo.Should().BeNull();
+        }
 
-    //        Produto produtoBuscado = _repositorio.BuscarPorId(produtoAdicionado.Id);
+        [Test]
+        public void Produto_InfraData_BuscarPorId_Sucesso()
+        {
+            long idDoProdutoDaBaseSql = 1;
 
-    //        produtoBuscado.Should().BeNull();
-    //    }
+            Produto produtoDaBaseSql = _repositorio.BuscarPorId(idDoProdutoDaBaseSql);
 
-    //    [Test]
-    //    public void Produto_InfraData_BuscarPorId_Sucesso()
-    //    {
-    //        Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
+            produtoDaBaseSql.Should().NotBeNull();
+        }
 
-    //        Produto produtoParaBuscar = _repositorio.Adicionar(produtoParaAdicionar);
+        [Test]
+        public void Produto_InfraData_BuscarTodos_Sucesso()
+        {
+            int numeroDeProdutosPreCadastrados = 2;
 
-    //        Produto produtoBuscado = _repositorio.BuscarPorId(produtoParaBuscar.Id);
+            Produto produtoValido = ObjectMother.ObterProdutoValido();
 
-    //        produtoBuscado.Id.Should().Be(produtoParaBuscar.Id);
-    //        produtoBuscado.Valor.Should().Be(produtoParaAdicionar.Valor);
-    //        produtoBuscado.Codigo.Should().Be(produtoParaAdicionar.Codigo);
-    //        produtoBuscado.Descricao.Should().Be(produtoParaAdicionar.Descricao);
-    //    }
+            //Adicionando varios produtos vinculados ao mesmo endereco (Só para teste)
+            long idProdutoAdicionado1 = _repositorio.Adicionar(produtoValido);
+            long idProdutoAdicionado2 = _repositorio.Adicionar(produtoValido);
+            long idProdutoAdicionado3 = _repositorio.Adicionar(produtoValido);
+            long idProdutoAdicionado4 = _repositorio.Adicionar(produtoValido);
 
-    //    [Test]
-    //    public void Produto_InfraData_BuscarTodos_Sucesso()
-    //    {
-    //        IEnumerable<Produto> produtosBuscados;
+            int numeroDeProdutosCadastradosNesteTeste = 4;
 
-    //        produtosBuscados = _repositorio.BuscarTodos();
+            IEnumerable<Produto> produtosResultadoDoBuscarTodos = _repositorio.BuscarTodos();
 
-    //        produtosBuscados.Should().NotBeNull();
-    //        produtosBuscados.Count().Should().Be(1);
-    //    }
-    //}
+            produtosResultadoDoBuscarTodos.Count().Should().Be(numeroDeProdutosCadastradosNesteTeste + numeroDeProdutosPreCadastrados);
+
+        }
+    }
 }

@@ -10,11 +10,11 @@ using System.Web.Http;
 namespace Projeto_NFe.API.Controladores.NotaFiscals
 {
     [RoutePrefix("api/notaFiscal")]
-    public class NotaFiscalControlador : ApiControllerBase
+    public class NotaFiscalController : ApiControllerBase
     {
         private readonly INotaFiscalServico _notaFiscalServico;
 
-        public NotaFiscalControlador(INotaFiscalServico notaFiscalServico) : base()
+        public NotaFiscalController(INotaFiscalServico notaFiscalServico) : base()
         {
             _notaFiscalServico = notaFiscalServico;
         }

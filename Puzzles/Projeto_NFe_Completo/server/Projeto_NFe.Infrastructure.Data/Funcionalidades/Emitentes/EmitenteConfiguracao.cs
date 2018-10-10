@@ -20,7 +20,9 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
             Property(e => e.RazaoSocial).HasColumnName("RazaoSocial").HasColumnType("varchar").HasMaxLength(100).IsRequired();
             Property(e => e.InscricaoMunicipal).HasColumnName("InscricaoMunicipal").HasColumnType("varchar").IsRequired();
             Property(e => e.InscricaoEstadual).HasColumnName("InscricaoEstadual").HasColumnType("varchar").HasMaxLength(15).IsRequired();
-            Property(e => e.CNPJ.Numero);
+
+
+            HasRequired(e => e.CNPJ);
             HasRequired(e => e.Endereco).WithMany().WillCascadeOnDelete(true);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
+using Projeto_NFe.Domain.Funcionalidades.Documentos;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
@@ -6,6 +7,7 @@ using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using Projeto_NFe.Infrastructure.Data.Funcionalidades.Destinatarios;
+using Projeto_NFe.Infrastructure.Data.Funcionalidades.Documentos;
 using Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes;
 using Projeto_NFe.Infrastructure.Data.Funcionalidades.Enderecos;
 using Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal;
@@ -26,6 +28,7 @@ namespace Projeto_NFe.Infrastructure.Data.Base
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<ProdutoNotaFiscal> ProdutosNotaFiscal { get; set; }
+        public DbSet<Documento> Documentos { get; set; }
 
         public ProjetoNFeContexto() : base("PuzzlesNFeDb")
         {
@@ -45,6 +48,7 @@ namespace Projeto_NFe.Infrastructure.Data.Base
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Configurations.Add(new DestinatarioConfiguracao());
             modelBuilder.Configurations.Add(new EmitenteConfiguracao());
@@ -52,6 +56,8 @@ namespace Projeto_NFe.Infrastructure.Data.Base
             modelBuilder.Configurations.Add(new NotaFiscalConfiguracao());
             modelBuilder.Configurations.Add(new ProdutoConfiguracao());
             modelBuilder.Configurations.Add(new EnderecoConfiguracao());
+            modelBuilder.Configurations.Add(new DocumentoConfiguracao());
+            modelBuilder.Configurations.Add(new ProdutoNotaFiscalConfiguracao());
 
             base.OnModelCreating(modelBuilder);
         }

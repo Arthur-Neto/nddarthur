@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\BaseSqlTeste.cs" />
+    <Compile Include="Base\SementeBaseSQL.cs" />
     <Compile Include="Funcionalidades\Destinatarios\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Emitentes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />

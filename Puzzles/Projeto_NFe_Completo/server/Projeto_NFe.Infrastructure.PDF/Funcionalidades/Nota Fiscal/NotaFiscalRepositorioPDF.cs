@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text.pdf;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,19 +59,21 @@ namespace Projeto_NFe.Infrastructure.PDF.Funcionalidades.Nota_Fiscal
             pdfFormFields.SetField("VALOR_TOTAL_NOTA", notaFiscal.ValorTotalNota.ToString());
 
             // Produtos
+            List<ProdutoNotaFiscal> listaProdutosNotaFiscal = notaFiscal.Produtos.ToList();
+
             for (int i = 0; i < notaFiscal.Produtos.Count(); i++)
             {
                 string produtoNumero = "PRODUTO";
                 produtoNumero = string.Concat(produtoNumero + (i+1).ToString());
 
-                pdfFormFields.SetField(produtoNumero + "_CODIGO", notaFiscal.Produtos[i].Produto.Codigo);
-                pdfFormFields.SetField(produtoNumero + "_DESCRICAO", notaFiscal.Produtos[i].Produto.Descricao);
-                pdfFormFields.SetField(produtoNumero + "_QUANTIDADE", notaFiscal.Produtos[i].Quantidade.ToString());
-                pdfFormFields.SetField(produtoNumero + "_VALOR_UNITARIO", notaFiscal.Produtos[i].Produto.Valor.ToString());
-                pdfFormFields.SetField(produtoNumero + "_VALOR_TOTAL", notaFiscal.Produtos[i].ValorTotal.ToString());
-                pdfFormFields.SetField(produtoNumero + "_VALOR_ICMS", notaFiscal.Produtos[i].ValorICMS.ToString());
-                pdfFormFields.SetField(produtoNumero + "_ALIQ_ICMS", (notaFiscal.Produtos[i].Produto.AliquotaICMS*100).ToString());
-                pdfFormFields.SetField(produtoNumero + "_ALIQ_IPI", (notaFiscal.Produtos[i].Produto.AliquotaIPI*100).ToString());
+                pdfFormFields.SetField(produtoNumero + "_CODIGO", listaProdutosNotaFiscal[i].Produto.Codigo);
+                pdfFormFields.SetField(produtoNumero + "_DESCRICAO", listaProdutosNotaFiscal[i].Produto.Descricao);
+                pdfFormFields.SetField(produtoNumero + "_QUANTIDADE", listaProdutosNotaFiscal[i].Quantidade.ToString());
+                pdfFormFields.SetField(produtoNumero + "_VALOR_UNITARIO", listaProdutosNotaFiscal[i].Produto.Valor.ToString());
+                pdfFormFields.SetField(produtoNumero + "_VALOR_TOTAL", listaProdutosNotaFiscal[i].ValorTotal.ToString());
+                pdfFormFields.SetField(produtoNumero + "_VALOR_ICMS", listaProdutosNotaFiscal[i].ValorICMS.ToString());
+                pdfFormFields.SetField(produtoNumero + "_ALIQ_ICMS", (listaProdutosNotaFiscal[i].Produto.AliquotaICMS*100).ToString());
+                pdfFormFields.SetField(produtoNumero + "_ALIQ_IPI", (listaProdutosNotaFiscal[i].Produto.AliquotaIPI*100).ToString());
 
                 if (i == 3) break; // O modelo só possui uma página e esta página só suporta quatro produtos listados simultaneamente
             }

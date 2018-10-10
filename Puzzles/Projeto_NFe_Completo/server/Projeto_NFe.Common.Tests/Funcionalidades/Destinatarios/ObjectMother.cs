@@ -118,7 +118,6 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades
                     Estado = "Estado",
                     Pais = "País"
                 }
-                
             };
         }
 
