@@ -15,6 +15,17 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais.Perfis
         public PerfilMapeadorNotaFiscal()
         {
             CreateMap<NotaFiscal, NotaFiscalModelo>()
+                .ForMember(nfm => nfm.ChaveAcesso, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ChaveAcesso))
+                .ForMember(nfm => nfm.Destinatario, nfm => nfm.MapFrom(notaFiscal => notaFiscal.Destinatario.NomeRazaoSocial))
+                .ForMember(nfm => nfm.Emitente, nfm => nfm.MapFrom(notaFiscal => notaFiscal.Emitente.RazaoSocial))
+                .ForMember(nfm => nfm.NaturezaOperacao, nfm => nfm.MapFrom(notaFiscal => notaFiscal.NaturezaOperacao))
+                .ForMember(nfm => nfm.Transportador, nfm => nfm.MapFrom(notaFiscal => notaFiscal.Transportador.NomeRazaoSocial))
+                .ForMember(nfm => nfm.ValorTotalFrete, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ValorTotalFrete))
+                .ForMember(nfm => nfm.ValorTotalICMS, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ValorTotalICMS))
+                .ForMember(nfm => nfm.ValorTotalImpostos, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ValorTotalImpostos))
+                .ForMember(nfm => nfm.ValorTotalIPI, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ValorTotalIPI))
+                .ForMember(nfm => nfm.ValorTotalNota, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ValorTotalNota))
+                .ForMember(nfm => nfm.ValorTotalProdutos, nfm => nfm.MapFrom(notaFiscal => notaFiscal.ValorTotalProdutos))
                 .ForMember(nfm => nfm.DataEmissao, nfm => nfm.MapFrom(notaFiscal => notaFiscal.DataEmissao.ToString()))
                 .ForMember(nfm => nfm.DataEntrada, nfm => nfm.MapFrom(notaFiscal => notaFiscal.DataEntrada.ToShortDateString()));
 

@@ -1,0 +1,91 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
+    <div class="form__container">
+
+        <div class="row form__fieldset">
+
+            <div class="col-sm-12 form__group">
+                <span>Dados Cadastrais</span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                     <span class="form__label" [ngClass]="{'form__error': encontrarErro('nomeFantasia')}">Nome Fantasia</span>
+                     <span class="form__label required" [ngClass]="{'form__error': encontrarErro('nomeFantasia')}">*</span>
+                 </label>
+                 <div>
+                     <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('nomeFantasia')}" formControlName="nomeFantasia" type="text" placeholder="Insira o nome fantasia do emitente">
+                 </div>
+                 <span class="form__label" *ngIf="encontrarErro('nomeFantasia')" class="form__error form__label">
+                     CAMPO OBRIGATÓRIO
+                 </span>
+            </div>
+
+            <div class="col-md-6">
+               <label>
+                    <span class="form__label" [ngClass]="{'form__error': encontrarErro('razaoSocial')}">Razão Social</span>
+                    <span class="form__label required" [ngClass]="{'form__error': encontrarErro('razaoSocial')}">*</span>
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('razaoSocial')}" formControlName="razaoSocial" type="text" placeholder="Insira a razão social do emitente">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('razaoSocial')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+    
+            <div class="col-md-6">
+                <label>
+                     <span class="form__label" [ngClass]="{'form__error': encontrarErro('inscricaoEstadual')}">Inscricão Estadual</span>
+                     <span class="form__label required" [ngClass]="{'form__error': encontrarErro('inscricaoEstadual')}">*</span>
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('inscricaoEstadual')}" formControlName="inscricaoEstadual" type="text" placeholder="Insira a inscrição estadual do emitente">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('inscricaoEstadual')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                     <span class="form__label" [ngClass]="{'form__error': encontrarErro('inscricaoMunicipal')}">Inscricão Municipal</span>
+                     <span class="form__label required" [ngClass]="{'form__error': encontrarErro('inscricaoMunicipal')}">*</span>
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('inscricaoMunicipal')}" formControlName="inscricaoMunicipal" type="text" placeholder="Insira a inscrição municipal do emitente">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('inscricaoMunicipal')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <label>
+                     <span class="form__label" [ngClass]="{'form__error': encontrarErro('cnpj')}">CNPJ</span>
+                     <span class="form__label required" [ngClass]="{'form__error': encontrarErro('cnpj')}">*</span>
+                </label>
+                <div>
+                    <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('cnpj')}" formControlName="cnpj" type="text" placeholder="Insira o cnpj do emitente">
+                </div>
+                <span class="form__label" *ngIf="encontrarErro('cnpj')" class="form__error form__label">
+                    CAMPO OBRIGATÓRIO
+                </span>
+            </div>
+
+        </div>
+        
+    <ndd-endereco-form></ndd-endereco-form>
+
+    </div>
+
+    <div class="feature-view-tab__footer">
+            <button class="ndd-ng-button ndd-ng-button--primary" type="submit" [disabled]="formModel.invalid">
+                Enviar
+            </button>
+    
+            <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">
+                Voltar
+            </button>
+        </div>
+
+</form>

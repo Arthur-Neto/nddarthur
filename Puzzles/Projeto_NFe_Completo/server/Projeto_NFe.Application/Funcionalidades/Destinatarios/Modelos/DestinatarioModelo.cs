@@ -15,6 +15,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios.Modelos
 
         public string Documento { get; set; }
 
+        public string TipoDeDocumento { get; set; }
+
         public string InscricaoEstadual { get; set; }
 
         public string EnderecoLogradouro { get; set; }

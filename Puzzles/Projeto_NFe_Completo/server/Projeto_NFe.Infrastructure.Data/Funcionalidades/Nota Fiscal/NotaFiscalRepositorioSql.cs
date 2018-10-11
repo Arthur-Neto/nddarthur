@@ -23,7 +23,6 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 
         public bool Atualizar(NotaFiscal notaFiscal)
         {
-
             return _contexto.SaveChanges() != 0;
         }
 
@@ -36,7 +35,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 
         public IQueryable<NotaFiscal> BuscarTodos()
         {
-            return _contexto.NotasFiscais;
+            return _contexto.NotasFiscais.Include("Transportador").Include("Emitente").Include("Destinatario");
         }
 
         public bool Excluir(NotaFiscal notaFiscal)

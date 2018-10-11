@@ -16,7 +16,6 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais.Modelos
         public string NaturezaOperacao { get; set; }
         public string DataEntrada { get; set; }
         public string DataEmissao { get; set; }
-        public virtual List<ProdutoNotaFiscal> Produtos { get; set; }
         public virtual string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }

@@ -1,0 +1,87 @@
+<div class="feature-view-tab__content">
+    <div class="row">
+
+        <div class="col-sm-12">
+            
+            <div class="row"> 
+                <div class="col-sm-12">
+                    <span class="feature-view__title">Dados Cadastrais</span>
+                </div>
+            </div>
+
+            <div class="row feature-view__group">
+                <div class="col-sm-12">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Nome Fantasia</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ emitente?.nomeFantasia }}" class="feature-view__value">
+                                    {{ emitente?.nomeFantasia }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Razão Social</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ emitente?.razaoSocial }}" class="feature-view__value">
+                                    {{ emitente?.razaoSocial }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">CNPJ</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ emitente?.cnpj }}" class="feature-view__value">
+                                    {{ emitente?.cnpj }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Inscrição Estadual</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ emitente?.inscricaoEstadual }}" class="feature-view__value">
+                                    {{ emitente?.inscricaoEstadual }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Inscrição Municipal</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ emitente?.inscricaoMunicipal }}" class="feature-view__value">
+                                    {{ emitente?.inscricaoMunicipal }}
+                                </span>
+                            </div>
+                        </div>
+    
+                        <ndd-endereco-detalhes></ndd-endereco-detalhes>    
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" (click)="botaoEditar()">Editar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirecionar()">Voltar</button>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

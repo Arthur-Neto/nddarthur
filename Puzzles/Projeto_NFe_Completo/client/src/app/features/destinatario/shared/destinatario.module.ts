@@ -1,3 +1,4 @@
+import { EnderecoDetalhesComponent } from './../../endereco/endereco-detalhes/endereco-detalhes.component';
 import { NgModule } from '@angular/core';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DatePickerModule } from '@progress/kendo-angular-dateinputs';
@@ -33,6 +34,7 @@ import { DestinatarioEditComponent } from '../destinatario-edit/destinatario-edi
         DestinatarioViewComponent,
         DestinatarioDetalheComponent,
         DestinatarioEditComponent,
+        EnderecoDetalhesComponent,
     ],
     providers: [
         DestinatarioGridService,

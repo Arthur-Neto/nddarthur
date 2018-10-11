@@ -14,7 +14,7 @@ const appRoutes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'destinatarios',
+                redirectTo: 'notasFiscais',
                 pathMatch: 'full',
             },
             {
@@ -32,6 +32,33 @@ const appRoutes: Routes = [
                 data: {
                     breadcrumbOptions: {
                         breadcrumbLabel: 'Transportadores',
+                    },
+                },
+            },
+            {
+                path: 'produtos',
+                loadChildren: './features/produto/shared/produto.module#ProdutoModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Produtos',
+                    },
+                },
+            },
+            {
+                path: 'notasFiscais',
+                loadChildren: './features/nota-fiscal/shared/notaFiscal.module#NotaFiscalModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Notas Fiscais',
+                    },
+                },
+            },
+            {
+                path: 'emitentes',
+                loadChildren: './features/emitente/emitente.module#EmitenteModule',
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbLabel: 'Emitentes',
                     },
                 },
             },

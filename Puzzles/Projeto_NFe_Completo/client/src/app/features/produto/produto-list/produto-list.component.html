@@ -1,0 +1,39 @@
+<kendo-grid
+    [style.height]="'100%'"
+    [data]="gridService | async"
+    [loading]="gridService.loading"
+    [pageSize]="state.take"
+    [skip]="state.skip"
+    [selectable]="selectableSettings"
+    [sort]="state.sort"
+    [sortable]="true"
+    [pageable]="pageableSettings"
+    [scrollable]="'true'"
+    (dataStateChange)="onDataStateChange($event)"
+    (selectionChange)="onSelectionChange($event)">
+
+    <ng-template kendoGridToolbarTemplate position="top">
+        <div class="pkg-manager-grid__action-container">
+            <button (click)="onClick()" class="pkg-manager-grid__action">
+                <i class="ndd-font ndd-font-create pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Novo Produto</span>
+            </button>
+            <button (click)="deleteDestinatario($event)" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+                <i class="ndd-font ndd-font-delete pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Remover</span>
+            </button>
+            <button (click)="redirectOpenDestinatario()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
+                <i class="ndd-font ndd-font-open pkg-manager-grid__action__icon"></i>
+                <span class="pkg-manager-grid__action__description">Abrir</span>
+            </button>
+        </div>
+    </ng-template>
+
+    <kendo-grid-checkbox-column width="3"></kendo-grid-checkbox-column>
+    <kendo-grid-column field="codigo" title="Código" width="10"></kendo-grid-column>
+    <kendo-grid-column field="descricao" title="Descrição" width="20"></kendo-grid-column>
+    <kendo-grid-column field="valor" title="Valor" width="15"></kendo-grid-column>
+    <kendo-grid-column field="aliquotaIPI" title="Aliquota IPI" width="10"></kendo-grid-column>
+    <kendo-grid-column field="aliquotaICMS" title="Aliquota ICMS" width="10"></kendo-grid-column>
+
+</kendo-grid>

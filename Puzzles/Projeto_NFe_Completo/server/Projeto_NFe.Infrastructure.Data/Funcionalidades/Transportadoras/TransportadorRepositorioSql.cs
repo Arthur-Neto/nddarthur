@@ -23,8 +23,6 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
 
         public bool Atualizar(Transportador transportador)
         {
-
-
             return _contexto.SaveChanges() != 0;
         }
 
@@ -37,7 +35,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
 
         public IQueryable<Transportador> BuscarTodos()
         {
-            return _contexto.Transportadoras;
+            return _contexto.Transportadoras.Include("Documento").Include("Endereco");
         }
 
         public bool Excluir(Transportador transportador)

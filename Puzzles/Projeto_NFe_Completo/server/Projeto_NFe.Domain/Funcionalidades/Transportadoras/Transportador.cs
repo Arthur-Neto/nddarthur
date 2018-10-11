@@ -15,6 +15,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
         public string NomeRazaoSocial { get; set; }
         public string InscricaoEstadual { get; set; }
         public bool ResponsabilidadeFrete { get; set; }
+
         public Endereco Endereco { get; set; }
         public Documento Documento { get; set; }
     }

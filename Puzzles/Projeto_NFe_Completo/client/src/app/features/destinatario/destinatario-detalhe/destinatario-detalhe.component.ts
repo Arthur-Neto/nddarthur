@@ -13,12 +13,6 @@ export class DestinatarioDetalheComponent implements OnInit, OnDestroy {
 
     public destinatario: Destinatario;
 
-    public availabilityText: string = '';
-
-    public destinatarioProfit: number = 0;
-
-    public destinatarioValidateDate: string;
-
     public isLoading: boolean;
 
     private ngUnsubscribe: Subject<void> = new Subject<void>();

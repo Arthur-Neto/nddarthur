@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
+    selector: 'ndd-endereco-form',
     templateUrl: './endereco-form.component.html',
 })
 

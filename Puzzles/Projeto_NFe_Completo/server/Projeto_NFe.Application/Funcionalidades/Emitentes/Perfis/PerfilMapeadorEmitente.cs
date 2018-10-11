@@ -15,6 +15,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes.Perfis
         public PerfilMapeadorEmitente()
         {
             CreateMap<Emitente, EmitenteModelo>()
+                .ForMember(em => em.CNPJ, em => em.MapFrom(emitente => emitente.CNPJ.Numero))
                 .ForMember(em => em.EnderecoBairro, em => em.MapFrom(emitente => emitente.Endereco.Bairro))
                 .ForMember(em => em.EnderecoEstado, em => em.MapFrom(emitente => emitente.Endereco.Estado))
                 .ForMember(em => em.EnderecoLogradouro, em => em.MapFrom(emitente => emitente.Endereco.Logradouro))

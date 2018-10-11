@@ -12,52 +12,21 @@
                     <div class="row">
                         <div class="col-sm-6 feature-view__body">
                             <div>
-                                <span class="feature-view__label">Nome</span>
+                                <span class="feature-view__label">Razão Social</span>
                             </div>
                             <div class="truncate">
-                                <span title="{{ product?.name }}" class="feature-view__value">
-                                    {{ product?.name }}
+                                <span title="{{ destinatario?.nomeRazaoSocial }}" class="feature-view__value">
+                                    {{ destinatario?.nomeRazaoSocial }}
                                 </span>
                             </div>
                         </div>
                         <div class="col-sm-6 feature-view__body">
                             <div>
-                                <span class="feature-view__label">Disponibilidade</span>
+                                <span class="feature-view__label">Documento</span>
                             </div>
                             <div class="truncate">
-                                <span title="{{ availabilityText }}" class="feature-view__value">
-                                    {{ availabilityText }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <span class="feature-view__title">INFORMAÇÕES FINANCEIRAS</span>
-                </div>
-            </div>
-            <div class="row feature-view__group">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6 feature-view__body">
-                            <div>
-                                <span class="feature-view__label">Preço de Custo</span>
-                            </div>
-                            <div class="truncate">
-                                <span title="{{ product?.expense }}" class="feature-view__value">
-                                    {{ product?.expense | currency:'BRL':'symbol' }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 feature-view__body">
-                            <div>
-                                <span class="feature-view__label">Preço de Venda</span>
-                            </div>
-                            <div class="truncate">
-                                <span title="{{ product?.sale }}" class="feature-view__value">
-                                    {{ product?.sale | currency:'BRL':'symbol' }}
+                                <span title="{{ destinatario?.documentoNumero }}" class="feature-view__value">
+                                    {{ destinatario?.documentoNumero }}
                                 </span>
                             </div>
                         </div>
@@ -65,11 +34,21 @@
                     <div class="row">
                         <div class="col-sm-6 feature-view__body">
                             <div>
-                                <span class="feature-view__label">Resultado</span>
+                                <span class="feature-view__label">Inscrição Estadual</span>
                             </div>
                             <div class="truncate">
-                                <span title="{{ productProfit }}" class="feature-view__value">
-                                    {{ productProfit | currency:'BRL':'symbol' }}
+                                <span title="{{ destinatario?.inscricaoEstadual }}" class="feature-view__value">
+                                    {{ destinatario?.inscricaoEstadual }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Tipo</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ destinatario?.documentoTipo }}" class="feature-view__value">
+                                    {{ destinatario?.documentoTipo }}
                                 </span>
                             </div>
                         </div>
@@ -80,51 +59,7 @@
         <!-- #endregion -->
 
         <!-- #region Coluna 2 -->
-        <div class="col-sm-6">
-            <div class="row">
-                <div class="col-sm-12">
-                    <span class="feature-view__title">PRAZOS</span>
-                </div>
-            </div>
-            <div class="row feature-view__group">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6 feature-view__body">
-                            <div>
-                                <span class="feature-view__label">Data de Fabricação</span>
-                            </div>
-                            <div class="truncate">
-                                <span title="{{ product?.manufacture }}" class="feature-view__value">
-                                    {{ product?.manufacture | date:'short' }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 feature-view__body">
-                            <div>
-                                <span class="feature-view__label">Data de Validade</span>
-                            </div>
-                            <div class="truncate">
-                                <span title="{{ product?.expiration }}" class="feature-view__value">
-                                    {{ product?.expiration | date:'short' }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 feature-view__body">
-                            <div>
-                                <span class="feature-view__label">Período de Validade</span>
-                            </div>
-                            <div class="truncate">
-                                <span title="{{ productValidateDate }}" class="feature-view__value">
-                                    {{ productValidateDate }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ndd-endereco-detalhes></ndd-endereco-detalhes>
         <!-- #endregion -->
     </div>
     <div class="feature-view-tab__footer">

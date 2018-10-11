@@ -1,0 +1,11 @@
+<div class="feature-view-tab__content">
+    <div class="row">
+        <ndd-emitente-form
+            [formModel]="formModelEditar"
+            (submit)="editarEmitente($event)">           
+        </ndd-emitente-form>
+    </div>
+</div>
+
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
