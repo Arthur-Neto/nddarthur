@@ -18,6 +18,10 @@ export class TransportadorEditarComponent implements OnInit, OnDestroy {
 
     public isLoading: boolean;
 
+    public tipoPessoaFisica: string = '1';
+
+    public tipoPessoaJuridica: string = '2';
+
     public formModelTransportadorPessoaFisica: FormGroup = this.fb.group(
         {
             nomeRazaoSocial: ['', Validators.required],
@@ -82,20 +86,20 @@ export class TransportadorEditarComponent implements OnInit, OnDestroy {
                 this.formModelEndereco.setValue(this.transportador.endereco);
                 if (this.transportador.documento.tipo === TipoDocumento.CPF) {
 
-                    this.formModel.controls.tipoPessoa.setValue(tipoPessoaFisica.toString());
+                    this.formModel.controls.tipoPessoa.setValue(this.tipoPessoaFisica);
 
-                    this.formModel.removeControl('pessoaJuridica');
+                    this.preencherFormularioPessoaFisica();
 
                 } else {
-                    this.formModel.controls.tipoPessoa.setValue(tipoPessoaJuridica.toString());
+                    this.formModel.controls.tipoPessoa.setValue(this.tipoPessoaJuridica);
 
-                    this.formModel.removeControl('pessoaFisica');
+                    this.preencherFormularioPessoaJuridica();
                 }
             });
 
-            this.formModel.controls.tipoPessoa.valueChanges.subscribe((value: number) => {
-                this.alterarFormPessoa(value.toString());
-            });
+        this.formModel.controls.tipoPessoa.valueChanges.subscribe((value: string) => {
+            this.alterarFormPessoa(value);
+        });
     }
 
     public onSubmit(event: Event): void {
@@ -137,7 +141,7 @@ export class TransportadorEditarComponent implements OnInit, OnDestroy {
             .take(1)
             .do(() => this.isLoading = false)
             .subscribe(() => {
-                this.router.navigate(['transportadors']);
+                this.router.navigate(['transportadores']);
             });
 
     }
@@ -150,22 +154,32 @@ export class TransportadorEditarComponent implements OnInit, OnDestroy {
                 this.formModel.removeControl('pessoaJuridica');
                 this.formModel.addControl('pessoaFisica', this.formModelTransportadorPessoaFisica);
 
-                this.formModelTransportadorPessoaFisica.patchValue({ cpf: this.transportador.documento.numero });
-                this.formModelTransportadorPessoaFisica.patchValue({ nomeRazaoSocial: this.transportador.nomeRazaoSocial });
-                this.formModelTransportadorPessoaFisica.patchValue({ responsabilidadeFrete: this.transportador.responsabilidadeFrete });
+                this.preencherFormularioPessoaFisica();
+
                 break;
             case '2':
                 this.formModel.removeControl('pessoaFisica');
                 this.formModel.addControl('pessoaJuridica', this.formModelTransportadorPessoaJuridica);
 
-                this.formModelTransportadorPessoaJuridica.patchValue({ cnpj: this.transportador.documento.numero });
-                this.formModelTransportadorPessoaJuridica.patchValue({ nomeRazaoSocial: this.transportador.nomeRazaoSocial });
-                this.formModelTransportadorPessoaJuridica.patchValue({ inscricaoEstadual: this.transportador.inscricaoEstadual });
-                this.formModelTransportadorPessoaJuridica.patchValue({ responsabilidadeFrete: this.transportador.responsabilidadeFrete });
+                this.preencherFormularioPessoaJuridica();
+
                 break;
 
             default:
                 break;
         }
+    }
+
+    private preencherFormularioPessoaFisica(): void {
+        this.formModelTransportadorPessoaFisica.patchValue({ cpf: this.transportador.documento.numero });
+        this.formModelTransportadorPessoaFisica.patchValue({ nomeRazaoSocial: this.transportador.nomeRazaoSocial });
+        this.formModelTransportadorPessoaFisica.patchValue({ responsabilidadeFrete: this.transportador.responsabilidadeFrete });
+    }
+
+    private preencherFormularioPessoaJuridica(): void {
+        this.formModelTransportadorPessoaJuridica.patchValue({ cnpj: this.transportador.documento.numero });
+        this.formModelTransportadorPessoaJuridica.patchValue({ nomeRazaoSocial: this.transportador.nomeRazaoSocial });
+        this.formModelTransportadorPessoaJuridica.patchValue({ inscricaoEstadual: this.transportador.inscricaoEstadual });
+        this.formModelTransportadorPessoaJuridica.patchValue({ responsabilidadeFrete: this.transportador.responsabilidadeFrete });
     }
 }

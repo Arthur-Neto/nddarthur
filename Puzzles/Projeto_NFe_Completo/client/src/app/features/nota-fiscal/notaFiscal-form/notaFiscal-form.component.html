@@ -1,19 +1,19 @@
 <form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
     <div class="form__container">
         <div class="row form__fieldset" >
-            <div class="col-md-5" formGroupName="notaFiscal">
+            <div class="col-md-3" formGroupName="notaFiscal">
                 <div class="col-sm-12 form__group">
                     <span>Dados Cadastrais</span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12 form__body">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','transportadorId')}">Transportador</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','transportadorId')}">*</span>
                     </label>
-                    <div>
+                    <div class="form__dropdown">
                         <kendo-dropdownlist
-                            class="form__input__dropdown"
+                            class="form__dropdown__input"
                             [defaultItem]="defaultTransportador"
                             [data]="dataTransportadores"
                             [textField]="'nomeRazaoSocial'"
@@ -29,14 +29,14 @@
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12 form__body">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','destinatarioId')}">Destinatário</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','destinatarioId')}">*</span>
                     </label>
-                    <div>
+                    <div class="form__dropdown">
                         <kendo-dropdownlist
-                            class="form__input__dropdown"
+                            class="form__dropdown__input"
                             [defaultItem]="defaultDestinatario"
                             [data]="dataDestinatarios"
                             [textField]="'nomeRazaoSocial'"
@@ -51,14 +51,14 @@
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','emitenteId')}">Emitente</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','emitenteId')}">*</span>
                     </label>
-                    <div>
+                    <div class="form__dropdown">
                         <kendo-dropdownlist   
-                            class="form__input__dropdown"
+                            class="form__dropdown__input"
                             [defaultItem]="defaultEmitente"
                             [data]="dataEmitentes"
                             [textField]="'razaoSocial'"
@@ -73,7 +73,7 @@
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','naturezaOperacao')}">Natureza da Operação</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','naturezaOperacao')}">*</span>
@@ -87,15 +87,15 @@
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','dataEntrada')}">Data Entrada</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','dataEntrada')}">*</span>
                     </label>
 
-                    <div>
+                    <div class="form__datepicker">
                         <kendo-datepicker
-                            class="form__input__datepicker" 
+                            class="form__datepicker__input" 
                             formControlName="dataEntrada"
                             [ngClass]="{'form__error': encontrarErro('notaFiscal','dataEntrada')}"
                             [format]="'yyyy-MM-dd'">
@@ -107,15 +107,15 @@
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','dataEmissao')}">Data Emissão</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','dataEmissao')}">*</span>
                     </label>
 
-                    <div>
+                    <div class="form__datepicker">
                         <kendo-datepicker
-                            class="form__input__datepicker" 
+                            class="form__datepicker__input" 
                             formControlName="dataEmissao"
                             [ngClass]="{'form__error': encontrarErro('notaFiscal','dataEmissao')}"
                             [format]="'yyyy-MM-dd'">
@@ -127,7 +127,7 @@
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <label>
                         <span class="form__label" [ngClass]="{'form__error': encontrarErro('notaFiscal','valorTotalFrete')}">Valor Total Frete</span>
                         <span class="form__label required" [ngClass]="{'form__error': encontrarErro('notaFiscal','valorTotalFrete')}">*</span>
@@ -143,7 +143,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <ndd-nota-produtos-form [formModel]="formModel.get('produtos')"></ndd-nota-produtos-form>
             </div>
         </div>

@@ -1,5 +1,36 @@
 <form (ngSubmit)="onSubmit($event)" [formGroup]="formModel" class="form">
-    <div class="col-sm-12 form__group">
-        <span>Produtos</span>
+    <div class="col-md-9" formGroupName="produtos">
+        <div class="col-md-12 form__group">
+            <span>Produtos</span>
+        </div>
+        <div class="row feature-view__group">
+            <div class="col-sm-12">
+                <div class="row">
+                    <kendo-grid
+                        id="productsGrid"
+                        [style.height]="'100%'"
+                        [data]="produtosAdicionados"
+                        (cellClick)="cellClickHandler($event)">
+
+                        <kendo-grid-column field="descricao" title="Descrição" width="20"></kendo-grid-column>
+                        <kendo-grid-column field="valor" title="Valor" width="20"></kendo-grid-column>
+                        <kendo-grid-column field="quantidade" editor="numeric" title="Quantidade" width="20"></kendo-grid-column>
+                    </kendo-grid>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <kendo-dropdownlist   
+                        [data]="data"
+                        [textField]="'descricao'"
+                        [valueField]="'id'"
+                        [filterable]="true"
+                        (filterChange)="onFilter($event)"
+                        (selectionChange)="onSelect($event)">
+                    </kendo-dropdownlist>
+                    <button class="ndd-ng-button ndd-ng-button--primary" (click)="addProduto()">Adicionar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>

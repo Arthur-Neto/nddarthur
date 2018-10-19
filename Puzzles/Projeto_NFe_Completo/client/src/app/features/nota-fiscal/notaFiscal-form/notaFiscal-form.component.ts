@@ -96,8 +96,5 @@ export class NotaFiscalFormComponent implements OnInit {
 
     public selecionarTransportador(transportador: Transportador): void {
         this.formModel.controls.notaFiscal.patchValue({transportadorId: transportador.id});
-
-        // tslint:disable-next-line:no-console
-        console.log(this.formModel);
     }
 }

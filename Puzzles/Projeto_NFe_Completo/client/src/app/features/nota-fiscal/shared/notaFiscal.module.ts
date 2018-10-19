@@ -1,3 +1,4 @@
+import { ProdutoSharedModule } from './../../produto/shared/produto-shared.module';
 import { NgModule } from '@angular/core';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DatePickerModule } from '@progress/kendo-angular-dateinputs';
@@ -21,6 +22,7 @@ import { NotaFiscalDetalheComponent } from '../notaFiscal-view/notaFiscal-detalh
 import { NotaFiscalAdicionarComponent } from '../notaFiscal-adicionar/notaFiscal-adicionar.component';
 import { NotaFiscalProdutosFormComponent } from '../notaFiscal-form/notaFiscal-produtos/notaFiscal-produtos-form.component';
 import { NotaFiscalFormComponent } from '../notaFiscal-form/notaFiscal-form.component';
+import { ProdutoNotaGridService } from './produtos-grid.service';
 
 @NgModule({
     imports: [
@@ -35,6 +37,7 @@ import { NotaFiscalFormComponent } from '../notaFiscal-form/notaFiscal-form.comp
         DestinatarioSharedModule,
         TransportadorSharedModule,
         EmitenteSharedModule,
+        ProdutoSharedModule,
     ],
     exports: [],
     declarations: [
@@ -48,6 +51,7 @@ import { NotaFiscalFormComponent } from '../notaFiscal-form/notaFiscal-form.comp
     providers: [
         NotaFiscalGridService,
         NotaFiscalResolveService,
+        ProdutoNotaGridService,
     ],
 })
 export class NotaFiscalModule {

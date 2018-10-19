@@ -41,4 +41,8 @@ export class ProdutoAdicionarComponent {
             });
     }
 
+    public redirect(event: Event): void {
+        this.router.navigate(['produtos']);
+    }
+
 }

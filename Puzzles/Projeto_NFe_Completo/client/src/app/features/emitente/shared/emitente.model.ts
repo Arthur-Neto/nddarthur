@@ -47,6 +47,7 @@ export class EmitenteEditarComando {
     public endereco: Endereco;
 
     constructor(emitente: Emitente) {
+        this.id = emitente.id;
         this.nomeFantasia = emitente.nomeFantasia;
         this.razaoSocial = emitente.razaoSocial;
         this.cnpj = emitente.cnpj;

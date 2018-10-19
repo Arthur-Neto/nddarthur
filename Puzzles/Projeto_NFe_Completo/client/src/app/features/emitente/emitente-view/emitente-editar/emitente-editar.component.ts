@@ -1,3 +1,4 @@
+import { INDDBreadcrumb } from './../../../../shared/ndd-ng-breadcrumb/component/ndd-ng-breadcrumb.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -63,9 +64,6 @@ export class EmitenteEditarComponent implements OnInit, OnDestroy {
         this.formModel.addControl('emitente', this.formModelEmitente);
         this.formModel.addControl('endereco', this.formModelEndereco);
 
-        // tslint:disable-next-line:no-console
-        console.log(this.formModel);
-
         this.resolver.onChanges
             .takeUntil(this.ngUnsubscribe)
             .do(() => this.isLoading = false)
@@ -73,8 +71,12 @@ export class EmitenteEditarComponent implements OnInit, OnDestroy {
                 this.emitente = Object.assign(new Emitente(), emitente);
                 this.endereco = Object.assign(new Endereco(), emitente.endereco);
 
-                this.formModel.controls.emitente.setValue(this.emitente);
-                this.formModel.controls.endereco.setValue(this.endereco);
+                this.formModel.controls.emitente.patchValue(this.emitente);
+                this.formModel.controls.endereco.patchValue(this.emitente.endereco);
+                this.formModel.controls.emitente.get('cnpj').patchValue(this.emitente.cnpj.numero);
+
+                // Teste this.formModelEmitente.setValue(this.emitente);
+                // Teste this.formModelEndereco.setValue(this.endereco);
             });
     }
 
@@ -98,7 +100,7 @@ export class EmitenteEditarComponent implements OnInit, OnDestroy {
 
         this.emitente.cnpj = new Documento(this.formModelEmitente.value.cnpj, TipoDocumento.CNPJ);
         this.emitente.endereco = this.endereco;
-        this.emitente.id = this.formModel.value.id;
+        this.emitente.id = this.formModel.value.emitente.id;
 
         const emitenteEditarComando: EmitenteEditarComando = new EmitenteEditarComando(this.emitente);
 

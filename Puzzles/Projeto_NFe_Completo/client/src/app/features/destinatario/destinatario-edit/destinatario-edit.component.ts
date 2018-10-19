@@ -18,6 +18,10 @@ export class DestinatarioEditComponent implements OnInit, OnDestroy {
 
     public isLoading: boolean;
 
+    public tipoPessoaFisica: string = '1';
+
+    public tipoPessoaJuridica: string = '2';
+
     public formModelDestinatarioPessoaFisica: FormGroup = this.fb.group(
         {
             nomeRazaoSocial: ['', Validators.required],
@@ -74,26 +78,24 @@ export class DestinatarioEditComponent implements OnInit, OnDestroy {
             .subscribe((destinatario: Destinatario) => {
                 this.destinatario = Object.assign(new Destinatario(), destinatario);
 
-                const tipoPessoaFisica: number = 1;
-                const tipoPessoaJuridica: number = 2;
-
                 this.formModelEndereco.setValue(this.destinatario.endereco);
                 if (this.destinatario.documento.tipo === TipoDocumento.CPF) {
 
-                    this.formModel.controls.tipoPessoa.setValue(tipoPessoaFisica.toString());
+                    this.formModel.controls.tipoPessoa.setValue(this.tipoPessoaFisica);
 
-                    this.formModel.removeControl('pessoaJuridica');
+                    this.preencherFormularioPessoaFisica();
 
                 } else {
-                    this.formModel.controls.tipoPessoa.setValue(tipoPessoaJuridica.toString());
 
-                    this.formModel.removeControl('pessoaFisica');
+                    this.formModel.controls.tipoPessoa.setValue(this.tipoPessoaJuridica);
+
+                    this.preencherFormularioPessoaJuridica();
                 }
             });
 
-            this.formModel.controls.tipoPessoa.valueChanges.subscribe((value: number) => {
-                this.alterarFormPessoa(value.toString());
-            });
+        this.formModel.controls.tipoPessoa.valueChanges.subscribe((value: string) => {
+            this.alterarFormPessoa(value);
+        });
     }
 
     public onSubmit(event: Event): void {
@@ -148,20 +150,28 @@ export class DestinatarioEditComponent implements OnInit, OnDestroy {
                 this.formModel.removeControl('pessoaJuridica');
                 this.formModel.addControl('pessoaFisica', this.formModelDestinatarioPessoaFisica);
 
-                this.formModelDestinatarioPessoaFisica.patchValue({ cpf: this.destinatario.documento.numero });
-                this.formModelDestinatarioPessoaFisica.patchValue({ nomeRazaoSocial: this.destinatario.nomeRazaoSocial });
+                this.preencherFormularioPessoaFisica();
                 break;
             case '2':
                 this.formModel.removeControl('pessoaFisica');
                 this.formModel.addControl('pessoaJuridica', this.formModelDestinatarioPessoaJuridica);
 
-                this.formModelDestinatarioPessoaJuridica.patchValue({ cnpj: this.destinatario.documento.numero });
-                this.formModelDestinatarioPessoaJuridica.patchValue({ nomeRazaoSocial: this.destinatario.nomeRazaoSocial });
-                this.formModelDestinatarioPessoaJuridica.patchValue({ inscricaoEstadual: this.destinatario.inscricaoEstadual });
+                this.preencherFormularioPessoaJuridica();
                 break;
 
             default:
                 break;
         }
+    }
+
+    private preencherFormularioPessoaFisica(): void {
+        this.formModelDestinatarioPessoaFisica.patchValue({ cpf: this.destinatario.documento.numero });
+        this.formModelDestinatarioPessoaFisica.patchValue({ nomeRazaoSocial: this.destinatario.nomeRazaoSocial });
+    }
+
+    private preencherFormularioPessoaJuridica(): void {
+        this.formModelDestinatarioPessoaJuridica.patchValue({ cnpj: this.destinatario.documento.numero });
+        this.formModelDestinatarioPessoaJuridica.patchValue({ nomeRazaoSocial: this.destinatario.nomeRazaoSocial });
+        this.formModelDestinatarioPessoaJuridica.patchValue({ inscricaoEstadual: this.destinatario.inscricaoEstadual });
     }
 }

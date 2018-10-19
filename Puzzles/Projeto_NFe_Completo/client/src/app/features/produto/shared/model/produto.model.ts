@@ -8,7 +8,7 @@ export class Produto {
     public descricao: string;
     public aliquotaIPI: number;
     public aliquotaICMS: number;
-    public quantidade: number;
+    public quantidade: number = 1;
 
     constructor() {
         this.aliquotaICMS = valorAliquotaICMS;
