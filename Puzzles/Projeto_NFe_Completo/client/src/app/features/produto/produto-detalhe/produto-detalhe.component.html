@@ -1,0 +1,93 @@
+<div class="feature-view-tab__content">
+    <div class="row">
+        <!-- #region Coluna 1 -->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">DADOS CADASTRAIS</span>
+                </div>
+            </div>
+            <div class="row feature-view__group">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Código</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ produto?.codigo }}" class="feature-view__value">
+                                    {{ produto?.codigo }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Descrição</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ produto?.descricao }}" class="feature-view__value">
+                                    {{ produto?.descricao }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Coluna 2 -->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">VALORES</span>
+                </div>
+            </div>
+            <div class="row feature-view__group">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Valor Produto</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ produto?.valor }}" class="feature-view__value">
+                                    {{ produto?.valor | currency:'BRL' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">IPI</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ IPI }}" class="feature-view__value">
+                                    {{ IPI | currency:'BRL' }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">ICMS</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ ICMS }}" class="feature-view__value">
+                                    {{ ICMS | currency:'BRL' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+    </div>
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+</div>

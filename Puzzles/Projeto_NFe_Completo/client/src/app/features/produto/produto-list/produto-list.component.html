@@ -14,15 +14,15 @@
 
     <ng-template kendoGridToolbarTemplate position="top">
         <div class="pkg-manager-grid__action-container">
-            <button (click)="onClick()" class="pkg-manager-grid__action">
+            <button (click)="novoProduto()" class="pkg-manager-grid__action">
                 <i class="ndd-font ndd-font-create pkg-manager-grid__action__icon"></i>
                 <span class="pkg-manager-grid__action__description">Novo Produto</span>
             </button>
-            <button (click)="deleteDestinatario($event)" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+            <button (click)="deletarProduto($event)" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
                 <i class="ndd-font ndd-font-delete pkg-manager-grid__action__icon"></i>
                 <span class="pkg-manager-grid__action__description">Remover</span>
             </button>
-            <button (click)="redirectOpenDestinatario()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
+            <button (click)="abrirProduto()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
                 <i class="ndd-font ndd-font-open pkg-manager-grid__action__icon"></i>
                 <span class="pkg-manager-grid__action__description">Abrir</span>
             </button>
@@ -33,7 +33,5 @@
     <kendo-grid-column field="codigo" title="Código" width="10"></kendo-grid-column>
     <kendo-grid-column field="descricao" title="Descrição" width="20"></kendo-grid-column>
     <kendo-grid-column field="valor" title="Valor" width="15"></kendo-grid-column>
-    <kendo-grid-column field="aliquotaIPI" title="Aliquota IPI" width="10"></kendo-grid-column>
-    <kendo-grid-column field="aliquotaICMS" title="Aliquota ICMS" width="10"></kendo-grid-column>
 
 </kendo-grid>

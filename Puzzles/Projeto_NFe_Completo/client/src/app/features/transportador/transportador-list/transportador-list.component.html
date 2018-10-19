@@ -18,11 +18,11 @@
                 <i class="ndd-font ndd-font-create pkg-manager-grid__action__icon"></i>
                 <span class="pkg-manager-grid__action__description">Novo Transportador</span>
             </button>
-            <button (click)="deleteDestinatario($event)" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
+            <button (click)="deleteTransportador($event)" class="pkg-manager-grid__action" [disabled]="!selectedRows.length">
                 <i class="ndd-font ndd-font-delete pkg-manager-grid__action__icon"></i>
                 <span class="pkg-manager-grid__action__description">Remover</span>
             </button>
-            <button (click)="redirectOpenDestinatario()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
+            <button (click)="redirectOpenTransportador()" class="pkg-manager-grid__action" [disabled]="selectedRows.length != 1">
                 <i class="ndd-font ndd-font-open pkg-manager-grid__action__icon"></i>
                 <span class="pkg-manager-grid__action__description">Abrir</span>
             </button>
@@ -31,11 +31,9 @@
 
     <kendo-grid-checkbox-column width="3"></kendo-grid-checkbox-column>
     <kendo-grid-column field="nomeRazaoSocial" title="Razão Social" width="15"></kendo-grid-column>
-    <kendo-grid-column field="inscricaoEstadual" title="Inscrição Estadual" width="10"></kendo-grid-column>
     <kendo-grid-column field="responsabilidadeFrete" title="Responsabilidade Frete" width="10"></kendo-grid-column>
     <kendo-grid-column field="documento" title="Documento" width="15"></kendo-grid-column>
-    <kendo-grid-column field="enderecoLogradouro" title="Logradouro" width="20"></kendo-grid-column>
     <kendo-grid-column field="enderecoEstado" title="Estado" width="10"></kendo-grid-column>
-    <kendo-grid-column field="enderecoNumero" title="Número" width="10"></kendo-grid-column>
+    <kendo-grid-column field="enderecoMunicipio" title="Município" width="10"></kendo-grid-column>
 
 </kendo-grid>

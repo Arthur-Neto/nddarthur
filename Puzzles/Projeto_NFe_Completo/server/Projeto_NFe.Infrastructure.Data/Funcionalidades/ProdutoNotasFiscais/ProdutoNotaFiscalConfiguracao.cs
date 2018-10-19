@@ -1,10 +1,5 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Produtos
 {
@@ -13,13 +8,14 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Produtos
         public ProdutoNotaFiscalConfiguracao()
         {
             ToTable("TBPRODUTONOTAFISCAL");
-            HasKey(p => p.Id);
+            HasKey(p => new { p.Id, p.NotaFiscalId, p.ProdutoId });
             Property(p => p.Id).HasColumnName("IdProdutoNotaFiscal");
+            Property(p => p.NotaFiscalId).HasColumnName("NotaFiscalId");
+            Property(p => p.ProdutoId).HasColumnName("ProdutoId");
 
-            HasRequired(p => p.Produto).WithMany().HasForeignKey(p => p.ProdutoId).WillCascadeOnDelete(false);
-            HasRequired(p => p.NotaFiscal).WithMany(nf => nf.Produtos).HasForeignKey(p => p.NotaFiscalId).WillCascadeOnDelete(true);
             Property(p => p.Quantidade).HasColumnName("Quantidade").HasColumnType("int").IsRequired();
-            Property(p => p.Quantidade).HasColumnName("Quantidade").HasColumnType("int").IsRequired();
+            HasRequired(p => p.Produto).WithMany().HasForeignKey(p => p.ProdutoId);
+            HasRequired(p => p.NotaFiscal).WithMany(nf => nf.Produtos).HasForeignKey(p => p.NotaFiscalId);
 
             Ignore(p => p.ValorICMS);
             Ignore(p => p.ValorIPI);

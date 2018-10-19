@@ -18,12 +18,12 @@
                         <i class="ndd-font ndd-font-create pkg-manager-grid__action__icon"></i>
                         <span class="pkg-manager-grid__action__description">Novo Emitente</span>
                     </button>
-                    <button (click)="deleteEmitente()" class="pkg-manager-grid__action"
+                    <button (click)="deletarEmitente()" class="pkg-manager-grid__action"
                             [disabled]="!selectedRows.length">
                         <i class="ndd-font ndd-font-delete pkg-manager-grid__action__icon"></i>
                         <span class="pkg-manager-grid__action__description">Remover</span>
                     </button>
-                    <button (click)="redirectOpenEmitente()" class="pkg-manager-grid__action" 
+                    <button (click)="abrirEmitente()" class="pkg-manager-grid__action" 
                             [disabled]="selectedRows.length != 1">
                         <i class="ndd-font ndd-font-open pkg-manager-grid__action__icon"></i>
                         <span class="pkg-manager-grid__action__description">Abrir</span>
@@ -31,11 +31,9 @@
                 </div>
             </ng-template>
 
-    <kendo-grid-checkbox-column></kendo-grid-checkbox-column>        
-    <kendo-grid-column field="id" title="ID" width="50"></kendo-grid-column>
-    <kendo-grid-column field="nomeFantasia" title="Nome Fantasia" width="450"></kendo-grid-column>
-    <kendo-grid-column field="razaoSocial" title="Razão Social" width="450"></kendo-grid-column>
-    <kendo-grid-column field="cnpj" title="CNPJ" width="350"></kendo-grid-column> 
-    <!-- Adicionar custom pipe para formatar CNPJ. Se fosse CNPJ e CPF um componente poderia receber o valor e tratar, formatando conforme o necessário -->
+    <kendo-grid-checkbox-column width="3"></kendo-grid-checkbox-column>        
+    <kendo-grid-column field="nomeFantasia" title="Nome Fantasia" width="500"></kendo-grid-column>
+    <kendo-grid-column field="razaoSocial" title="Razão Social" width="500"></kendo-grid-column>
+    <kendo-grid-column field="cnpj" title="CNPJ" width="200"></kendo-grid-column> 
     </kendo-grid>
 </div>

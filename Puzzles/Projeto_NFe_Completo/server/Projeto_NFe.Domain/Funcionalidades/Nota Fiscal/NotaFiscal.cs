@@ -14,11 +14,11 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 {
     public class NotaFiscal : Entidade
     {
-        public Transportador Transportador { get; set; }
+        public virtual Transportador Transportador { get; set; }
         public long TransportadorId { get; set; }
-        public Destinatario Destinatario { get; set; }
+        public virtual Destinatario Destinatario { get; set; }
         public long DestinatarioId { get; set; }
-        public Emitente Emitente { get; set; }
+        public virtual Emitente Emitente { get; set; }
         public long EmitenteId { get; set; }
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }

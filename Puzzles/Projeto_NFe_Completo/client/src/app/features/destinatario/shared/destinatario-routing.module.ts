@@ -3,22 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { DestinatarioListComponent } from '../destinatario-list/destinatario-list.component';
 import { DestinatarioResolveService } from './destinatario.service';
-import { DestinatarioCriarComponent } from '../destinatario-criar/destinatario-criar.component';
 import { DestinatarioViewComponent } from '../destinatario-view/destinatario-view.component';
 import { DestinatarioDetalheComponent } from '../destinatario-detalhe/destinatario-detalhe.component';
 import { DestinatarioEditComponent } from '../destinatario-edit/destinatario-edit.component';
+import { DestinatarioAdicionarComponent } from '../destinatario-adicionar/destinatario-adicionar.component';
 
 const destinatarioRoutes: Routes = [
     {
         path: '',
-        component: DestinatarioListComponent,
-    },
-    {
-        path: 'criar',
+        redirectTo: '',
         children: [
             {
                 path: '',
-                component: DestinatarioCriarComponent,
+                component: DestinatarioListComponent,
+            },
+        ],
+    },
+    {
+        path: 'adicionar',
+        children: [
+            {
+                path: '',
+                component: DestinatarioAdicionarComponent,
             },
         ],
     },

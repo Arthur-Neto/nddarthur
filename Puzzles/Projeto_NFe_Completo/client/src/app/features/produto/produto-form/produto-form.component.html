@@ -1,0 +1,103 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
+    <div class="form__container">
+        <div class="row form__fieldset" >
+            <div class="col-md-6">
+                <div class="col-sm-12 form__group">
+                    <span>Dados Cadastrais</span>
+                </div>
+
+                <div class="col-md-6">
+                    <label>
+                        <span class="form__label" [ngClass]="{'form__error': encontrarErro('codigo')}">Código
+                        </span>
+                        <span class="form__label required" [ngClass]="{'form__error': encontrarErro('codigo')}">*</span>
+                    </label>
+                    <div>
+                        <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('codigo')}"
+                            formControlName="codigo" type="text" placeholder="Insira o código do produto">
+                    </div>
+                    <span class="form__label" *ngIf="encontrarErro('codigo')" class="form__error form__label">
+                        CAMPO OBRIGATÓRIO
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label>
+                        <span class="form__label" [ngClass]="{'form__error': encontrarErro('descricao')}">Descrição
+                            </span>
+                        <span class="form__label required" [ngClass]="{'form__error': encontrarErro('descricao')}">*</span>
+                    </label>
+                    <div>
+                        <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('descricao')}"
+                            formControlName="descricao" type="text" placeholder="Insira a descrição do produto">
+                    </div>
+                    <span class="form__label" *ngIf="encontrarErro('descricao')" class="form__error form__label">
+                        CAMPO OBRIGATÓRIO
+                    </span>
+                </div>
+                
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-sm-12 form__group">
+                    <span>Valores</span>
+                </div>
+
+                <div class="col-md-6">
+                    <label>
+                        <span class="form__label" [ngClass]="{'form__error': encontrarErro('valor')}">Valor 
+                            Produto </span>
+                        <span class="form__label required" [ngClass]="{'form__error': encontrarErro('valor')}">*</span>
+                    </label>
+                    <div>
+                        <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('valor')}"
+                            formControlName="valor" type="text" placeholder="Insira o valor do produto">
+                    </div>
+                    <span class="form__label" *ngIf="encontrarErro('valor')" class="form__error form__label">
+                        CAMPO OBRIGATÓRIO
+                    </span>
+                </div>
+
+                <!-- <div class="col-md-6">
+                    <label>
+                        <span class="form__label" [ngClass]="{'form__error': encontrarErro('produto','aliquotaIPI')}">Aliquota 
+                            IPI </span>
+                        <span class="form__label required" [ngClass]="{'form__error': encontrarErro('produto','aliquotaIPI')}">*</span>
+                        </label>
+                    <div>
+                        <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('produto','aliquotaIPI')}"
+                            formControlName="aliquotaIPI" type="text" placeholder="Insira o aliquota IPI do produto">
+                    </div>
+                    <span class="form__label" *ngIf="encontrarErro('produto','aliquotaIPI')" class="form__error form__label">
+                        CAMPO OBRIGATÓRIO
+                    </span>
+                </div>
+
+                <div class="col-md-6">
+                    <label>
+                        <span class="form__label" [ngClass]="{'form__error': encontrarErro('produto','aliquotaICMS')}">Aliquota 
+                            ICMS </span>
+                        <span class="form__label required" [ngClass]="{'form__error': encontrarErro('produto','aliquotaICMS')}">*</span>
+                        </label>
+                    <div>
+                        <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('produto','aliquotaICMS')}"
+                            formControlName="aliquotaICMS" type="text" placeholder="Insira o aliquota ICMS do produto">
+                    </div>
+                    <span class="form__label" *ngIf="encontrarErro('produto','aliquotaICMS')" class="form__error form__label">
+                        CAMPO OBRIGATÓRIO
+                    </span>
+                </div> -->
+            
+            </div>
+
+        </div>
+    </div>
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" type="submit" [disabled]="formModel.invalid">
+            Enviar
+        </button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">
+            Voltar
+        </button>
+    </div>
+</form>

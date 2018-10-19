@@ -1,0 +1,9 @@
+<div class="feature-view">
+
+    <ndd-transportador-form [formModel]="formModel" (submit)="editarTransportador($event)">
+    </ndd-transportador-form>
+
+</div>
+
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

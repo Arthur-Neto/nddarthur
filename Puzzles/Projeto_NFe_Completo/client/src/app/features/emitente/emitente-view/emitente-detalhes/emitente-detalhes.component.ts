@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Emitente } from './../../shared/emitente.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmitenteResolveService } from './../../../emitente/shared/emitente-resolver.service';
+import { Endereco } from './../../../endereco/shared/model/endereco.model';
 
 @Component({
     templateUrl: './emitente-detalhes.component.html',
@@ -10,7 +11,7 @@ import { EmitenteResolveService } from './../../../emitente/shared/emitente-reso
 
 export class EmitenteDetalhesComponent implements OnInit, OnDestroy {
     public emitente: Emitente;
-    public availabilityText: string = '';
+    public endereco: Endereco;
     public isLoading: boolean = true;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -27,6 +28,7 @@ export class EmitenteDetalhesComponent implements OnInit, OnDestroy {
             .takeUntil(this.ngUnsubscribe)
             .subscribe((emitente: Emitente) => {
                 this.emitente = Object.assign(new Emitente(), emitente);
+                this.endereco = Object.assign(new Endereco(), emitente.endereco);
                 this.isLoading = false;
             });
     }

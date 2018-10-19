@@ -1,0 +1,12 @@
+<div class="feature-view">
+
+    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" [titlebarTitle]="title" [titlebarInfoItems]="infoItems" [titlebarRouterToReturnOnClose]="returnRoute">
+    </ndd-ng-titlebar>
+
+    <ndd-produto-form [formModel]="formModel" (submit)="adicionarProduto($event)">
+    </ndd-produto-form>
+
+</div>
+
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div> 

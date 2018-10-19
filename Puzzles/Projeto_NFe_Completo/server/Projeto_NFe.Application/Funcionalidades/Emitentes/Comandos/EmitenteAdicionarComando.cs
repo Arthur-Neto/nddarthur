@@ -46,7 +46,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes.Comandos
                 RuleFor(emitenteAdicionarComando => emitenteAdicionarComando.Endereco.Numero).NotNull();
                 RuleFor(emitenteAdicionarComando => emitenteAdicionarComando.Endereco.Numero).GreaterThan(0);
                 RuleFor(emitenteAdicionarComando => emitenteAdicionarComando.Endereco.Pais).NotNull();
-                RuleFor(emitenteAdicionarComando => emitenteAdicionarComando.CNPJ.Numero).Length(14);
+                RuleFor(emitenteAdicionarComando => emitenteAdicionarComando.CNPJ.Numero).Length(18);
             }
         }
     }

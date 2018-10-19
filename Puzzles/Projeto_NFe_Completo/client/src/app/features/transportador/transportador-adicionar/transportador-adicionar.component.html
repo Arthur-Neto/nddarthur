@@ -1,0 +1,12 @@
+<div class="feature-view">
+
+    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-truck-moving-solid" [titlebarTitle]="titulo" [titlebarInfoItems]="infoItems" [titlebarRouterToReturnOnClose]="returnRoute">
+    </ndd-ng-titlebar>
+
+    <ndd-transportador-form [formModel]="formModel" (submit)="adicionarTransportador($event)">
+    </ndd-transportador-form>
+
+</div>
+
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

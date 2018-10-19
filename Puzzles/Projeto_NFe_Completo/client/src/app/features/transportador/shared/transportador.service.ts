@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { BaseService } from '../../../core/utils';
 import { CORE_CONFIG_TOKEN, ICoreConfig } from '../../../core/core.config';
-import { TransportadorExcluirComando, Transportador, TransportadorEditComando, TransportadorCriarComando } from './model/transportador.model';
+import { TransportadorExcluirComando, Transportador, TransportadorEditarComando, TransportadorAdicionarComando } from './model/transportador.model';
 import { AbstractResolveService } from '../../../core/utils/abstract-resolve.service';
 import { NDDBreadcrumbService } from '../../../shared/ndd-ng-breadcrumb';
 
@@ -27,8 +27,10 @@ export class TransportadorService extends BaseService {
 
     public get(id: number): Observable<Transportador> {
         return this.http.get(`${this.api}/${id}`).map((response: Transportador) => {
+// tslint:disable-next-line:no-console
+console.log('transportadorId em service: ' + id);
 
-            return response;
+return response;
         });
     }
 
@@ -36,11 +38,11 @@ export class TransportadorService extends BaseService {
         return this.http.get(this.api).map((response: any) => response.items);
     }
 
-    public put(cmd: TransportadorEditComando): Observable<boolean> {
+    public put(cmd: TransportadorEditarComando): Observable<boolean> {
         return this.http.put(this.api, cmd).map((response: boolean) => response);
     }
 
-    public post(cmd: TransportadorCriarComando): Observable<boolean> {
+    public post(cmd: TransportadorAdicionarComando): Observable<boolean> {
         return this.http.post(this.api, cmd).map((response: boolean) => response);
     }
 }
@@ -55,6 +57,10 @@ export class TransportadorResolveService extends AbstractResolveService<Transpor
     }
 
     protected loadEntity(transportadorId: number): Observable<Transportador> {
+
+        // tslint:disable-next-line:no-console
+        console.log('transportadorId em resolveservice: ' + transportadorId);
+
         return this.transportadorService
             .get(transportadorId)
             .take(1)

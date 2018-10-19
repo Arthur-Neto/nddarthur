@@ -33,10 +33,10 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios.Comandos
             {
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.NomeRazaoSocial).NotNull();
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento).NotNull();
-                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.InscricaoEstadual).NotNull()
-                    .When(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Tipo == TipoDocumento.CNPJ);
-                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.InscricaoEstadual).MaximumLength(15)
-                    .When(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Tipo == TipoDocumento.CNPJ);
+
+                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.InscricaoEstadual).NotNull().When(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Tipo == TipoDocumento.CNPJ);
+                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.InscricaoEstadual).MaximumLength(15).When(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Tipo == TipoDocumento.CNPJ);
+
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Endereco).NotNull();
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Endereco.Bairro).NotNull();
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Endereco.Estado).NotNull();
@@ -45,8 +45,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios.Comandos
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Endereco.Numero).NotNull();
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Endereco.Numero).GreaterThan(0);
                 RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Endereco.Pais).NotNull();
-                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Numero).MinimumLength(11);
-                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Numero).MaximumLength(14);
+                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Numero).MinimumLength(14);
+                RuleFor(destinatarioAdicionarComando => destinatarioAdicionarComando.Documento.Numero).MaximumLength(18);
             }
         }
     }

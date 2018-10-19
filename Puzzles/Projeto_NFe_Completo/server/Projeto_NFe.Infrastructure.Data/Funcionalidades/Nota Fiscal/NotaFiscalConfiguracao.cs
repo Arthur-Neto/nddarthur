@@ -1,10 +1,5 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 {
@@ -21,7 +16,6 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             HasRequired(nf => nf.Destinatario).WithMany().HasForeignKey(nf => nf.DestinatarioId).WillCascadeOnDelete(false);
             HasRequired(nf => nf.Emitente).WithMany().HasForeignKey(nf => nf.EmitenteId).WillCascadeOnDelete(false);
             HasRequired(nf => nf.Transportador).WithMany().HasForeignKey(nf => nf.TransportadorId).WillCascadeOnDelete(false);
-            HasOptional(nf => nf.Produtos).WithRequired();
         }
     }
 }

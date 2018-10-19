@@ -3,11 +3,29 @@ import { NgModule } from '@angular/core';
 
 import { ProdutoListComponent } from '../produto-list/produto-list.component';
 import { ProdutoResolveService } from './produto.service';
+import { ProdutoViewComponent } from '../produto-view/produto-view.component';
+import { ProdutoDetalheComponent } from '../produto-detalhe/produto-detalhe.component';
+import { ProdutoAdicionarComponent } from '../produto-adicionar/produto-adicionar.component';
+import { ProdutoEditarComponent } from '../produto-editar/produto-editar.component';
 
-const produtoRoutes: Routes = [
+const rotasProduto: Routes = [
     {
         path: '',
-        component: ProdutoListComponent,
+        children: [
+            {
+                path: '',
+                component: ProdutoListComponent,
+            },
+            {
+                path: 'adicionar',
+                component: ProdutoAdicionarComponent,
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbId: 'adicionar',
+                    },
+                },
+            },
+        ],
     },
     {
         path: ':produtoId',
@@ -20,13 +38,36 @@ const produtoRoutes: Routes = [
             },
         },
         children: [
-            {},
+            {
+                path: '',
+                component: ProdutoViewComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'info',
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'info',
+                        children: [
+                            {
+                                path: '',
+                                component: ProdutoDetalheComponent,
+                            },
+                            {
+                                path: 'edit',
+                                component: ProdutoEditarComponent,
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
     },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(produtoRoutes)],
+    imports: [RouterModule.forChild(rotasProduto)],
     exports: [RouterModule],
     declarations: [],
     providers: [],

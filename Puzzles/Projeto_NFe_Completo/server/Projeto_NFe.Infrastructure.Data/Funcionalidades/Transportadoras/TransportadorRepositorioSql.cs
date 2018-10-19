@@ -1,5 +1,6 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using Projeto_NFe.Infrastructure.Data.Base;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
@@ -28,14 +29,14 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
 
         public Transportador BuscarPorId(long Id)
         {
-            Transportador transportador = _contexto.Transportadoras.Find(Id);
+            Transportador transportador = _contexto.Transportadoras.Where(x => x.Id == Id).Include("Endereco").Include("Documento").FirstOrDefault();
 
             return transportador;
         }
 
         public IQueryable<Transportador> BuscarTodos()
         {
-            return _contexto.Transportadoras.Include("Documento").Include("Endereco");
+            return _contexto.Transportadoras.Include("Endereco").Include("Documento");
         }
 
         public bool Excluir(Transportador transportador)

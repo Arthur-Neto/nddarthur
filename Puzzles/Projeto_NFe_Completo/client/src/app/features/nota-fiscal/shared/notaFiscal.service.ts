@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { BaseService } from '../../../core/utils';
 import { CORE_CONFIG_TOKEN, ICoreConfig } from '../../../core/core.config';
-import { NotaFiscalExcluirComando, NotaFiscal, NotaFiscalEditComando, NotaFiscalCriarComando } from './model/notaFiscal.model';
+import { NotaFiscalExcluirComando, NotaFiscal, NotaFiscalEditComando, NotaFiscalAdicionarComando } from './model/notaFiscal.model';
 import { AbstractResolveService } from '../../../core/utils/abstract-resolve.service';
 import { NDDBreadcrumbService } from '../../../shared/ndd-ng-breadcrumb';
 
@@ -21,26 +21,26 @@ export class NotaFiscalService extends BaseService {
         this.api = `${config.apiEndpoint}api/notaFiscal`;
     }
 
-    public delete(cmd: NotaFiscalExcluirComando): Observable<boolean> {
+    public deletar(cmd: NotaFiscalExcluirComando): Observable<boolean> {
         return super.deleteRequestWithBody(this.api, cmd);
     }
 
-    public get(id: number): Observable<NotaFiscal> {
+    public buscarPorId(id: number): Observable<NotaFiscal> {
         return this.http.get(`${this.api}/${id}`).map((response: NotaFiscal) => {
 
             return response;
         });
     }
 
-    public getAll(): Observable<NotaFiscal[]> {
+    public buscarTodos(): Observable<NotaFiscal[]> {
         return this.http.get(this.api).map((response: any) => response.items);
     }
 
-    public put(cmd: NotaFiscalEditComando): Observable<boolean> {
+    public editar(cmd: NotaFiscalEditComando): Observable<boolean> {
         return this.http.put(this.api, cmd).map((response: boolean) => response);
     }
 
-    public post(cmd: NotaFiscalCriarComando): Observable<boolean> {
+    public adicionar(cmd: NotaFiscalAdicionarComando): Observable<boolean> {
         return this.http.post(this.api, cmd).map((response: boolean) => response);
     }
 }
@@ -56,7 +56,7 @@ export class NotaFiscalResolveService extends AbstractResolveService<NotaFiscal>
 
     protected loadEntity(notaFiscalId: number): Observable<NotaFiscal> {
         return this.notaFiscalService
-            .get(notaFiscalId)
+            .buscarPorId(notaFiscalId)
             .take(1)
             .do((notaFiscal: NotaFiscal) => {
                 this.breadcrumbService.setMetadata({

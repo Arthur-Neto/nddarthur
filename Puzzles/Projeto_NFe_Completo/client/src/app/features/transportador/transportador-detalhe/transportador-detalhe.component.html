@@ -1,0 +1,87 @@
+<div class="feature-view-tab__content">
+    <div class="row">
+        <!-- #region Coluna 1 -->
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="feature-view__title">DADOS CADASTRAIS</span>
+                </div>
+            </div>
+            <div class="row feature-view__group">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Razão Social</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ transportador?.nomeRazaoSocial }}" class="feature-view__value">
+                                    {{ transportador?.nomeRazaoSocial }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Documento</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ transportador?.documento.numero }}" class="feature-view__value">
+                                    {{ transportador?.documento.numero }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Inscrição Estadual</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ transportador?.inscricaoEstadual }}" class="feature-view__value">
+                                    {{ transportador?.inscricaoEstadual }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Tipo</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ transportador?.documento.tipo }}" class="feature-view__value">
+                                    {{ transportador?.documento.tipo }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 feature-view__body">
+                            <div>
+                                <span class="feature-view__label">Responsabilidade Frete?</span>
+                            </div>
+                            <div class="truncate">
+                                <span title="{{ responsabilidadeFrete }}" class="feature-view__value">
+                                    {{ responsabilidadeFrete }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Coluna 2 -->
+        <div class="col-md-6">
+            <ndd-endereco-detalhes [endereco]="endereco"></ndd-endereco-detalhes>
+        </div>
+        <!-- #endregion -->
+
+    </div>
+
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">Voltar</button>
+    </div>
+    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+</div>

@@ -24,13 +24,10 @@ export class EmitenteFormComponent {
     public onSubmit(event: any): void {
         event.stopPropagation();
         this.submit.emit(this.formModel);
-
-        // tslint:disable-next-line:no-console
-        console.log(this.formModel);
     }
 
-    // A public encontrarErro(formControlName: string): boolean {
-    //   A  return this.formModel.get(formControlName).hasError('required')
-    //         && this.formModel.get(formControlName).touched;
-    // }
+    public encontrarErro(controlGroup: string, controlName: string): boolean {
+        return this.formModel.get(controlGroup).get(controlName).hasError('required')
+            && this.formModel.get(controlGroup).get(controlName).touched;
+    }
 }

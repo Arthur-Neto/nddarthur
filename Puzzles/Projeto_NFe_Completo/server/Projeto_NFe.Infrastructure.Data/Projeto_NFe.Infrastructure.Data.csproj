@@ -64,15 +64,12 @@
     <Compile Include="Funcionalidades\Produtos\ProdutoRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Transportadoras\TransportadorConfiguracao.cs" />
     <Compile Include="Funcionalidades\Transportadoras\TransportadorRepositorioSql.cs" />
-    <Compile Include="Migrations\201810101758261_NFe_v1.cs" />
-    <Compile Include="Migrations\201810101758261_NFe_v1.Designer.cs">
-      <DependentUpon>201810101758261_NFe_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810111825452_NFe_v2.cs" />
-    <Compile Include="Migrations\201810111825452_NFe_v2.Designer.cs">
-      <DependentUpon>201810111825452_NFe_v2.cs</DependentUpon>
+    <Compile Include="Migrations\201810190308266_InitialCreate.cs" />
+    <Compile Include="Migrations\201810190308266_InitialCreate.Designer.cs">
+      <DependentUpon>201810190308266_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\SementeBaseSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,11 +87,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810101758261_NFe_v1.resx">
-      <DependentUpon>201810101758261_NFe_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810111825452_NFe_v2.resx">
-      <DependentUpon>201810111825452_NFe_v2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810190308266_InitialCreate.resx">
+      <DependentUpon>201810190308266_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

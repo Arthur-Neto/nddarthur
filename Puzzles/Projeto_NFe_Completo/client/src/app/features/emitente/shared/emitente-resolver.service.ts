@@ -8,6 +8,7 @@ import { AbstractResolveService } from './../../../core/utils/abstract-resolve.s
 
 @Injectable()
 export class EmitenteResolveService extends AbstractResolveService<Emitente> {
+
     constructor(private service: EmitenteService, private breadcrumbService: NDDBreadcrumbService, router: Router) {
         super(router);
         this.paramsProperty = 'emitenteId';
@@ -19,7 +20,7 @@ export class EmitenteResolveService extends AbstractResolveService<Emitente> {
         .do((emitente: Emitente) => {
             this.breadcrumbService.setMetadata({
                 id: 'emitente',
-                label: emitente.nomeRazaoSocial,
+                label: emitente.nomeFantasia,
                 sizeLimit: true,
             });
         });

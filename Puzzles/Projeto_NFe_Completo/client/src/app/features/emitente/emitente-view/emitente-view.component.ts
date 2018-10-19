@@ -11,6 +11,8 @@ export class EmitenteViewComponent implements OnInit, OnDestroy {
     public emitente: Emitente;
     public titulo: string;
 
+    public infoItems: object[];
+
     private ngUnsubscribe: Subject<void> = new Subject<void>();
 
     constructor(private resolver: EmitenteResolveService) {
@@ -32,5 +34,14 @@ export class EmitenteViewComponent implements OnInit, OnDestroy {
 
     private createProperty(): void {
         this.titulo = this.emitente.nomeFantasia;
+
+        const inscricaoEstadualDescricao: string = 'CNPJ: ' + this.emitente.cnpj.numero;
+
+        this.infoItems = [
+            {
+                value: inscricaoEstadualDescricao,
+                description: inscricaoEstadualDescricao,
+            },
+        ];
     }
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { BaseService } from '../../../core/utils';
 import { CORE_CONFIG_TOKEN, ICoreConfig } from '../../../core/core.config';
-import { DestinatarioExcluirComando, Destinatario, DestinatarioEditComando, DestinatarioCriarComando } from './model/destinatario.model';
+import { DestinatarioExcluirComando, Destinatario, DestinatarioEditarComando, DestinatarioAdicionarComando } from './model/destinatario.model';
 import { AbstractResolveService } from '../../../core/utils/abstract-resolve.service';
 import { NDDBreadcrumbService } from '../../../shared/ndd-ng-breadcrumb';
 
@@ -27,7 +27,6 @@ export class DestinatarioService extends BaseService {
 
     public get(id: number): Observable<Destinatario> {
         return this.http.get(`${this.api}/${id}`).map((response: Destinatario) => {
-
             return response;
         });
     }
@@ -36,11 +35,11 @@ export class DestinatarioService extends BaseService {
         return this.http.get(this.api).map((response: any) => response.items);
     }
 
-    public put(cmd: DestinatarioEditComando): Observable<boolean> {
+    public put(cmd: DestinatarioEditarComando): Observable<boolean> {
         return this.http.put(this.api, cmd).map((response: boolean) => response);
     }
 
-    public post(cmd: DestinatarioCriarComando): Observable<boolean> {
+    public post(cmd: DestinatarioAdicionarComando): Observable<boolean> {
         return this.http.post(this.api, cmd).map((response: boolean) => response);
     }
 }

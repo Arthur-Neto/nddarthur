@@ -37,7 +37,6 @@ namespace Projeto_NFe.Application.Funcionalidades.Transportadoras.Comandos
                     .When(transportadorAdicionarComando => transportadorAdicionarComando.Documento.Tipo == TipoDocumento.CNPJ);
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.ResponsabilidadeFrete).NotNull();
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco).NotNull();
-                RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Documento).NotNull();
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco.Bairro).NotNull();
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco.Estado).NotNull();
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco.Logradouro).NotNull();
@@ -45,8 +44,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Transportadoras.Comandos
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco.Numero).NotNull();
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco.Numero).GreaterThan(0);
                 RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Endereco.Pais).NotNull();
-                RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Documento.Numero).MinimumLength(11);
-                RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Documento.Numero).MaximumLength(14);
+                RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Documento.Numero).MinimumLength(14);
+                RuleFor(transportadorAdicionarComando => transportadorAdicionarComando.Documento.Numero).MaximumLength(18);
             }
         }
     }

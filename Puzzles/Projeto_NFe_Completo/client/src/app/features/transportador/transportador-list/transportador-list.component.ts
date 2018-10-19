@@ -36,14 +36,14 @@ export class TransportadorListComponent extends GridUtilsComponent implements On
   }
 
   public onClick(): void {
-    this.router.navigate(['./criar'],
+    this.router.navigate(['./adicionar'],
       { relativeTo: this.route });
   }
 
   public deleteTransportador(evento: SelectionEvent): void {
     this.gridService.loading = true;
-    const transportadorsToExcluir: TransportadorExcluirComando = new TransportadorExcluirComando(this.getSelectedEntities());
-    this.transportadorService.delete(transportadorsToExcluir)
+    const transportadoresParaExcluir: TransportadorExcluirComando = new TransportadorExcluirComando(this.getSelectedEntities());
+    this.transportadorService.delete(transportadoresParaExcluir)
       .take(1)
       .do(() => this.gridService.loading = false)
       .subscribe(() => {
@@ -53,7 +53,11 @@ export class TransportadorListComponent extends GridUtilsComponent implements On
   }
 
   public redirectOpenTransportador(): void {
+
+    // tslint:disable-next-line:no-console
+    console.log('transportadorId em list: ' + this.getSelectedEntities()[0].id);
+
     this.router.navigate(['./', `${this.getSelectedEntities()[0].id}`],
-      { relativeTo: this.route });
+    { relativeTo: this.route });
   }
 }

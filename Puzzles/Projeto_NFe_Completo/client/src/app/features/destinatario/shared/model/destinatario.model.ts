@@ -1,17 +1,14 @@
+import { Endereco } from 'src/app/features/endereco/shared/model/endereco.model';
+import { Documento } from 'src/app/shared/models/documento/documento.model';
+
 export class Destinatario {
-    public id: number;
+    public id?: number;
     public nomeRazaoSocial: string;
-    public inscricaoEstadual: string;
+    public inscricaoEstadual?: string;
 
-    public enderedoLogradouro: string;
-    public enderecoNumero: number;
-    public enderecoBairro: string;
-    public enderecoMunicipio: string;
-    public enderecoEstado: string;
-    public enderecoPais: string;
+    public endereco?: Endereco;
 
-    public documentoNumero: number;
-    public documentoTipo: string;
+    public documento?: Documento;
 }
 
 export class DestinatarioExcluirComando {
@@ -22,60 +19,36 @@ export class DestinatarioExcluirComando {
     }
 }
 
-export class DestinatarioEditComando {
+export class DestinatarioEditarComando {
     public id: number;
     public nomeRazaoSocial: string;
     public inscricaoEstadual: string;
 
-    public enderedoLogradouro: string;
-    public enderecoNumero: number;
-    public enderecoBairro: string;
-    public enderecoMunicipio: string;
-    public enderecoEstado: string;
-    public enderecoPais: string;
+    public endereco: Endereco;
 
-    public documentoNumero: number;
-    public documentoTipo: string;
+    public documento: Documento;
 
     constructor(destinatario: Destinatario) {
         this.id = destinatario.id;
         this.nomeRazaoSocial = destinatario.nomeRazaoSocial;
         this.inscricaoEstadual = destinatario.inscricaoEstadual;
-        this.enderecoBairro = destinatario.enderecoBairro;
-        this.enderecoEstado = destinatario.enderecoEstado;
-        this.enderecoMunicipio = destinatario.enderecoMunicipio;
-        this.enderecoNumero = destinatario.enderecoNumero;
-        this.enderecoPais = destinatario.enderecoPais;
-        this.enderedoLogradouro = destinatario.enderedoLogradouro;
-        this.documentoNumero = destinatario.documentoNumero;
-        this.documentoTipo = destinatario.documentoTipo;
+        this.endereco = destinatario.endereco;
+        this.documento = destinatario.documento;
     }
 }
 
-export class DestinatarioCriarComando {
+export class DestinatarioAdicionarComando {
     public nomeRazaoSocial: string;
     public inscricaoEstadual: string;
 
-    public enderedoLogradouro: string;
-    public enderecoNumero: number;
-    public enderecoBairro: string;
-    public enderecoMunicipio: string;
-    public enderecoEstado: string;
-    public enderecoPais: string;
+    public endereco: Endereco;
 
-    public documentoNumero: number;
-    public documentoTipo: string;
+    public documento: Documento;
 
     constructor(destinatario: Destinatario) {
         this.nomeRazaoSocial = destinatario.nomeRazaoSocial;
         this.inscricaoEstadual = destinatario.inscricaoEstadual;
-        this.enderecoBairro = destinatario.enderecoBairro;
-        this.enderecoEstado = destinatario.enderecoEstado;
-        this.enderecoMunicipio = destinatario.enderecoMunicipio;
-        this.enderecoNumero = destinatario.enderecoNumero;
-        this.enderecoPais = destinatario.enderecoPais;
-        this.enderedoLogradouro = destinatario.enderedoLogradouro;
-        this.documentoNumero = destinatario.documentoNumero;
-        this.documentoTipo = destinatario.documentoTipo;
+        this.endereco = destinatario.endereco;
+        this.documento = destinatario.documento;
     }
 }

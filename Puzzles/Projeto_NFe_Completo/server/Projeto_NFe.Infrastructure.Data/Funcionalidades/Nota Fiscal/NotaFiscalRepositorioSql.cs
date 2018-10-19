@@ -1,6 +1,7 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Infrastructure.Data.Base;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
@@ -28,7 +29,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 
         public NotaFiscal BuscarPorId(long Id)
         {
-            NotaFiscal notaFiscal = _contexto.NotasFiscais.Find(Id);
+            NotaFiscal notaFiscal = _contexto.NotasFiscais.Where(x => x.Id == Id).Include("Produtos").FirstOrDefault();
 
             return notaFiscal;
         }
@@ -43,11 +44,6 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             _contexto.NotasFiscais.Remove(notaFiscal);
 
             ProdutoNotaFiscalRepositorioSql produtoNotaFiscalRepositorio = new ProdutoNotaFiscalRepositorioSql(_contexto);
-
-            //foreach (ProdutoNotaFiscal produtoNotaFiscal in notaFiscal.Produtos)
-            //{
-            //    produtoNotaFiscalRepositorio.Excluir(produtoNotaFiscal);
-            //}
 
             return _contexto.SaveChanges() != 0;
         }

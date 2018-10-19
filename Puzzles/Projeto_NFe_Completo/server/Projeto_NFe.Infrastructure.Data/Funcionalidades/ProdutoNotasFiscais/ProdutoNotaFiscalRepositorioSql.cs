@@ -35,7 +35,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 
         public IQueryable<ProdutoNotaFiscal> BuscarProdutosPorIdNota(long id)
         {
-            return _contexto.ProdutosNotaFiscal.Where(pn => pn.NotaFiscalId == id);
+            return _contexto.ProdutosNotaFiscal.Where(pn => pn.NotaFiscal.Id == id);
         }
 
         public IQueryable<ProdutoNotaFiscal> BuscarTodos()

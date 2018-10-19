@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { Destinatario } from '../shared/model/destinatario.model';
 import { DestinatarioResolveService } from '../shared/destinatario.service';
+import { Endereco } from '../../endereco/shared/model/endereco.model';
 
 @Component({
     templateUrl: './destinatario-detalhe.component.html',
@@ -12,6 +13,8 @@ import { DestinatarioResolveService } from '../shared/destinatario.service';
 export class DestinatarioDetalheComponent implements OnInit, OnDestroy {
 
     public destinatario: Destinatario;
+
+    public endereco: Endereco;
 
     public isLoading: boolean;
 
@@ -28,6 +31,7 @@ export class DestinatarioDetalheComponent implements OnInit, OnDestroy {
             .do(() => this.isLoading = false)
             .subscribe((destinatario: Destinatario) => {
                 this.destinatario = Object.assign(new Destinatario(), destinatario);
+                this.endereco = Object.assign(new Endereco(), destinatario.endereco);
             });
     }
 

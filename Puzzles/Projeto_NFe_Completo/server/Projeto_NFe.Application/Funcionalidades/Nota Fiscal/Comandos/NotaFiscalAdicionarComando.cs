@@ -1,22 +1,16 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
-using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
-using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais.Comandos
 {
     public class NotaFiscalAdicionarComando
     {
-        public Transportador Transportador { get; set; }
-        public Destinatario Destinatario { get; set; }
-        public Emitente Emitente { get; set; }
+        public long TransportadorId { get; set; }
+        public long DestinatarioId { get; set; }
+        public long EmitenteId { get; set; }
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }
         public DateTime? DataEmissao { get; set; }
@@ -36,17 +30,15 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais.Comandos
             return validar.Validate(this);
         }
 
-        class Validar : AbstractValidator<NotaFiscalAdicionarComando>
+        private class Validar : AbstractValidator<NotaFiscalAdicionarComando>
         {
             public Validar()
             {
-                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.Transportador).NotNull();
-                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.Destinatario).NotNull();
-                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.Emitente).NotNull();
+                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.TransportadorId).GreaterThan(0);
+                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.DestinatarioId).GreaterThan(0);
+                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.EmitenteId).GreaterThan(0);
                 RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.NaturezaOperacao).NotNull();
                 RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.DataEntrada).NotNull();
-                RuleFor(notaFiscalAdicionarComando => notaFiscalAdicionarComando.Destinatario.Documento.Numero)
-                    .NotEqual(notaFiscalAdicionarComando => notaFiscalAdicionarComando.Emitente.CNPJ.Numero);
 
                 //Para emissão:
 

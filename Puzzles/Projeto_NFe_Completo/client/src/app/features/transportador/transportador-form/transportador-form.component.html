@@ -1,0 +1,165 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formModel">
+    <div class="form__container">
+        <div class="row form__fieldset">
+
+
+
+            <div class="col-md-6">
+
+                <div class="col-sm-12 form__group">
+                    <span>Dados Cadastrais</span>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-sm-6 feature-view__body">
+                        <div class="form__radio">
+                            <input type="radio" name="tipoPessoa" id="pessoaFisica" class="k-radio" formControlName="tipoPessoa"
+                                value='1'>
+                            <label class="k-radio-label" for="pessoaFisica">Pessoa Física</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 feature-view__body">
+                        <div class="form__radio">
+                            <input type="radio" name="tipoPessoa" id="pessoaJuridica" class="k-radio" formControlName="tipoPessoa"
+                                value='2'>
+                            <label class="k-radio-label" for="pessoaJuridica">Pessoa Jurídica</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #region pessoaFisica -->
+
+                <div *ngIf="formModel.get('tipoPessoa').value === '1'" formGroupName="pessoaFisica">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>
+                                <span class="form__label" [ngClass]="{'form__error': encontrarErro('pessoaFisica','nomeRazaoSocial')}">Nome
+                                    Fantasia</span>
+                                <span class="form__label required" [ngClass]="{'form__error': encontrarErro('pessoaFisica','nomeRazaoSocial')}">*</span>
+                            </label>
+                            <div>
+                                <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('pessoaFisica','nomeRazaoSocial')}"
+                                    formControlName="nomeRazaoSocial" type="text" placeholder="Insira o nome do destinatário">
+                            </div>
+                            <span class="form__label" *ngIf="encontrarErro('pessoaFisica','nomeRazaoSocial')" class="form__error form__label">
+                                CAMPO OBRIGATÓRIO
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>
+                                <span class="form__label" [ngClass]="{'form__error': encontrarErro('pessoaFisica','cpf')}">CPF</span>
+                                <span class="form__label required" [ngClass]="{'form__error': encontrarErro('pessoaFisica','cpf')}">*</span>
+                            </label>
+
+                            <div>
+                                <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('pessoaFisica','cpf')}"
+                                    formControlName="cpf" type="text" placeholder="Insira o CPF do destinatário">
+                            </div>
+
+                            <span class="form__label" *ngIf="encontrarErro('pessoaFisica','cpf')" class="form__error form__label">
+                                CAMPO OBRIGATÓRIO
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form__label">
+                                <span>Responsabilidade do Frete?</span>
+                                <div class="form__input form__input--borderless">
+                                    <ui-switch color="#E85A50" formControlName="responsabilidadeFrete"></ui-switch>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region pessoaFisica -->
+                <div *ngIf="formModel.get('tipoPessoa').value === '2'" formGroupName="pessoaJuridica">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>
+                                <span class="form__label" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','nomeRazaoSocial')}">Nome
+                                    Fantasia</span>
+                                <span class="form__label required" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','nomeRazaoSocial')}">*</span>
+                            </label>
+                            <div>
+                                <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','nomeRazaoSocial')}"
+                                    formControlName="nomeRazaoSocial" type="text" placeholder="Insira a razão social do destinatário">
+                            </div>
+                            <span class="form__label" *ngIf="encontrarErro('pessoaJuridica','nomeRazaoSocial')" class="form__error form__label">
+                                CAMPO OBRIGATÓRIO
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>
+                                <span class="form__label" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','inscricaoEstadual')}">Inscrição
+                                    Estadual</span>
+                                <span class="form__label required" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','inscricaoEstadual')}">*</span>
+                            </label>
+                            <div>
+                                <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','inscricaoEstadual')}"
+                                    formControlName="inscricaoEstadual" type="text" placeholder="Insira a inscrição estadual do destinatário">
+                            </div>
+                            <span class="form__label" *ngIf="encontrarErro('pessoaJuridica','inscricaoEstadual')" class="form__error form__label">
+                                CAMPO OBRIGATÓRIO
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>
+                                <span class="form__label" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','cnpj')}">CNPJ</span>
+                                <span class="form__label required" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','cnpj')}">*</span>
+                            </label>
+
+                            <div>
+                                <input autocomplete="off" class="form__input" [ngClass]="{'form__error': encontrarErro('pessoaJuridica','cnpj')}"
+                                    formControlName="cnpj" type="text" placeholder="Insira o CNPJ do destinatário">
+                            </div>
+
+                            <span class="form__label" *ngIf="encontrarErro('pessoaJuridica','cnpj')" class="form__error form__label">
+                                CAMPO OBRIGATÓRIO
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form__label">
+                                <span>Responsabilidade do Frete?</span>
+                                <div class="form__input form__input--borderless">
+                                    <ui-switch color="#E85A50" formControlName="responsabilidadeFrete"></ui-switch>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <!-- #endregion -->
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6">
+                <ndd-endereco-form [formModel]="formModel.get('endereco')"></ndd-endereco-form>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-view-tab__footer">
+        <button class="ndd-ng-button ndd-ng-button--primary" type="submit" [disabled]="formModel.invalid">
+            Enviar
+        </button>
+        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirect()">
+            Voltar
+        </button>
+    </div>
+
+</form>

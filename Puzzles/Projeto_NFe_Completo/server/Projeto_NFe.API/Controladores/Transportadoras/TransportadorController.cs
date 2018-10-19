@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNet.OData.Query;
 using Projeto_NFe.API.Controladores.Common;
 using Projeto_NFe.API.Filtros;
-using Projeto_NFe.Application.Funcionalidades.Produtos.Modelos;
 using Projeto_NFe.Application.Funcionalidades.Transportadoras;
 using Projeto_NFe.Application.Funcionalidades.Transportadoras.Comandos;
+using Projeto_NFe.Application.Funcionalidades.Transportadoras.Modelos;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using System.Web.Http;
 
@@ -24,8 +24,7 @@ namespace Projeto_NFe.API.Controladores.Transportadors
         [ODataQueryOptionsValidate]
         public IHttpActionResult BuscarTodos(ODataQueryOptions<Transportador> queryOptions)
         {
-            var query = _transportadorServico.BuscarTodos();
-            return HandleQuery<Transportador, TransportadorModelo>(query, queryOptions);
+            return HandleQuery<Transportador, TransportadorModelo>(_transportadorServico.BuscarTodos(), queryOptions);
         }
 
         [HttpGet]

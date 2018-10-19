@@ -1,16 +1,16 @@
 <div class="feature-view-tab__content">
     <div class="row">
 
-        <div class="col-sm-12">
-            
-            <div class="row"> 
+        <div class="col-sm-6">
+
+            <div class="row">
                 <div class="col-sm-12">
                     <span class="feature-view__title">Dados Cadastrais</span>
                 </div>
             </div>
 
             <div class="row feature-view__group">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="row">
 
                         <div class="col-sm-12 col-md-6 feature-view__body">
@@ -41,7 +41,7 @@
                             </div>
                             <div class="truncate">
                                 <span title="{{ emitente?.cnpj }}" class="feature-view__value">
-                                    {{ emitente?.cnpj }}
+                                    {{ emitente?.cnpj.numero }}
                                 </span>
                             </div>
                         </div>
@@ -67,21 +67,21 @@
                                 </span>
                             </div>
                         </div>
-    
-                        <ndd-endereco-detalhes></ndd-endereco-detalhes>    
-
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <div class="col-md-6">
+                <ndd-endereco-detalhes [endereco]="endereco"></ndd-endereco-detalhes>
+            </div>
 
     </div>
 </div>
 
 <div class="feature-view-tab__footer">
-        <button class="ndd-ng-button ndd-ng-button--primary" (click)="botaoEditar()">Editar</button>
-        <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirecionar()">Voltar</button>
-    </div>
-    <div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
-    <div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>
+    <button class="ndd-ng-button ndd-ng-button--primary" (click)="botaoEditar()">Editar</button>
+    <button class="ndd-ng-button ndd-ng-button--cancel" (click)="redirecionar()">Voltar</button>
+</div>
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div>

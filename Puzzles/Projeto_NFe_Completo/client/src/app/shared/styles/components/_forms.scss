@@ -1,0 +1,74 @@
+.form {
+    &__input{
+        background: #fff;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02);
+        border-radius: 2px;
+        border: 1px solid #d9d9d9;
+        font-size: 12px;
+        padding: 10px 10px;
+        outline: none;
+        font-family: inherit;
+        color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 33px;
+        &:focus {
+            outline: none;
+        }
+
+        &--borderless{
+            border: none;
+            box-shadow: none;
+            height: 100%;
+            padding-bottom: 0;
+        }
+    }
+
+    &__subtitle{
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    &__kendo-date-picker {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__container {
+        margin: 20px 15px 15px 18px;
+    }
+
+    &__group {
+        margin-bottom: 15px; 
+
+        &--last {
+            margin-bottom: 0px;
+        }
+
+    }
+
+    &__error {
+        color: #ff4733;
+        border-color: #ff4733;
+
+        &::placeholder {
+            color: #ff4733;
+        }
+
+        &::-webkit-datetime-edit-month-field { color: #ff4733; }
+        &::-webkit-datetime-edit-day-field { color: #ff4733; }
+        &::-webkit-datetime-edit-year-field { color: #ff4733; }
+    }
+
+    &__fieldset {
+        margin-bottom: 30px;
+    }
+
+    &__label {
+        font-size: 13px;
+        font-weight: 400;
+    }
+}
+
+::-webkit-datetime-edit-month-field { color: rgba(0, 0, 0, 0.6); }
+::-webkit-datetime-edit-day-field { color: rgba(0, 0, 0, 0.6); }
+::-webkit-datetime-edit-year-field { color: rgba(0, 0, 0, 0.6); }

@@ -33,7 +33,10 @@ namespace Projeto_NFe.Application.Funcionalidades.Transportadoras.Comandos
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Id).NotNull();
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Id).GreaterThan(0);
                 RuleFor(transportadorEditarComando => transportadorEditarComando.NomeRazaoSocial).NotNull();
-                RuleFor(transportadorEditarComando => transportadorEditarComando.InscricaoEstadual).NotNull();
+                RuleFor(transportadorEditarComando => transportadorEditarComando.InscricaoEstadual).NotNull()
+                    .When(transportadorEditarComando => transportadorEditarComando.Documento.Tipo == TipoDocumento.CNPJ);
+                RuleFor(transportadorEditarComando => transportadorEditarComando.InscricaoEstadual).MaximumLength(15)
+                    .When(transportadorEditarComando => transportadorEditarComando.Documento.Tipo == TipoDocumento.CNPJ);
                 RuleFor(transportadorEditarComando => transportadorEditarComando.ResponsabilidadeFrete).NotNull();
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Endereco).NotNull();
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Documento).NotNull();
@@ -44,8 +47,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Transportadoras.Comandos
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Endereco.Numero).NotNull();
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Endereco.Numero).GreaterThan(0);
                 RuleFor(transportadorEditarComando => transportadorEditarComando.Endereco.Pais).NotNull();
-                RuleFor(transportadorEditarComando => transportadorEditarComando.Documento.Numero).MinimumLength(11);
-                RuleFor(transportadorEditarComando => transportadorEditarComando.Documento.Numero).MaximumLength(14);
+                RuleFor(transportadorEditarComando => transportadorEditarComando.Documento.Numero).MinimumLength(14);
+                RuleFor(transportadorEditarComando => transportadorEditarComando.Documento.Numero).MaximumLength(18);
             }
         }
     }

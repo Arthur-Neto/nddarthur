@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Endereco } from '../shared/model/endereco.model';
 
 @Component({
     selector: 'ndd-endereco-detalhes',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class EnderecoDetalhesComponent {
-
+    @Input() public endereco: Endereco;
 }

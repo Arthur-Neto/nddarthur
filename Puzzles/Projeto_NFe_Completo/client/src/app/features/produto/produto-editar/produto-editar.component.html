@@ -1,0 +1,9 @@
+<div class="feature-view">
+
+    <ndd-produto-form [formModel]="formModel" (submit)="editarProduto($event)">
+    </ndd-produto-form>
+
+</div>
+
+<div class="ndd-ng-spinner__spinner" *ngIf="isLoading"></div>
+<div class="ndd-ng-spinner__color" *ngIf="isLoading"></div> 

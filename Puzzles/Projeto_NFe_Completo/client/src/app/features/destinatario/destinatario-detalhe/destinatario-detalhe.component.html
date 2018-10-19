@@ -2,6 +2,7 @@
     <div class="row">
         <!-- #region Coluna 1 -->
         <div class="col-sm-6">
+
             <div class="row">
                 <div class="col-sm-12">
                     <span class="feature-view__title">DADOS CADASTRAIS</span>
@@ -25,8 +26,8 @@
                                 <span class="feature-view__label">Documento</span>
                             </div>
                             <div class="truncate">
-                                <span title="{{ destinatario?.documentoNumero }}" class="feature-view__value">
-                                    {{ destinatario?.documentoNumero }}
+                                <span title="{{ destinatario?.documento.numero }}" class="feature-view__value">
+                                    {{ destinatario?.documento.numero }}
                                 </span>
                             </div>
                         </div>
@@ -47,8 +48,8 @@
                                 <span class="feature-view__label">Tipo</span>
                             </div>
                             <div class="truncate">
-                                <span title="{{ destinatario?.documentoTipo }}" class="feature-view__value">
-                                    {{ destinatario?.documentoTipo }}
+                                <span title="{{ destinatario?.documento.tipo }}" class="feature-view__value">
+                                    {{ destinatario?.documento.tipo }}
                                 </span>
                             </div>
                         </div>
@@ -58,9 +59,13 @@
         </div>
         <!-- #endregion -->
 
-        <!-- #region Coluna 2 -->
-        <ndd-endereco-detalhes></ndd-endereco-detalhes>
-        <!-- #endregion -->
+
+        <div class="col-md-6">
+            <!-- #region Coluna 2 -->
+            <ndd-endereco-detalhes [endereco]="endereco"></ndd-endereco-detalhes>
+            <!-- #endregion -->
+        </div>
+        
     </div>
     <div class="feature-view-tab__footer">
         <button class="ndd-ng-button ndd-ng-button--primary" (click)="onEdit()">Editar</button>

@@ -13,9 +13,10 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
 
             Property(t => t.NomeRazaoSocial).HasColumnName("NomeRazaoSocial").HasColumnType("varchar").HasMaxLength(100).IsRequired();
             Property(t => t.ResponsabilidadeFrete).HasColumnName("ResponsabilidadeFrete").HasColumnType("bit").IsRequired();
-            Property(t => t.InscricaoEstadual).HasColumnName("InscricaoEstadual").HasColumnType("varchar").HasMaxLength(15).IsRequired();
-            HasRequired(t => t.Documento).WithMany().Map(t => t.MapKey("DocumentoId"));
-            HasRequired(t => t.Endereco).WithMany().Map(t => t.MapKey("EnderecoId"));
+            Property(t => t.InscricaoEstadual).HasColumnName("InscricaoEstadual").HasColumnType("varchar").HasMaxLength(15).IsOptional();
+
+            HasRequired(d => d.Documento).WithMany().HasForeignKey(d => d.DocumentoId);
+            HasRequired(d => d.Endereco).WithMany().HasForeignKey(d => d.EnderecoId);
         }
     }
 }

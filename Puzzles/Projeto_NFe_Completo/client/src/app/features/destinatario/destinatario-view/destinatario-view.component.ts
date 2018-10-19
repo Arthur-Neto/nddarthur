@@ -35,12 +35,12 @@ export class DestinatarioViewComponent implements OnInit, OnDestroy {
 
     public createProperty(): void {
         this.title = this.destinatario.nomeRazaoSocial;
-        const inscricaoEstadualDescricao: string = 'Inscrição estadual: ' + this.destinatario.inscricaoEstadual;
+        const documentoDescricao: string = 'Documento: ' + this.destinatario.documento.numero;
 
         this.infoItems = [
             {
-                value: inscricaoEstadualDescricao,
-                description: inscricaoEstadualDescricao,
+                value: documentoDescricao,
+                description: documentoDescricao,
             },
         ];
     }

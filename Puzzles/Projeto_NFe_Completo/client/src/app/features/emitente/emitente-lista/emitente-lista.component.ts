@@ -12,7 +12,6 @@ import { DataStateChangeEvent, SelectionEvent } from '@progress/kendo-angular-gr
 
 export class EmitenteListaComponent extends GridUtilsComponent {
 
-    private mascaraCNPJ: string = '/\d/,/\d/,/./,/\d/,/\d/,/\d/,/.//\d//\d//\d//\///\d//\d//\d//\d//-//\d//\d/';
     constructor(private gridService: EmitenteGridService,
         // A private emitenteService: EmitenteService,
         private router: Router,
@@ -35,7 +34,7 @@ export class EmitenteListaComponent extends GridUtilsComponent {
         this.router.navigate(['./adicionar'], {relativeTo: this.route });
     }
 
-    public redirecionar(): void {
+    public abrirEmitente(): void {
         this.router.navigate(['./', `${this.getSelectedEntities()[0].id}`], {relativeTo: this.route });
     }
 }

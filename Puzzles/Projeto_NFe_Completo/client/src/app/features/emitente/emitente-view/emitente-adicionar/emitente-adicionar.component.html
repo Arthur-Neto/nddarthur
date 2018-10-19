@@ -1,9 +1,9 @@
 <div class="feature-view">
 
-    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-cardboard-box" [titlebarTitle]="title" [titlebarInfoItems]="infoItems" [titlebarRouterToReturnOnClose]="returnRoute">
+    <ndd-ng-titlebar titlebarIcon="ndd-font ndd-font-share-square-solid" [titlebarTitle]="titulo" [titlebarInfoItems]="infoItems" [titlebarRouterToReturnOnClose]="returnRoute">
     </ndd-ng-titlebar>
 
-    <ndd-emitente-form [formModel]="formModelAdicionar" (submit)="adicionarEmitente($event)">
+    <ndd-emitente-form [formModel]="formModel" (submit)="adicionarEmitente($event)">
     </ndd-emitente-form>
 
 </div>

@@ -35,15 +35,15 @@ export class NotaFiscalListComponent extends GridUtilsComponent implements OnIni
     this.updateSelectedRows(evento.deselectedRows, false);
   }
 
-  public onClick(): void {
-    this.router.navigate(['./criar'],
+  public novaNota(): void {
+    this.router.navigate(['./adicionar'],
       { relativeTo: this.route });
   }
 
-  public deleteNotaFiscal(evento: SelectionEvent): void {
+  public deletarNota(evento: SelectionEvent): void {
     this.gridService.loading = true;
     const notaFiscalsToExcluir: NotaFiscalExcluirComando = new NotaFiscalExcluirComando(this.getSelectedEntities());
-    this.notaFiscalService.delete(notaFiscalsToExcluir)
+    this.notaFiscalService.deletar(notaFiscalsToExcluir)
       .take(1)
       .do(() => this.gridService.loading = false)
       .subscribe(() => {
@@ -52,7 +52,7 @@ export class NotaFiscalListComponent extends GridUtilsComponent implements OnIni
       });
   }
 
-  public redirectOpenNotaFiscal(): void {
+  public abrirNota(): void {
     this.router.navigate(['./', `${this.getSelectedEntities()[0].id}`],
       { relativeTo: this.route });
   }

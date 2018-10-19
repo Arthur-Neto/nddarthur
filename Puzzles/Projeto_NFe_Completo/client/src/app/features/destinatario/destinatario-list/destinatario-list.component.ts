@@ -36,7 +36,7 @@ export class DestinatarioListComponent extends GridUtilsComponent implements OnI
   }
 
   public onClick(): void {
-    this.router.navigate(['./criar'],
+    this.router.navigate(['./adicionar'],
       { relativeTo: this.route });
   }
 

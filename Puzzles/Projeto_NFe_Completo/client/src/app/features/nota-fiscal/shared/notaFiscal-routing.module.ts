@@ -2,17 +2,35 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { NotaFiscalListComponent } from '../notaFiscal-list/notaFiscal-list.component';
+import { NotaFiscalViewComponent } from '../notaFiscal-view/notaFiscal-view.component';
+
 import { NotaFiscalResolveService } from './notaFiscal.service';
+import { NotaFiscalDetalheComponent } from '../notaFiscal-view/notaFiscal-detalhe/notaFiscal-detalhe.component';
+import { NotaFiscalAdicionarComponent } from '../notaFiscal-adicionar/notaFiscal-adicionar.component';
 
 const notaFiscalRoutes: Routes = [
     {
         path: '',
-        component: NotaFiscalListComponent,
+        children: [
+            {
+                path: '',
+                component: NotaFiscalListComponent,
+            },
+            {
+                path: 'adicionar',
+                component: NotaFiscalAdicionarComponent,
+                data: {
+                    breadcrumbOptions: {
+                        breadcrumbId: 'adicionar',
+                    },
+                },
+            },
+        ],
     },
     {
         path: ':notaFiscalId',
         resolve: {
-            product: NotaFiscalResolveService,
+            notaFiscal: NotaFiscalResolveService,
         },
         data: {
             breadcrumbOptions: {
@@ -20,7 +38,26 @@ const notaFiscalRoutes: Routes = [
             },
         },
         children: [
-            {},
+            {
+                path: '',
+                component: NotaFiscalViewComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'info',
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'info',
+                        children: [
+                            {
+                                path: '',
+                                component: NotaFiscalDetalheComponent,
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
     },
 ];

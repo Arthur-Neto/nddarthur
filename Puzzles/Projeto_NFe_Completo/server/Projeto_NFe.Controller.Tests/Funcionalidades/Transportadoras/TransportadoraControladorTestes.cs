@@ -5,9 +5,9 @@ using Moq;
 using NUnit.Framework;
 using Projeto_NFe.API.Controladores.Transportadors;
 using Projeto_NFe.API.Excecoes;
-using Projeto_NFe.Application.Funcionalidades.Produtos.Modelos;
 using Projeto_NFe.Application.Funcionalidades.Transportadoras;
 using Projeto_NFe.Application.Funcionalidades.Transportadoras.Comandos;
+using Projeto_NFe.Application.Funcionalidades.Transportadoras.Modelos;
 using Projeto_NFe.Application.Mapeador;
 using Projeto_NFe.Common.Tests.Funcionalidades;
 using Projeto_NFe.Controller.Tests.Initializer;
@@ -53,7 +53,7 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
             _transportadorAtualizarCmd.Setup(cmd => cmd.RealizarValidacaoDoComando()).Returns(_validador.Object);
             _transportadorRemoverCmd = new Mock<TransportadorRemoverComando>();
             _transportadorRemoverCmd.Setup(cmd => cmd.RealizarValidacaoDoComando()).Returns(_validador.Object);
-            var isValid = true;
+            bool isValid = true;
             _validador.Setup(v => v.IsValid).Returns(isValid);
         }
 
@@ -64,15 +64,15 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         {
             // Arrange
             CPF cpf = new CPF() { numeroSemPontuacao = "24760862072" };
-            var transportador = ObjectMother.PegarTransportadorValidoComCPF(ObjectMother.PegarEnderecoValido(), cpf);
-            var response = new List<Transportador>() { transportador }.AsQueryable();
+            Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(ObjectMother.PegarEnderecoValido(), cpf);
+            IQueryable<Transportador> response = new List<Transportador>() { transportador }.AsQueryable();
             _transportadorServicoMock.Setup(s => s.BuscarTodos()).Returns(response);
-            var odataOptions = GetOdataQueryOptions<Transportador>(_transportadorsControlador);
+            Microsoft.AspNet.OData.Query.ODataQueryOptions<Transportador> odataOptions = GetOdataQueryOptions<Transportador>(_transportadorsControlador);
             // Action
-            var callback = _transportadorsControlador.BuscarTodos(odataOptions);
+            IHttpActionResult callback = _transportadorsControlador.BuscarTodos(odataOptions);
             //Assert
             _transportadorServicoMock.Verify(s => s.BuscarTodos(), Times.Once);
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<PageResult<TransportadorModelo>>>().Subject;
+            OkNegotiatedContentResult<PageResult<TransportadorModelo>> httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<PageResult<TransportadorModelo>>>().Subject;
             httpResponse.Content.Should().NotBeNullOrEmpty();
         }
 
@@ -80,12 +80,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_GetById_ShouldBeOk()
         {
             // Arrange
-            var id = 1;
+            int id = 1;
             _transportadorServicoMock.Setup(c => c.BuscarPorId(id)).Returns(_transportador.Object);
             // Action
             IHttpActionResult callback = _transportadorsControlador.BuscarPorId(id);
             // Assert
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<Transportador>>().Subject;
+            OkNegotiatedContentResult<Transportador> httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<Transportador>>().Subject;
             httpResponse.Content.Should().NotBeNull();
             _transportadorServicoMock.Verify(s => s.BuscarPorId(id), Times.Once);
         }
@@ -98,12 +98,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_Post_ShouldBeOk()
         {
             // Arrange
-            var id = 1;
+            int id = 1;
             _transportadorServicoMock.Setup(c => c.Adicionar(_transportadorAdicionarCmd.Object)).Returns(id);
             // Action
             IHttpActionResult callback = _transportadorsControlador.Add(_transportadorAdicionarCmd.Object);
             // Assert
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<long>>().Subject;
+            OkNegotiatedContentResult<long> httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<long>>().Subject;
             httpResponse.Content.Should().Be(id);
             _transportadorServicoMock.Verify(s => s.Adicionar(_transportadorAdicionarCmd.Object), Times.Once);
         }
@@ -112,12 +112,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_Post_ShouldBeHandleValidationErrors()
         {
             //Arrange
-            var isValid = false;
+            bool isValid = false;
             _validador.Setup(v => v.IsValid).Returns(isValid);
             // Action
-            var callback = _transportadorsControlador.Add(_transportadorAdicionarCmd.Object);
+            IHttpActionResult callback = _transportadorsControlador.Add(_transportadorAdicionarCmd.Object);
             //Assert
-            var httpResponse = callback.Should().BeOfType<NegotiatedContentResult<IList<ValidationFailure>>>().Subject;
+            NegotiatedContentResult<IList<ValidationFailure>> httpResponse = callback.Should().BeOfType<NegotiatedContentResult<IList<ValidationFailure>>>().Subject;
             httpResponse.Content.Should().NotBeNull();
             _transportadorAdicionarCmd.Verify(cmd => cmd.RealizarValidacaoDoComando(), Times.Once);
             _transportadorAdicionarCmd.VerifyNoOtherCalls();
@@ -131,12 +131,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_Put_ShouldBeOk()
         {
             // Arrange
-            var isUpdated = true;
+            bool isUpdated = true;
             _transportadorServicoMock.Setup(c => c.Atualizar(_transportadorAtualizarCmd.Object)).Returns(isUpdated);
             // Action
             IHttpActionResult callback = _transportadorsControlador.Atualizar(_transportadorAtualizarCmd.Object);
             // Assert
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<bool>>().Subject;
+            OkNegotiatedContentResult<bool> httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<bool>>().Subject;
             httpResponse.Content.Should().BeTrue();
             _transportadorServicoMock.Verify(s => s.Atualizar(_transportadorAtualizarCmd.Object), Times.Once);
         }
@@ -149,7 +149,7 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
             // Action
             IHttpActionResult callback = _transportadorsControlador.Atualizar(_transportadorAtualizarCmd.Object);
             // Assert
-            var httpResponse = callback.Should().BeOfType<NegotiatedContentResult<ExceptionPayload>>().Subject;
+            NegotiatedContentResult<ExceptionPayload> httpResponse = callback.Should().BeOfType<NegotiatedContentResult<ExceptionPayload>>().Subject;
             httpResponse.Content.CodigoErro.Should().Be((int)CodigosErros.NotFound);
             _transportadorServicoMock.Verify(s => s.Atualizar(_transportadorAtualizarCmd.Object), Times.Once);
         }
@@ -158,12 +158,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_Update_ShouldBeHandleValidationErrors()
         {
             //Arrange
-            var isValid = false;
+            bool isValid = false;
             _validador.Setup(v => v.IsValid).Returns(isValid);
             // Action
-            var callback = _transportadorsControlador.Atualizar(_transportadorAtualizarCmd.Object);
+            IHttpActionResult callback = _transportadorsControlador.Atualizar(_transportadorAtualizarCmd.Object);
             //Assert
-            var httpResponse = callback.Should().BeOfType<NegotiatedContentResult<IList<ValidationFailure>>>().Subject;
+            NegotiatedContentResult<IList<ValidationFailure>> httpResponse = callback.Should().BeOfType<NegotiatedContentResult<IList<ValidationFailure>>>().Subject;
             httpResponse.Content.Should().NotBeNull();
             _transportadorAtualizarCmd.Verify(cmd => cmd.RealizarValidacaoDoComando(), Times.Once);
             _transportadorAtualizarCmd.VerifyNoOtherCalls();
@@ -176,12 +176,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_Delete_ShouldBeOk()
         {
             // Arrange
-            var isUpdated = true;
+            bool isUpdated = true;
             _transportadorServicoMock.Setup(c => c.Excluir(_transportadorRemoverCmd.Object)).Returns(isUpdated);
             // Action
             IHttpActionResult callback = _transportadorsControlador.Excluir(_transportadorRemoverCmd.Object);
             // Assert
-            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<bool>>().Subject;
+            OkNegotiatedContentResult<bool> httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<bool>>().Subject;
             _transportadorServicoMock.Verify(s => s.Excluir(_transportadorRemoverCmd.Object), Times.Once);
             httpResponse.Content.Should().BeTrue();
         }
@@ -190,12 +190,12 @@ namespace Projeto_NFe.Controller.Tests.Features.Transportadors
         public void Transportador_Controller_Delete_ShouldBeHandleValidationErrors()
         {
             //Arrange
-            var isValid = false;
+            bool isValid = false;
             _validador.Setup(v => v.IsValid).Returns(isValid);
             // Action
-            var callback = _transportadorsControlador.Excluir(_transportadorRemoverCmd.Object);
+            IHttpActionResult callback = _transportadorsControlador.Excluir(_transportadorRemoverCmd.Object);
             //Assert
-            var httpResponse = callback.Should().BeOfType<NegotiatedContentResult<IList<ValidationFailure>>>().Subject;
+            NegotiatedContentResult<IList<ValidationFailure>> httpResponse = callback.Should().BeOfType<NegotiatedContentResult<IList<ValidationFailure>>>().Subject;
             httpResponse.Content.Should().NotBeNull();
             _transportadorRemoverCmd.Verify(cmd => cmd.RealizarValidacaoDoComando(), Times.Once);
             _transportadorRemoverCmd.VerifyNoOtherCalls();

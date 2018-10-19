@@ -35,15 +35,15 @@ export class ProdutoListComponent extends GridUtilsComponent implements OnInit {
     this.updateSelectedRows(evento.deselectedRows, false);
   }
 
-  public onClick(): void {
-    this.router.navigate(['./criar'],
+  public novoProduto(): void {
+    this.router.navigate(['./adicionar'],
       { relativeTo: this.route });
   }
 
-  public deleteProduto(evento: SelectionEvent): void {
+  public deletarProduto(evento: SelectionEvent): void {
     this.gridService.loading = true;
-    const produtosToExcluir: ProdutoExcluirComando = new ProdutoExcluirComando(this.getSelectedEntities());
-    this.produtoService.delete(produtosToExcluir)
+    const produtosAExcluir: ProdutoExcluirComando = new ProdutoExcluirComando(this.getSelectedEntities());
+    this.produtoService.delete(produtosAExcluir)
       .take(1)
       .do(() => this.gridService.loading = false)
       .subscribe(() => {
@@ -52,7 +52,7 @@ export class ProdutoListComponent extends GridUtilsComponent implements OnInit {
       });
   }
 
-  public redirectOpenProduto(): void {
+  public abrirProduto(): void {
     this.router.navigate(['./', `${this.getSelectedEntities()[0].id}`],
       { relativeTo: this.route });
   }

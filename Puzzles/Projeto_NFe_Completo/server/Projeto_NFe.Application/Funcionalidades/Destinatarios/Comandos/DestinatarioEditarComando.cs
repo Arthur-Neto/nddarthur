@@ -49,8 +49,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios.Comandos
                 RuleFor(destinatarioEditarComando => destinatarioEditarComando.Endereco.Numero).NotNull();
                 RuleFor(destinatarioEditarComando => destinatarioEditarComando.Endereco.Numero).GreaterThan(0);
                 RuleFor(destinatarioEditarComando => destinatarioEditarComando.Endereco.Pais).NotNull();
-                RuleFor(destinatarioEditarComando => destinatarioEditarComando.Documento.Numero).MinimumLength(11);
-                RuleFor(destinatarioEditarComando => destinatarioEditarComando.Documento.Numero).MaximumLength(14);
+                RuleFor(destinatarioEditarComando => destinatarioEditarComando.Documento.Numero).MinimumLength(14);
+                RuleFor(destinatarioEditarComando => destinatarioEditarComando.Documento.Numero).MaximumLength(18);
             }
         }
     }

@@ -14,6 +14,9 @@ namespace Projeto_NFe.Infrastructure.Data.Migrations
 
         protected override void Seed(Projeto_NFe.Infrastructure.Data.Base.ProjetoNFeContexto context)
         {
+            SementeBaseSQL semeador = new SementeBaseSQL(context);
+            semeador.Semear();
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
